@@ -20,15 +20,15 @@ var DataTable={
 		"FULL_PAGE":'FULL',
 		"lOADING_SHOW":false,
 		"lOADING_DEFALUT":{},
-		"LOADING_MSG":'数据正在读取中……',
+		"LOADING_MSG":'Data loading……',
 		"MSG":{
-			"first":'首页',
-			"previous":'上一页',
-			"next":'下一页',
-			"last":'末页',
-			"totalCount":'共{0}条',
-			"totalPage":'共{0}页',
-			"rowPerPage":'每页显示{0}条'		
+			"first":'first',
+			"previous":'previous',
+			"next":'next',
+			"last":'last',
+			"totalPage":'total {0} pages',
+			"totalCount":'total {0} rows',
+			"rowPerPage":'page for {0} rows'		
 		},
 		/*
 		 * 加载数据
@@ -120,7 +120,12 @@ var DataTable={
 						if(!dataTableSort){
 							dataTableSort=	data.sort;
 						}
-						
+						if(!dataTableOrder){
+							dataTableOrder='';
+						}
+						if(!dataTableSort){
+							dataTableSort='';
+						}
 						for(var i in data[valueObject].data){
 								data[valueObject].data[i].datatableCount=parseInt(j)+1;
 								data[valueObject].data[i].datatableIndex=parseInt(j);
