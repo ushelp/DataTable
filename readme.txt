@@ -441,3 +441,4 @@ Default paging configuration defined in the DataTable object MSG properties, thr
 
 
 
+Demo online：http://www.lightfeel.com/EasyDataTable_en/demo_en.jsp
