@@ -80,11 +80,11 @@ May need to be redefined, {0} is a placeholder for the corresponding data displa
 <form action="server pagination URL">
 
 <!--  show data TABLE  -->
-<table>
+<table id="tableId">
 <!--  table header ROW  -->
 <tr><th></th>    …… </tr>
 <!--  data show ROW  -->
-<tr><th></th>    …… </tr>
+<tr><td></td>    …… </tr>
 </table>
 
 <!--  pagination label DIV  -->
@@ -165,12 +165,15 @@ DataTable.out(res);
 }%
 
 5、EasyTableData Built-in data attribute
+only use in data row:
 datatableIndex:data on the current page index
 datatableCount:data on the current page number
+key:Map Data collection can be used to obtain data for the key
+use in data row and pagination label DIV
 pageNo:now page number
+maxPage:max page
 rowPerPage:the number of one page
 totalCount:the total number of data
-key:Map Data collection can be used to obtain data for the key
 order: the sort field
 sort:sort, desc or asc
 For example:
