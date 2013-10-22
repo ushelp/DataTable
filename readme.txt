@@ -234,9 +234,52 @@ PageBean object is returned, then the table to add value attribute that specifie
 <table class="datatable easydatatable"  id="datatable3"  width="760px" align="center" value="pb">
 
 
-9、Forms AJAX Pagination instance...
+9、 refresh the specified data table
+DataTable.reload ("tableId"); / / cancel the sorting effect , refresh the table , reload the data
 
-9.1	DataTable.SIMPLE_PAGE+ Loading
+10、 custom paging
+DataTable built-in paging implementation , and provide two sets of topics:
+DataTable.FULL_PAGE ( full theme , the default display all pagination options )
+ 
+DataTable.SIMPLE_PAGE ( simple theme , do not show this page after page quickly jump label )
+ 
+10.1、 Using JavaScript initialization data table , you can specify the use of paging topics:
+DataTable.load ("datatable", {
+  "pagetheme": DataTable.SIMPLE_PAGE
+  } ) ;
+
+10.2、 DIV tag is specified in the paging paging topics:
+<div class="panelBar" style="width: 760px;height: 40px;" size="5,10,30,50" pagetheme="FULL">
+
+<div class="panelBar" style="width: 760px;height: 40px;" size="5,10,30,50" pagetheme="SIMPLE">
+
+10.3、 cancel the paging and themes :
+pagetheme = "no", use display: none hidden , or directly delete some tabs can be.
+<div class="panelBar" style="width: 760px;height: 40px;display: none;" size="5,10,30,50" pagetheme="no">
+
+
+10.4、 Custom paging :
+Call DataTable.go (' loading data table id', pages [ Show number of ] ) function , you can implement custom paging jump .
+You can also use <input type="hidden" name="rowPerPage" value="8"/> hidden field specifies the default number of displayed per page .
+
+
+<div class="panelBar" style="width: 760px;height: 40px;" size="5,10,30,50" pagetheme="no">
+<input type="hidden" name="rowPerPage" value="8"/>
+Current {pageNo} Page / {maxPage} {rowPerPage} per page article / articles of {totalCount}
+<input type="button" value="first" onclick="DataTable.go('datatable7',1)"/>
+<input type="button" value="previous" onclick="DataTable.go('datatable7',{pageNo-1})"/>
+<input type="button" value="next" onclick="DataTable.go('datatable7',{pageNo+1})"/>
+<input type="button" value="last" onclick="DataTable.go('datatable7',{maxPage})"/>
+</ div>
+
+
+
+
+
+
+11、Forms AJAX Pagination instance...
+
+11.1	DataTable.SIMPLE_PAGE+ Loading
   <script type="text/javascript">
   $(function(){
   			DataTable.load("datatable",DataTable.SIMPLE_PAGE,true);
@@ -284,9 +327,9 @@ DataTable.SIMPLE_PAGE+ Loading
 
 
 
-9.2	DataTable Expression Language+DataTable.SIMPLE_FULL + Checkbox + Number
+11.2	DataTable Expression Language+DataTable.SIMPLE_FULL + Checkbox + Number
 
-   <div style="margin: 40 0 10 0; font-size: 28px;">判断语句DataTableexpression使用</div>
+   <div style="margin: 40 0 10 0; font-size: 28px;">DataTableexpression</div>
    <form action="doPage.jsp" name="myform">
    	<div style="height: 260px;overflow:auto;width: 780px;">
 		     <table class="datatable easydatatable"  id="datatable3"  width="760px" align="center">
@@ -340,7 +383,7 @@ DataTable.SIMPLE_PAGE+ Loading
       </form>
    
 
-9.3	Search Pagination
+11.3	Search Pagination
 
 Search button data submission method:
 Method one: to the search button to add onclick = "DataTable.load ('the current data table id')"
@@ -411,7 +454,7 @@ Method Two: Give the search button added directly easydatatable_search class sty
       </form>
 
 
-10、EasyDataTable  International Support
+12、EasyDataTable  International Support
 EasyDataTable comes with tabs, you need to customize the display of text and language, the text label by language parameter adjustment and edit.
 The default tab of words and language: 
 {
