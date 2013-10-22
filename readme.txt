@@ -272,7 +272,7 @@ Current {pageNo} Page / {maxPage} {rowPerPage} per page article / articles of {t
 <input type="button" value="last" onclick="DataTable.go('datatable7',{maxPage})"/>
 </ div>
 
-
+In the function call parameter if you use EasyDataTable expressions (such as {pageNo}) is required by the single quotation marks, as a string parameter, such as onclick = "DataTable.go ('datatable7', '{pageNo-1}') "/> the '{pageNo-1}'.
 
 
 
