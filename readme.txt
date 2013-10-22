@@ -5,8 +5,13 @@ EasyDataTable AJAX Pagination jQuery Plugins_en
 
 
 Using AJAX pagination can improve data loading and display speed, reduce network traffic, improve the customer experience degrees; while to refresh only partial, solution when there are multiple data displayed on the page table area, the traditional way paging causes a page refresh all.
+
 EasyDataTable AJAX pagination plugin is based on jQuery pagination plugin best, no one, simple, clear, easy to use, flexible, comprehensive; own tabs; supports sorting; built EasyDataTable expression language can be enhanced through the JavaScript programming paging.
 
+Compare EasyDataTable with Ext paging features:
+Simple: EasyDataTable requires less resource loading, very lightweight
+Easy to use: almost no JS code, a comprehensive package, JS zero programming Ajax paging function can be realized
+Flexible: fewer restrictions, comes expression language features are available from the UI to customize and extend
 
 Rapid development steps:
 1、On the web page introducing EasyDataTable js and css files
