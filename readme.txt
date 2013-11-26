@@ -6,12 +6,13 @@ EasyDataTable AJAX Pagination jQuery Plugins_en
 
 Using AJAX pagination can improve data loading and display speed, reduce network traffic, improve the customer experience degrees; while to refresh only partial, solution when there are multiple data displayed on the page table area, the traditional way paging causes a page refresh all.
 
-EasyDataTable AJAX pagination plugin is based on jQuery pagination plugin best, no one, simple, clear, easy to use, flexible, comprehensive; own tabs; supports sorting; built EasyDataTable expression language can be enhanced through the JavaScript programming paging.
+EasyDataTable AJAX pagination plugin is based on jQuery Ajax pagination plugin best pure, simple and easy to use, flexible; own tabs; supports sorting; built-EasyDataTable expression language and events that enhance paging through support JavaScript programming.
+Compatibility: EasyDataTable fully compatible with IE6 and above, Firefox, Chrome, Safari, Opera and other kernel (Trident, Gecko, Webkit, Presto) browser, and is compatible with multiple platforms and systems (PC, TabletPC, Mobile).
 
 Compare EasyDataTable with Ext paging features:
 Simple: EasyDataTable requires less resource loading, very lightweight
 Easy to use: almost no JS code, a comprehensive package, JS zero programming Ajax paging function can be realized
-Flexible: fewer restrictions, comes expression language features are available from the UI to customize and extend
+Flexible: fewer restrictions, comes the expression language, event support, from UI to customize and extend functionality available
 
 Rapid development steps:
 1、On the web page introducing EasyDataTable js and css files
@@ -35,17 +36,26 @@ easydataParameters: optional parameter, that specifies EasyDataTable parameter i
 {
 pagetheme: 'paging theme'
 loading: 'whether to display the loading tip'
-language: 'tabs language'
+language: 'tabs language',
+start: 'data starts to load event handler'
+end: 'end of the data load event handler'
 }
 
-pagetheme: optional parameter(Default : DataTable.FULL_PAGE.),tables theme supports two optional paging topics:
+pagetheme——optional parameter(Default : DataTable.FULL_PAGE.),tables theme supports two optional paging topics:
 DataTable.FULL_PAGE (full theme, the default display all pagination options)
 DataTable.SIMPLE_PAGE (simple theme, do not show this page after page quickly jump label)
+NO (Cancel theme, using custom paging, refer to Section 10 "custom paging")
+Description: pagetheme parameters can be paged through the div pagetheme property settings, load order of html, javascript, loading parameters will overwrite the previous value.
 
+loading——optional parameter when loading data tables paged display, optional value default, show or none.
+default: The default page loading, load the table is disabled when the paging operation (disabling hyperlinks, buttons), the form data is grayed
+show: show the loading prompt manner, display the contents of the page is loaded loading tips DataTable.LOADING_MSG defined (can be modified) "Data loading……"
+none: hidden data show line mode, paging load data show hidden rows of data + cells showed complete blank
+hide: hidden data content and form, only the data is loaded when the page display hidden data line, keep the display cell borders
+Other values​​: as a reminder that content directly loaded when the page content (equivalent to show the way), support for HTML content, such as:
+loading: "<div> <img src=\"images/loading.gif\"/> <br/> data is loading ...... </ div>"
 
-loading: optional parameter( defaults : false), is displayed when loading data loading prompt "the data is being read in the ......" optional value of true or false
-
-language:Optional parameters, settings tabs display language, the default value
+language——Optional parameters, settings tabs display language, the default value
 {
 			"first":'first',
 			"previous":'previous',
@@ -80,7 +90,35 @@ May need to be redefined, {0} is a placeholder for the corresponding data displa
   });
   </script>
 
+start——optional set of data each time the handler is loaded at the start of
+/ *
+o: The current data table object
+initFlag: true representative of the first load data (initialization tables), false representatives of the page to load
+* /
+"start": function (o, initFlag) {
+   if (initFlag) {/ / first load (uninitialized)
+   console.info ('init start ...');
+   } else {
+console.info ('load start ...');
+   }
+  
+   }
 
+
+end——optional set of data each time the handler is loaded at the end of
+/ *
+o: The current data table object
+initFlag: true representative of the first load data (initialization tables), false representatives of the page to load
+* /
+"end": function (o, initFlag) {
+   if (initFlag) {/ / first load (uninitialized)
+   console.info ('init end ...');
+   } else {
+console.info ('load end ...');
+   }
+  
+   }
+   
 3、Pagination table structure
 <form action="server pagination URL">
 
@@ -259,13 +297,12 @@ DataTable.load ("datatable", {
 <div class="panelBar" style="width: 760px;height: 40px;" size="5,10,30,50" pagetheme="SIMPLE">
 
 10.3、 cancel the paging and themes :
-pagetheme = "no", use display: none hidden , or directly delete some tabs can be.
+use display: none hidden , or directly delete can be.
 <div class="panelBar" style="width: 760px;height: 40px;display: none;" size="5,10,30,50" pagetheme="no">
 
 
 10.4、 Custom paging :
-Call DataTable.go (' loading data table id', pages [ Show number of ] ) function , you can implement custom paging jump .
-You can also use <input type="hidden" name="rowPerPage" value="8"/> hidden field specifies the default number of displayed per page .
+Add pagetheme = "no" attribute (or parameter setting via EasyDataTable initialization), call DataTable.go ('loading data table id', 'pages', [page displays the number of]) function, you can implement custom paging Jump;You can also use <input type="hidden" name="rowPerPage" value="8"/> hidden field specifies the default number of displayed per page .
 
 
 <div class="panelBar" style="width: 760px;height: 40px;" size="5,10,30,50" pagetheme="no">
@@ -458,7 +495,84 @@ Method Two: Give the search button added directly easydatatable_search class sty
 
       </form>
 
+	  
+	  
+11.4 With start and end data loading paging event handler
+<script type="text/javascript">
+  $(function(){
+           //initialization loading effect, after loading is complete hide loading, display the initial data
+  			DataTable.load("datatable_event",{
+  				"start":function(dataTableObj,initFlag){ 
+  					if(initFlag){ //First loaded, uninitialized
+  						//console.info('init start...');
+  						$("#loading").show();     //Show loading tips DIV
+	  					$("#dataDiv").hide();     //Hidden data div
+	  					$("#dataPageDiv").hide(); //Hidden pagination div
+  					}else{ 
+	  					//console.info('load start...');
+  					}
+  					
+  				},
+  				"end":function(dataTableObj,initFlag){    
+  					if(initFlag){ //First loaded, uninitialized
+  						//console.info('init end...');
+  						$("#loading").hide();     //Hidden loading tips DIV
+  						$("#dataDiv").show();     //Show data div
+  						$("#dataPageDiv").show(); //Show pagination div
+  					}else{ 
+  						//console.info('load end...');
+  					}
+  				}
 
+  			});
+  });
+  </script>
+  
+  
+<form action="doPage_slow.jsp" name="myform">
+	<!-- Loading tips DIV, displayed when you first load the data -->  
+ 	<div id="loading" style="border:1px solid #efefef; text-align: center;width: 780px;height: 285px;display: none;font-size: 14px;">
+ 		<img src="images/loading.gif"/><br/>Data Loading……
+ 	</div>
+
+   	<div style="height: 260px;overflow:auto;width: 780px;" id="dataDiv">
+		     <table class="datatable"  id="datatable_event"  width="760px" align="center" value="pb">
+		      	<tr>
+		      	<th width="40">
+			   			<input type="checkbox" onclick="DataTable.checkAll(this,'mychk')" /> <!-- CheckAll -->
+			   		</th>
+			   	<!-- datatableCount -->
+			   		<th width="80">count</th>
+			   		<th width="100">id</th>
+			   		<th width="150" order="name">name</th>
+			   		<th width="150">info</th>
+			   		<th >operation</th>
+		   		</tr> 
+		   		<!-- Data Show Row-->
+			   	<tr>
+			   		<td style="text-align:center;height: 45px;">
+			   			<input type="checkbox" name="mychk" value="{id }"/>
+			   		</td>
+			   		<td align="center"  style="text-align:center;height: 45px;">
+			   		{other}  ==
+			   		{sort }==={order}</td>
+			   		<td style="text-align:center;color:#00f">No.{id}</td>
+			   		<td align="center">{name}</td>
+			   		<td>{info}</td>
+			   		<td align="center" >
+			   			<a href="doUser.jsp?o=show&id={id }">show</a>
+				   		<a href="doUser.jsp?o=edit&id={id }">edit</a>
+				   		<a href="doUser.jsp?o=delete&id={id }">delete</a>
+				   		<input type="button" value="tests">
+				   	</td>
+			   	</tr>
+		   </table>
+    </div>
+      	<div class="panelBar" style="width: 760px;" size="5,10,30,50" pagetheme="FULL" id="dataPageDiv">
+		</div>
+		
+</form>
+  
 12、EasyDataTable  International Support
 EasyDataTable comes with tabs, you need to customize the display of text and language, the text label by language parameter adjustment and edit.
 The default tab of words and language: 
@@ -489,6 +603,22 @@ The default tab of words and language:
   				"language":pageLanguage
   			});
 Default paging configuration defined in the DataTable object MSG properties, through the edit and re-define, configure the default paging text and language.
+
+########Important Notice:
+
+1、V1.5.0 update important upgrade instructions:
+1.4.X and earlier versions upgrade to version 1.5.0, loading parameters change:
+1.4.X versions before loading parameters boolean value (default is false).
+1.5.0 After loading the parameter value is set to "default", "show", "none" or "hide" (default is "default"), the specific meaning see readme.
+
+Upgrade Change program:
+V1.4.X old code   =>      V1.5.0 new code
+replace loading parameter values:
+loading: true     =>      loading: "show"
+loading: false    =>      loading: "none"
+If the loading parameter value is not set, the default value when the effect is as follows
+false, hidden data => "default", disable data
+
 
 
 
