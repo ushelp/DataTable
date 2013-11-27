@@ -623,3 +623,5 @@ false, hidden data => "default", disable data
 
 
 Demo online：http://www.lightfeel.com/EasyDataTable_en/demo_en.jsp
+
+Contact, feedback, custom Email: in.think@gmail.com
