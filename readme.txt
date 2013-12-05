@@ -37,15 +37,16 @@ easydataParameters: optional parameter, that specifies EasyDataTable parameter i
 pagetheme: 'paging theme'
 loading: 'whether to display the loading tip'
 language: 'tabs language',
-start: 'data starts to load event handler'
-end: 'end of the data load event handler'
+start: 'data starts to load event handler',
+end: 'end of the data load event handler',
+row: 'initial page load shows the number'
 }
 
 pagetheme——optional parameter(Default : DataTable.FULL_PAGE.),tables theme supports two optional paging topics:
 DataTable.FULL_PAGE (full theme, the default display all pagination options)
 DataTable.SIMPLE_PAGE (simple theme, do not show this page after page quickly jump label)
 NO (Cancel theme, using custom paging, refer to Section 10 "custom paging")
-Description: pagetheme parameters can be paged through the div pagetheme property settings, load order of html, javascript, loading parameters will overwrite the previous value.
+Enhanced support for HTML:: pagetheme parameters can be paged through the div pagetheme property settings, load order of html, javascript, loading parameters will overwrite the previous value.
 
 loading——optional parameter when loading data tables paged display, optional value default, show or none.
 default: The default page loading, load the table is disabled when the paging operation (disabling hyperlinks, buttons), the form data is grayed
@@ -116,8 +117,12 @@ initFlag: true representative of the first load data (initialization tables), fa
    } else {
 console.info ('load end ...');
    }
-  
-   }
+}
+   
+row——optional, set the number of initial page loads
+In the initialization parameter specifies the number of pages of data loaded by default.
+If you do not set this parameter, the value of the property will be used DataTable.DEFAULT_ROW default value of 5.
+Enhanced support for HTML: row parameters can also be paged DIV's row attribute settings, load order of html, javascript, loading parameters will overwrite the previous value.
    
 3、Pagination table structure
 <form action="server pagination URL">
@@ -280,28 +285,37 @@ PageBean object is returned, then the table to add value attribute that specifie
 9、 refresh the specified data table
 DataTable.reload ("tableId"); / / cancel the sorting effect , refresh the table , reload the data
 
-10、 custom paging
+10, the number of setting the default page
+Use row paging parameters in the initialization parameter can specify the number of the default paging. If you do not set this parameter, the value of the property will be used DataTable.DEFAULT_ROW default value of 5.
+row attribute colleagues to support the use of HTML enhancements:
+    
+<div class="panelBar" style="width: 760px;" size="5,10,30,50" row="10">
+
+</ div>
+
+
+11、 custom paging
 DataTable built-in paging implementation , and provide two sets of topics:
 DataTable.FULL_PAGE ( full theme , the default display all pagination options )
  
 DataTable.SIMPLE_PAGE ( simple theme , do not show this page after page quickly jump label )
  
-10.1、 Using JavaScript initialization data table , you can specify the use of paging topics:
+11.1、 Using JavaScript initialization data table , you can specify the use of paging topics:
 DataTable.load ("datatable", {
   "pagetheme": DataTable.SIMPLE_PAGE
   } ) ;
 
-10.2、 DIV tag is specified in the paging paging topics:
+11.2、 DIV tag is specified in the paging paging topics:
 <div class="panelBar" style="width: 760px;height: 40px;" size="5,10,30,50" pagetheme="FULL">
 
 <div class="panelBar" style="width: 760px;height: 40px;" size="5,10,30,50" pagetheme="SIMPLE">
 
-10.3、 cancel the paging and themes :
+11.3、 cancel the paging and themes :
 use display: none hidden , or directly delete can be.
 <div class="panelBar" style="width: 760px;height: 40px;display: none;" size="5,10,30,50" pagetheme="no">
 
 
-10.4、 Custom paging :
+11.4、 Custom paging :
 Add pagetheme = "no" attribute (or parameter setting via EasyDataTable initialization), call DataTable.go ('loading data table id', 'pages', [page displays the number of]) function, you can implement custom paging Jump;You can also use <input type="hidden" name="rowPerPage" value="8"/> hidden field specifies the default number of displayed per page .
 
 
@@ -319,9 +333,9 @@ In the function call parameter if you use EasyDataTable expressions (such as {pa
 
 
 
-11、Forms AJAX Pagination instance...
+12、Forms AJAX Pagination instance...
 
-11.1	DataTable.SIMPLE_PAGE+ Loading
+12.1	DataTable.SIMPLE_PAGE+ Loading
   <script type="text/javascript">
   $(function(){
   			DataTable.load("datatable",DataTable.SIMPLE_PAGE,true);
@@ -369,7 +383,7 @@ DataTable.SIMPLE_PAGE+ Loading
 
 
 
-11.2	DataTable Expression Language+DataTable.SIMPLE_FULL + Checkbox + Number
+12.2	DataTable Expression Language+DataTable.SIMPLE_FULL + Checkbox + Number
 
    <div style="margin: 40 0 10 0; font-size: 28px;">DataTableexpression</div>
    <form action="doPage.jsp" name="myform">
@@ -425,7 +439,7 @@ DataTable.SIMPLE_PAGE+ Loading
       </form>
    
 
-11.3	Search Pagination
+12.3	Search Pagination
 
 Search button data submission method:
 Method one: to the search button to add onclick = "DataTable.load ('the current data table id')"
@@ -497,7 +511,7 @@ Method Two: Give the search button added directly easydatatable_search class sty
 
 	  
 	  
-11.4 With start and end data loading paging event handler
+12.4 With start and end data loading paging event handler
 <script type="text/javascript">
   $(function(){
            //initialization loading effect, after loading is complete hide loading, display the initial data
@@ -573,7 +587,7 @@ Method Two: Give the search button added directly easydatatable_search class sty
 		
 </form>
   
-12、EasyDataTable  International Support
+13、EasyDataTable  International Support
 EasyDataTable comes with tabs, you need to customize the display of text and language, the text label by language parameter adjustment and edit.
 The default tab of words and language: 
 {
@@ -606,13 +620,13 @@ Default paging configuration defined in the DataTable object MSG properties, thr
 
 ########Important Notice:
 
-1、V1.5.0 update important upgrade instructions:
-1.4.X and earlier versions upgrade to version 1.5.0, loading parameters change:
+1、V1.5.X update important upgrade instructions:
+1.4.X and earlier versions upgrade to version 1.5.X, loading parameters change:
 1.4.X versions before loading parameters boolean value (default is false).
-1.5.0 After loading the parameter value is set to "default", "show", "none" or "hide" (default is "default"), the specific meaning see readme.
+1.5.X After loading the parameter value is set to "default", "show", "none" or "hide" (default is "default"), the specific meaning see readme.
 
 Upgrade Change program:
-V1.4.X old code   =>      V1.5.0 new code
+V1.4.X old code   =>      V1.5.X new code
 replace loading parameter values:
 loading: true     =>      loading: "show"
 loading: false    =>      loading: "none"
