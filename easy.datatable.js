@@ -25,7 +25,6 @@ var DataTable = {
   SIMPLE_PAGE:"SIMPLE",
   FULL_PAGE:"FULL",
   lOADING_SHOW:"default",
-  //default,show,none,hide
   lOADING_DEFALUT:{},
   LOADING_MSG:"Data loading......",
   MSG:{
@@ -40,36 +39,26 @@ var DataTable = {
   load:function(tableid, easydataParams) {
     var nowDataTable = $("[id='" + tableid + "']");
     if (nowDataTable.length == 0) {
-      //console.warn(tableid+" not found!");
       return;
     }
     easydataParams = easydataParams == undefined ? {} :easydataParams;
     var dataForm = $("form").has("[id='" + tableid + "']");
-    /*
-	 * 提交分页数据验证
-	 */
-	var pagenoEle = dataForm.find("[name='pageNo']");
-	var rowperpageEle = dataForm.find("[name='rowPerPage']");
-	if (!this.Validate.integer.test(pagenoEle.val())) {
-	    pagenoEle.val(1);
-	}
-	if (!this.Validate.integer.test(rowperpageEle.val())) {
-	  rowperpageEle.val(this.DEFAULT_ROW);
-	}
-	
-    //初始化标识(未初始化)
+    var pagenoEle = dataForm.find("[name='pageNo']");
+    var rowperpageEle = dataForm.find("[name='rowPerPage']");
+    if (!this.Validate.integer.test(pagenoEle.val())) {
+      pagenoEle.val(1);
+    }
+    if (!this.Validate.integer.test(rowperpageEle.val())) {
+      rowperpageEle.val(this.DEFAULT_ROW);
+    }
     if (!DataTable.cacheInit[tableid]) {
       DataTable.cacheInit[tableid] = false;
-      //第一次加载，未初始化
-      //初始化时，start函数缓存
       if (easydataParams.start) {
         DataTable.cacheStartFun[tableid] = easydataParams.start;
       }
-      //初始化时，end函数缓存
       if (easydataParams.end) {
         DataTable.cacheEndFun[tableid] = easydataParams.end;
       }
-      //初始页和初始每页条数
       var defRow = DataTable.DEFAULT_ROW;
       if (this.Validate.integer.test(easydataParams.row)) {
         defRow = easydataParams.row;
@@ -82,26 +71,14 @@ var DataTable = {
       this.cacheDefaultRow[tableid] = defRow + "";
       var initPage = "<div id='datatable_initPageData' style='display:none'>" + "<input type='hidden' name='pageNo' value='1'/>" + "<input type='hidden' name='rowPerPage' value='" + defRow + "' />" + "</div>";
       dataForm.append(initPage);
-    }else{
-    	//如果分页页码不在当前分页列表
-    	// if(dataForm.find(".panelBar [class~='pagego'][name='numgoto'][value='numgoto_"+pagenoEle.val()+"']").length==0){
-    
-    	   dataForm.find(".panelBar [id='datatable_pagenum']").html(this.pageNumSpan(tableid,pagenoEle.val()));
-    	// }else{ //如果存在
-    		//先显示分页状态
-        	 //dataForm.find(".panelBar [class~='pagego'][name='numgoto'][class~='nowpagenum']").removeClass("nowpagenum");
-        	// dataForm.find(".panelBar [class~='pagego'][name='numgoto'][value='numgoto_"+pagenoEle.val()+"']").addClass("nowpagenum");
-        	
-    	 //}
+    } else {
+      dataForm.find(".panelBar [id='datatable_pagenum']").html(this.pageNumSpan(tableid, pagenoEle.val()));
     }
-    //start函数调用,数据加载开始时执行
     if (DataTable.cacheStartFun[tableid]) {
       try {
-        //数据表格，是否是第一次加载
         DataTable.cacheStartFun[tableid](nowDataTable[0], !DataTable.cacheInit[tableid]);
       } catch (e) {}
     }
-    //使用的分页主题
     if (!(easydataParams.pagetheme == undefined)) {
       DataTable.cachePageTheme[tableid] = easydataParams.pagetheme;
     }
@@ -113,19 +90,16 @@ var DataTable = {
         DataTable.cachePageTheme[tableid] = DataTable.FULL_PAGE;
       }
       if (!DataTable.cacheInit[tableid]) {
-        //初始化时保存自定义分页content
         DataTable.cacheUserPage[tableid] = dataForm.find(".panelBar").html();
         dataForm.find(".panelBar").html("");
       }
     }
     if (!DataTable.cacheDataRow[tableid]) {
-      // 获取数据行
       var dataRow = ("<tr>" + nowDataTable.find(" tr:eq(1)").html() + "</tr>").replace(/\n/g, "").replace(/\r/g, "").replace("}%", "}%\r\n");
       DataTable.cacheDataRow[tableid] = dataRow;
       nowDataTable.find(" tr:eq(1)").find("td").css("border", "0");
       nowDataTable.find(" tr:eq(1)").css("border", "0");
     }
-    //分页加载数据时表格的显示方式
     if (DataTable.lOADING_DEFALUT[tableid] == undefined) {
       var table_loading_attr = nowDataTable.attr("loading");
       if (table_loading_attr) {
@@ -138,79 +112,48 @@ var DataTable = {
       }
     }
     if (easydataParams.language) {
-      // 如果存在语言，则按照指定语言显示
       DataTable.cacheLanguage[tableid] = easydataParams.language;
     }
-    // 如果没有指定语言，则使用缓存语言
     if (DataTable.cacheLanguage[tableid] == undefined) {
       DataTable.cacheLanguage[tableid] = DataTable.MSG;
     }
-
-    
-    /*
-		 * 表单参数
-		 */
     postParam = dataForm.serialize();
-    //分页加载数据时,表格的显示方式
     var loading_type = DataTable.lOADING_DEFALUT[tableid].toLowerCase();
     if (loading_type == "default") {
       if (DataTable.cacheInitLoading[tableid] == undefined) {
-        //初次加载
         nowDataTable.find(" tr:gt(0)").remove();
         DataTable.cacheInitLoading[tableid] = "loaded";
       }
-      //新方式，切换页面时，禁用数据操作(禁用超链，按钮)，显示为灰色
       nowDataTable.find(" tr:gt(0)").find("*").on("click", function() {
         return false;
       });
       nowDataTable.find(" tr:gt(0)").find("*").css("color", "gray");
     } else if (loading_type == "none") {
       if (DataTable.cacheInitLoading[tableid] == undefined) {
-        //初次加载
         nowDataTable.find(" tr:gt(0)").remove();
         DataTable.cacheInitLoading[tableid] = "loaded";
       }
       nowDataTable.find("tr:gt(0)").hide();
     } else if (loading_type == "hide") {
       if (DataTable.cacheInitLoading[tableid] == undefined) {
-        //初次加载
         nowDataTable.find(" tr:gt(0)").remove();
         DataTable.cacheInitLoading[tableid] = "loaded";
       }
-      //旧方式，切换页面时隐藏当前页面数据
       nowDataTable.find("tr:gt(0)").css("visibility", "hidden");
     } else if (loading_type == "show") {
       nowDataTable.find(" tr:gt(0)").remove();
-      //style1
-      //			nowDataTable.append("<tr name=\"DataTable_Loading\" ><td colspan='"
-      //					+ $("#" + tableid + " tr:eq(0)").find("th").length
-      //					+ "'><div class='DataTable_Loading'>"
-      //					+ DataTable.LOADING_MSG + 
-      //					"</div></td></tr>");
-      //style2
       $("[id='" + tableid + "_loading_div']").hide();
       nowDataTable.after("<div id='" + tableid + "_loading_div' class='DataTable_Loading'>" + DataTable.LOADING_MSG + "</div>");
     } else {
       nowDataTable.find(" tr:gt(0)").remove();
-      //style1
-      //			nowDataTable.append("<tr name=\"DataTable_Loading\" ><td colspan='"
-      //					+ $("#" + tableid + " tr:eq(0)").find("th").length
-      //					+ "'><div class='DataTable_Loading'>"
-      //					+ DataTable.lOADING_DEFALUT[tableid]  + 
-      //					"</div></td></tr>");
-      //style2
       $("[id='" + tableid + "_loading_div']").hide();
       nowDataTable.after("<div id='" + tableid + "_loading_div' class='DataTable_Loading'>" + DataTable.lOADING_DEFALUT[tableid] + "</div>");
     }
-    /*
-		 * ajax请求数据
-		 */
     $.post(dataForm.attr("action"), postParam, function(data) {
       if (typeof data == "string") {
         data = eval("(" + data + ")");
       }
       DataTable.cacheData[tableid] = data;
-        
       var content = "";
       var j = 0;
       var valueObject = nowDataTable.attr("value");
@@ -281,13 +224,7 @@ var DataTable = {
           j++;
         }
       }
-    
-      /*
- 	  * 分页部分
- 	  */
       DataTable.pageTheme(tableid, DataTable.cachePageTheme[tableid]);
-         
-      // 初始化分页显示的数据
       dataForm.find(" .pages .totalCount").html(data["totalCount"]);
       dataForm.find(" .mycombox").val(data["rowPerPage"]);
       dataForm.find(" [name='pageNo']").val(data["pageNo"]);
@@ -295,28 +232,19 @@ var DataTable = {
       dataForm.find("[name='rowPerPage']").off("change");
       dataForm.find("[name='rowPerPage']").on("change", function(e) {
         var row = $(this).val();
-        //行
         var pagenoEle = dataForm.find("[name='pageNo']");
         var maxPage = Math.floor((DataTable.cacheData[tableid]["totalCount"] - 1) / row + 1);
-        //最大页
         if (pagenoEle.val() > maxPage) {
           pagenoEle.val(maxPage);
         }
         DataTable.load(tableid);
       });
-      DataTable.pageCheck(tableid); // 分页标签状态设置
-      
-      
-      // 排序隐藏字段
+      DataTable.pageCheck(tableid);
       var orderInfo = '<tr name="sort_order_hidden" style="display:none"><td colspan=\'' + $("[id='" + tableid + "'] tr:eq(0)").find("th").length + "'><input type='hidden' name='order' value='" + dataTableOrder + "'/>" + "<input type='hidden' name='sort' value='" + dataTableSort + "'/></td></tr>";
       content += orderInfo;
-      // 清除大于0的行和loading的msg
       nowDataTable.find(" tr:gt(0)").remove();
       $("[id='" + tableid + "_loading_div']").remove();
-      // 显示数据
       nowDataTable.append(content);
-     
-      //表格效果事件
       nowDataTable.find(" tr:even").addClass("evenColor");
       nowDataTable.find(" tr").hover(function() {
         $(this).addClass("tdHover");
@@ -331,14 +259,11 @@ var DataTable = {
         $(this).addClass("tdClick");
         oldTr = $(this);
       });
-      //end函数调用,数据加载结束时执行
       if (DataTable.cacheEndFun[tableid]) {
         try {
-          //数据表格，是否是第一次加载
           DataTable.cacheEndFun[tableid](nowDataTable[0], !DataTable.cacheInit[tableid]);
         } catch (e) {}
       }
-      //完成第一次加载，已初始化
       if (!DataTable.cacheInit[tableid]) {
         DataTable.cacheInit[tableid] = true;
         $("#datatable_initPageData").remove();
@@ -359,10 +284,7 @@ var DataTable = {
   },
   formatContent:function(content, jsondata) {
     var reg = /\{([^}]+)\}/g;
-    // EasyDataTable 属性表达式
-    // var regExp=/\%\{([\s\S]+)\}/g; //语句表达式
     var regExp = /\%\{(.*)\}\%/g;
-    // EasyDataTable 语句表达式
     content = content.replace(regExp, function(m, i) {
       with (jsondata) {
         try {
@@ -377,7 +299,6 @@ var DataTable = {
         try {
           return eval($.trim(i)) == null ? "" :eval($.trim(i));
         } catch (e) {
-          // return m;
           return "";
         }
       }
@@ -389,45 +310,30 @@ var DataTable = {
   },
   first:function(tableid) {
     var dataForm = $("form").has("[id='" + tableid + "']");
-    /*
-		 * 提交分页数据验证
-		 */
     var pagenoEle = dataForm.find("[name='pageNo']");
     pagenoEle.val(1);
     this.load(tableid);
   },
   prev:function(tableid) {
     var dataForm = $("form").has("[id='" + tableid + "']");
-    /*
-		 * 提交分页数据验证
-		 */
     var pagenoEle = dataForm.find("[name='pageNo']");
     pagenoEle.val(parseInt(this.cacheData[tableid]["pageNo"]) - 1);
     this.load(tableid);
   },
   next:function(tableid) {
     var dataForm = $("form").has("[id='" + tableid + "']");
-    /*
-		 * 提交分页数据验证
-		 */
     var pagenoEle = dataForm.find("[name='pageNo']");
     pagenoEle.val(parseInt(this.cacheData[tableid]["pageNo"]) + 1);
     this.load(tableid);
   },
   last:function(tableid) {
     var dataForm = $("form").has("[id='" + tableid + "']");
-    /*
-		 * 提交分页数据验证
-		 */
     var pagenoEle = dataForm.find("[name='pageNo']");
     pagenoEle.val(this.cacheData[tableid]["maxPage"]);
     this.load(tableid);
   },
   gopage:function(tableid) {
     var dataForm = $("form").has("[id='" + tableid + "']");
-    /*
-		 * 提交分页数据验证
-		 */
     var pagenoEle = dataForm.find("[name='pageNo']");
     var row = dataForm.find("[name='rowPerPage']").val();
     var maxPage = Math.floor((this.cacheData[tableid]["totalCount"] - 1) / row + 1);
@@ -440,9 +346,6 @@ var DataTable = {
   },
   numgoto:function(tableid, e) {
     var dataForm = $("form").has("[id='" + tableid + "']");
-    /*
-		 * 提交分页数据验证
-		 */
     var pagenoEle = dataForm.find("[name='pageNo']");
     pagenoEle.val($(e.target).text());
     if (this.cacheData[tableid]["pageNo"] != dataForm.find("[name='pageNo']").val()) {
@@ -580,55 +483,55 @@ var DataTable = {
       DataTable.cacheLanguage[tableid].totalCount = DataTable.MSG.totalCount;
     }
   },
-  pageNumSpan:function(tableid,nowPage){
-	  nowPage = parseInt(nowPage);
-      var maxPage = Math.floor((parseInt(this.cacheData[tableid]["totalCount"]) - 1) / parseInt(this.cacheData[tableid]["rowPerPage"]) + 1);
-      var pageStart = nowPage - 3;
-      var pageEnd = nowPage + 3;
-      if (pageStart < 1) {
-        pageStart = 1;
-        pageEnd = pageStart + 6;
-        if (pageEnd > maxPage) {
-          pageEnd = maxPage;
-        }
-      }
+  pageNumSpan:function(tableid, nowPage) {
+    nowPage = parseInt(nowPage);
+    var maxPage = Math.floor((parseInt(this.cacheData[tableid]["totalCount"]) - 1) / parseInt(this.cacheData[tableid]["rowPerPage"]) + 1);
+    var pageStart = nowPage - 3;
+    var pageEnd = nowPage + 3;
+    if (pageStart < 1) {
+      pageStart = 1;
+      pageEnd = pageStart + 6;
       if (pageEnd > maxPage) {
         pageEnd = maxPage;
-        pageStart = pageEnd - 6;
-        if (pageStart < 1) {
-          pageStart = 1;
-        }
       }
-      var pageNum = "";
-      for (var i = pageStart; i <= pageEnd; i++) {
-        if (i == nowPage) {
-          pageNum += '<span class="pagego nowpagenum" name="numgoto"  value="numgoto_'+i+'">' + i + "</span>";
-        } else {
-          pageNum += '<span class="pagego" name="numgoto" value="numgoto_'+i+'">' + i + "</span>";
-        }
+    }
+    if (pageEnd > maxPage) {
+      pageEnd = maxPage;
+      pageStart = pageEnd - 6;
+      if (pageStart < 1) {
+        pageStart = 1;
       }
-      return pageNum;
-  }
-  ,
+    }
+    var pageNum = "";
+    for (var i = pageStart; i <= pageEnd; i++) {
+      if (i == nowPage) {
+        pageNum += '<span class="pagego nowpagenum" name="numgoto"  value="numgoto_' + i + '">' + i + "</span>";
+      } else {
+        pageNum += '<span class="pagego" name="numgoto" value="numgoto_' + i + '">' + i + "</span>";
+      }
+    }
+    return pageNum;
+  },
   pageTheme:function(tableid, theme) {
     var dataForm = $("form").has("[id='" + tableid + "']");
     var content = "";
- 
-    // 如果使用自定义分页内容（不使用主题）
     if (theme && theme.toLowerCase() == "no") {
-      //不使用主题
       content = DataTable.cacheUserPage[tableid];
     } else {
       var pageshowCount = dataForm.find(".panelBar").length;
       if (pageshowCount != 0) {
-        //存在分页标签
         var sizes = dataForm.find(".panelBar").attr("size");
         var sizeArray = [ DataTable.cacheData[tableid].rowPerPage ];
         if (sizes) {
           sizeArray = sizes.split(",");
         }
         if (this.cacheDefaultRow[tableid]) {
-          sizeArray.push(this.cacheDefaultRow[tableid]);
+          var sa = "#" + sizeArray.join("#") + "#";
+          if (sa.indexOf("#" + this.cacheDefaultRow[tableid] + "#") != -1) {
+            this.cacheDefaultRow[tableid] = null;
+          } else {
+            sizeArray.push(this.cacheDefaultRow[tableid]);
+          }
         }
         sizeArray.sort(function(i, j) {
           return parseInt(i) - parseInt(j);
@@ -652,14 +555,11 @@ var DataTable = {
         var start = '<div class="pages " style="float: right;text-align: right;">';
         var totalPageSpan = '<span class="totalPage">' + totalPageStart + '<label class="maxPage"></label>' + totalPageEnd + "</span>";
         var back = '<span class="pagego" name="first">' + DataTable.cacheLanguage[tableid].first + "</span>" + '<span class="pagego" name="prev">' + DataTable.cacheLanguage[tableid].previous + "</span>";
-       
-       
-        var pageNum = "<span id='datatable_pagenum'>"+this.pageNumSpan(tableid,this.cacheData[tableid]["pageNo"])+"</span>";
+        var pageNum = "<span id='datatable_pagenum'>" + this.pageNumSpan(tableid, this.cacheData[tableid]["pageNo"]) + "</span>";
         var forward = '<span class="pagego" name="next">' + DataTable.cacheLanguage[tableid].next + "</span>" + '<span class="pagego" name="last">' + DataTable.cacheLanguage[tableid].last + "</span>";
         var pagegotoSpan = '<span class="pagego"><input type="text" class="gototxt" name="pageNo"  /></span>';
         pagegotoSpan += '<span class="pagegoto" name="pagegoto">&gt;&gt;</span>';
         var end = "</div>";
-       
         if (!theme || theme.toUpperCase() == "FULL") {
           content = rowNumSpan + start + totalPageSpan + back + pageNum + forward + pagegotoSpan + end;
         } else if (theme.toUpperCase() == "SIMPLE") {
@@ -669,7 +569,6 @@ var DataTable = {
         }
       }
     }
-  
     dataForm.find(".panelBar").html(DataTable.formatContent(content, this.cacheData[tableid]));
   },
   loadInit:function() {
@@ -686,7 +585,6 @@ var DataTable = {
       $(this).removeClass("pageGoHover");
     });
     $(".datatable").find("tr:eq(1)").css("visibility", "hidden");
-    // 隐藏数据行
     $("[class~='easydatatable']").each(function() {
       var tableid = $(this).attr("id");
       if (!DataTable.cacheInit[tableid]) {
@@ -716,23 +614,22 @@ var DataTable = {
         var dataForm = $("form").has("[id='" + tableid + "']");
         o.on("click", function(e) {
           var order = o.attr("order");
-          if(dataForm.find("input[name='order']").length>0){
-	          dataForm.find("input[name='order']").val(order);
-	          dataForm.find("input[name='sort']").val(dataForm.find("input[name='sort']").val().toLowerCase() == "asc" ? "desc" :"asc");
-	         
-	          var arrowObj = $(this).find("[name='orderspan']");
-	          if (DataTable.cacheOrderArrow[tableid]) {
-	            DataTable.cacheOrderArrow[tableid].html("&uarr;&darr;");
-	          }
-	          if (dataForm.find("input[name='sort']").val() == "asc") {
-	            arrowObj.html("&uarr;");
-	          } else if (dataForm.find("input[name='sort']").val() == "desc") {
-	            arrowObj.html("&darr;");
-	          } else {
-	            arrowObj.html("&uarr;&darr;");
-	          }
-	          DataTable.cacheOrderArrow[tableid] = arrowObj;
-	          DataTable.load(tableid);
+          if (dataForm.find("input[name='order']").length > 0) {
+            dataForm.find("input[name='order']").val(order);
+            dataForm.find("input[name='sort']").val(dataForm.find("input[name='sort']").val().toLowerCase() == "asc" ? "desc" :"asc");
+            var arrowObj = $(this).find("[name='orderspan']");
+            if (DataTable.cacheOrderArrow[tableid]) {
+              DataTable.cacheOrderArrow[tableid].html("&uarr;&darr;");
+            }
+            if (dataForm.find("input[name='sort']").val() == "asc") {
+              arrowObj.html("&uarr;");
+            } else if (dataForm.find("input[name='sort']").val() == "desc") {
+              arrowObj.html("&darr;");
+            } else {
+              arrowObj.html("&uarr;&darr;");
+            }
+            DataTable.cacheOrderArrow[tableid] = arrowObj;
+            DataTable.load(tableid);
           }
         });
       });
