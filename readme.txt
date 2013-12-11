@@ -56,8 +56,8 @@ hide: hidden data content and form, only the data is loaded when the page displa
 Other values​​: as a reminder that content directly loaded when the page content (equivalent to show the way), support for HTML content, such as:
 loading: "<div> <img src=\"images/loading.gif\"/> <br/> data is loading ...... </ div>"
 
-language——Optional parameters, settings tabs display language, the default value
-{
+language——Optional parameters, Set the language to display tabs, the default tab configuration is defined in DataTable.MSG property, the default value:
+DataTable.MSG={
 			"first":'first',
 			"previous":'previous',
 			"next":'next',
@@ -66,7 +66,8 @@ language——Optional parameters, settings tabs display language, the default v
 			"totalCount":'total {0} rows',
 			"rowPerPage":'page for {0} rows'	
 	} 
-May need to be redefined, {0} is a placeholder for the corresponding data display, must exist.
+Can directly modify and redefine the property as the default page of text and language.
+May also need to redefine the data table in the initialization parameter based on {0} placeholder to display the corresponding data must exist.
 
   <script type="text/javascript">
   $(function(){
@@ -121,7 +122,7 @@ console.info ('load end ...');
    
 row——optional, set the number of initial page loads
 In the initialization parameter specifies the number of pages of data loaded by default.
-If you do not set this parameter, the value of the property will be used DataTable.DEFAULT_ROW default value of 5.
+If you do not set this parameter, the value of the property will be used DataTable.DEFAULT_ROW default value of 5(Can be modified).
 Enhanced support for HTML: row parameters can also be paged DIV's row attribute settings, load order of html, javascript, loading parameters will overwrite the previous value.
    
 3、Pagination table structure
@@ -286,7 +287,7 @@ PageBean object is returned, then the table to add value attribute that specifie
 DataTable.reload ("tableId"); / / cancel the sorting effect , refresh the table , reload the data
 
 10, the number of setting the default page
-Use row paging parameters in the initialization parameter can specify the number of the default paging. If you do not set this parameter, the value of the property will be used DataTable.DEFAULT_ROW default value of 5.
+Use row paging parameters in the initialization parameter can specify the number of the default paging. If you do not set this parameter, the value of the property will be used DataTable.DEFAULT_ROW default value of 5(Can be modified).
 row attribute colleagues to support the use of HTML enhancements:
     
 <div class="panelBar" style="width: 760px;" size="5,10,30,50" row="10">
@@ -589,8 +590,8 @@ Method Two: Give the search button added directly easydatatable_search class sty
   
 13、EasyDataTable  International Support
 EasyDataTable comes with tabs, you need to customize the display of text and language, the text label by language parameter adjustment and edit.
-The default tab of words and language: 
-{
+The default configuration is defined in DataTable.MSG paging properties, the default tabs words and language:
+DataTable.MSG={
 			"first":'first',
 			"previous":'previous',
 			"next":'next',
@@ -600,7 +601,8 @@ The default tab of words and language:
 			"rowPerPage":'page for {0} rows',
 	} 
  
-Customize tab of words and language:
+Custom tabs words and language:
+Can directly modify and redefine DataTable.MSG default paging attributes as the default page of text and language. Or specifically designated in the initialization parameters({0} placeholder to display the corresponding data must exist):
 	var pageLanguage={
 				"first":'首页',
 				"previous":'上一页',
@@ -616,7 +618,7 @@ The default tab of words and language:
   				"loading":true,
   				"language":pageLanguage
   			});
-Default paging configuration defined in the DataTable object MSG properties, through the edit and re-define, configure the default paging text and language.
+
 
 ########Important Notice:
 
