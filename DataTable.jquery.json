@@ -10,7 +10,7 @@
 "EasyDataTable",
 "EDataTable","jquery","ui","Pagination","page","easy"
     ],
-    "version": "1.7.0",
+    "version": "2.0.0",
     "author": {
         "name": "Ray",
 "email": "inthinkcolor@gmail.com",
@@ -29,10 +29,10 @@
             "url": "https://github.com/srchulo/jQuery-Facets/blob/master/LICENSE"
         }
     ],
-	"demo":"http://www.lightfeel.com/EasyDataTable_en/demo_en.jsp",
+	"demo":"http://www.lightfeel.com/easy/easydatatable/en/index.jsp#demo",
     "bugs": "https://github.com/ushelp/DataTable/issues",
     "homepage": "https://github.com/ushelp/DataTable",
-    "docs": "https://github.com/ushelp/DataTable/blob/master/readme.txt",
+    "docs": "http://www.lightfeel.com/easy/easydatatable/en/index.jsp#readme",
     "download": "https://github.com/ushelp/DataTable/archive/master.zip",
     "dependencies": {
         "jquery": ">=1.5"

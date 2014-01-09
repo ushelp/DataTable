@@ -1,6 +1,6 @@
 // jQuery EasyDataTable Plugin
 //
-// Version 2.0.0
+// Version 1.8.0
 //
 // Copy By RAY
 // inthinkcolor@gmail.com
@@ -9,7 +9,7 @@
 // https://github.com/ushelp/DataTable
 //
 (function(window) {
-  var cacheData = {}, cacheDataRow = {}, cacheThLength = {}, cachePageTheme = {}, cacheLanguage = {}, cacheOrderArrow = {}, cacheInitLoading = {}, cacheStartFun = {}, cacheEndFun = {}, cacheUserPage = {}, cacheInit = {}, cacheDefaultRow = {}, cacheInitStaticData = {}, cacheStaticData = {}, cacheStaticTable = {}, cacheLoadDefault = {}, cacheSizeArray = {}, innerLoad = function(tableid, easydataParams, jsonData, staticFlag) {
+  var cacheData = {}, cacheDataRow = {}, cacheThLength = {}, cachePageTheme = {}, cacheLanguage = {}, cacheOrderArrow = {}, cacheInitLoading = {}, cacheStartFun = {}, cacheEndFun = {}, cacheUserPage = {}, cacheInit = {}, cacheDefaultRow = {}, cacheLoadDefault = {}, cacheSizeArray = {}, innerLoad = function(tableid, easydataParams, jsonData) {
     var nowDataTable = $("[id='" + tableid + "']");
     if (nowDataTable.length == 0) {
       return;
@@ -95,101 +95,10 @@
     if (cacheLanguage[tableid] == undefined) {
       cacheLanguage[tableid] = DataTable.default_lang;
     }
-    if (staticFlag) {
-      var data = jsonData;
-      var valueObject = nowDataTable.attr("value");
-      if (valueObject) {
-        if ($.isArray(data[valueObject].data)) {
-          data.totalCount = data[valueObject].data.length;
-          data[valueObject].totalCount = data[valueObject].data.length;
-        } else {
-          var j = 0;
-          for (var i in data[valueObject].data) {
-            j++;
-          }
-          data.totalCount = j;
-          data[valueObject].totalCount = j;
-        }
-      } else {
-        if ($.isArray(data.data)) {
-          data.totalCount = data.data.length;
-        } else {
-          var j = 0;
-          for (var i in data.data) {
-            j++;
-          }
-          data.totalCount = j;
-        }
+    $.post(dataForm.attr("action"), postParam, function(data) {
+      if (typeof data == "string") {
+        data = eval("(" + data + ")");
       }
-      var rowPerPage = data.totalCount;
-      if (valueObject) {
-        if (jsonData.rowPerPage) {
-          dataForm.find("[name='rowPerPage']").val(jsonData.rowPerPage);
-          rowPerPage = jsonData.rowPerPage;
-        } else if (jsonData[valueObject].rowPerPage) {
-          dataForm.find("[name='rowPerPage']").val(jsonData[valueObject].rowPerPage);
-          rowPerPage = jsonData[valueObject].rowPerPage;
-        }
-      } else {
-        if (jsonData.rowPerPage) {
-          dataForm.find("[name='rowPerPage']").val(jsonData.rowPerPage);
-          rowPerPage = jsonData.rowPerPage;
-        } else if (Validate.integer.test(dataForm.find(".panelBar").attr("row"))) {
-          rowPerPage = dataForm.find(".panelBar").attr("row");
-        }
-      }
-      if (easydataParams.row) {
-        rowPerPage = easydataParams.row;
-      }
-      var pageNo = data.pageNo;
-      if (valueObject) {
-        if (!pageNo) {
-          pageNo = data[valueObject].pageNo;
-        }
-        if (!pageNo) {
-          pageNo = 1;
-        }
-      } else {
-        if (!pageNo) {
-          pageNo = 1;
-        }
-      }
-      var s = (pageNo - 1) * rowPerPage;
-      var e = parseInt(s) + parseInt(rowPerPage);
-      if (valueObject) {
-        var pageData = {};
-        if ($.isArray(data[valueObject].data)) {
-          pageData = [];
-        }
-        var j = 0;
-        for (var i in data[valueObject].data) {
-          if (j >= s && j < e) {
-            pageData[i] = data[valueObject].data[i];
-          }
-          j++;
-        }
-        data.pageNo = pageNo;
-        data.rowPerPage = rowPerPage;
-        data[valueObject].pageNo = pageNo;
-        data[valueObject].rowPerPage = rowPerPage;
-        data[valueObject].data = pageData;
-      } else {
-        var pageData = {};
-        if ($.isArray(data.data)) {
-          pageData = [];
-        }
-        var j = 0;
-        for (var i in data.data) {
-          if (j >= s && j < e) {
-            pageData[i] = data.data[i];
-          }
-          j++;
-        }
-        data.pageNo = pageNo;
-        data.rowPerPage = rowPerPage;
-        data.data = pageData;
-      }
-      cacheDefaultRow[tableid] = rowPerPage + "";
       cacheData[tableid] = data;
       dataShow(tableid, nowDataTable, dataForm, data);
       if (cacheEndFun[tableid]) {
@@ -201,35 +110,7 @@
         cacheInit[tableid] = true;
         $("#datatable_initPageData").remove();
       }
-    } else {
-      $.post(dataForm.attr("action"), postParam, function(data) {
-        if (typeof data == "string") {
-          data = eval("(" + data + ")");
-        }
-        cacheData[tableid] = data;
-        dataShow(tableid, nowDataTable, dataForm, data);
-        if (cacheEndFun[tableid]) {
-          try {
-            cacheEndFun[tableid](nowDataTable[0], !cacheInit[tableid]);
-          } catch (e) {}
-        }
-        if (!cacheInit[tableid]) {
-          cacheInit[tableid] = true;
-          $("#datatable_initPageData").remove();
-        }
-      });
-    }
-  }, staticPagination = function(tableid) {
-    DataTable.resetOrder(tableid);
-    var jsonData = clone(cacheStaticTable[tableid]);
-    var nowDataTable = $("[id='" + tableid + "']");
-    if (nowDataTable.length == 0) {
-      return;
-    }
-    var dataForm = $("form").has("[id='" + tableid + "']");
-    jsonData.pageNo = dataForm.find("[name='pageNo']").val();
-    jsonData.rowPerPage = dataForm.find("[name='rowPerPage']").val();
-    innerLoad(tableid, {}, jsonData, true);
+    });
   }, formatContent = function(content, jsondata) {
     var reg = /\{([^}]+)\}/g;
     var regExp = /\%\{(.*)\}\%/g;
@@ -268,112 +149,6 @@
       o2[i] = typeof o[i] == "object" ? clone(o[i]) :o[i];
     }
     return o2;
-  }, staticMatch = function(name, value, match) {
-    this.name = name;
-    this.value = value;
-    this.match = match;
-  }, regFilter = function(v, sql) {
-    return v.replace(/\\/g, "\\\\").replace(/\+|\.|\*|\?|\^|\$|\[|\]|\(|\)|\{|\}|\/|\|/g, "\\$&");
-  }, sqlFilter = function(v) {
-    return v.replace(/\\/g, "\\\\").replace(/\+|\.|\*|\?|\^|\$|\(|\)|\{|\}|\/|\|/g, "\\$&").replace(/_/g, ".").replace(/%/g, ".*");
-  }, matchReg = function(matchMode, v, f) {
-    var s = "^", e = "$";
-    if (matchMode == "extra" || matchMode == "extra_i") {
-      v = regFilter(v);
-    } else if (matchMode == "sql" || matchMode == "sql_i") {
-      v = sqlFilter(v);
-    } else if (matchMode == "like" || matchMode == "like_i") {
-      v = regFilter(v);
-      s = "", e = "";
-    } else {
-      s = "", e = "";
-    }
-    return new RegExp(s + v + e, f);
-  }, filterStaticData = function(data, params, or, dataForm) {
-    var mode = DataTable.default_matchMode.toLowerCase(), f = mode.indexOf("_i") != -1 ? "i" :"", paramsMatch = {};
-    $.each(params, function(k, v) {
-      if ($.trim(v) != "") {
-        paramsMatch[k] = new staticMatch(k, matchReg(mode, v, f), mode);
-      }
-    });
-    dataForm.find(":input[mode]").each(function(k, v) {
-      var v = $.trim($(this).val());
-      if (v != "") {
-        var name = $(this).attr("name"), mode = $(this).attr("mode").toLowerCase();
-        if (!(mode == "extra" || mode == "extra_i" || mode == "sql" || mode == "sql_i" || mode == "like" || mode == "like_i" || mode == "reg" || mode == "reg_i")) {
-          mode = DataTable.default_matchMode.toLowerCase();
-        }
-        var f = mode.indexOf("_i") != -1 ? "i" :"";
-        paramsMatch[name] = new staticMatch(name, matchReg(mode, v, f), mode);
-      }
-    });
-    var l = $.isArray(data);
-    var filterData = {};
-    if (l) {
-      filterData = [];
-    }
-    var noCondition = true;
-    for (var pname in paramsMatch) {
-      if (paramsMatch[pname] != "") {
-        noCondition = false;
-      }
-    }
-    if (noCondition) {
-      return data;
-    }
-    var j = 0;
-    if (or) {
-      for (var i in data) {
-        var flag = false;
-        for (var pname in paramsMatch) {
-          try {
-            if (paramsMatch[pname] != "" && data[i][pname]) {
-              if (paramsMatch[pname].value.test(data[i][pname])) {
-                flag = true;
-                break;
-              }
-            }
-          } catch (e) {}
-        }
-        if (flag) {
-          if (l) {
-            filterData[j] = data[i];
-            j++;
-          } else {
-            filterData[i] = data[i];
-          }
-        }
-      }
-    } else {
-      for (var i in data) {
-        var flag = true;
-        for (var pname in paramsMatch) {
-          try {
-            if (data[i][pname]) {
-              if (!paramsMatch[pname].value.test(data[i][pname])) {
-                flag = false;
-                break;
-              }
-            } else {
-              flag = false;
-              break;
-            }
-          } catch (e) {
-            flag = false;
-            break;
-          }
-        }
-        if (flag) {
-          if (l) {
-            filterData[j] = data[i];
-            j++;
-          } else {
-            filterData[i] = data[i];
-          }
-        }
-      }
-    }
-    return filterData;
   }, getPostParam = function(postParam) {
     var params = {};
     var exclued_params = "#maxPage#rowPerPage#datatableIndex#datatableCount#pageNo#totalCount#order#sort#".toLowerCase();
@@ -417,7 +192,7 @@
         nowDataTable.after("<div id='" + tableid + "_loading_div' class='DataTable_Loading'>" + cacheLoadDefault[tableid] + "</div>");
       }
     }
-  }, initDataAndContent = function(tableid, nowDataTable, dataForm, data, params, or, all) {
+  }, initDataAndContent = function(tableid, nowDataTable, dataForm, data) {
     var content = "";
     var j = 0;
     var valueObject = nowDataTable.attr("value");
@@ -445,10 +220,6 @@
       cacheData[tableid].sort = dataTableSort;
       cacheData[tableid].maxPage = Math.floor((cacheData[tableid].totalCount - 1) / cacheData[tableid].rowPerPage + 1);
       var filterData = data[valueObject].data;
-      if (params) {
-        filterData = filterStaticData(data[valueObject].data, params, or, dataForm);
-      }
-      cacheStaticData[tableid] = clone(filterData);
       for (var i in filterData) {
         filterData[i].datatableCount = parseInt(j) + 1;
         filterData[i].datatableIndex = parseInt(j);
@@ -464,9 +235,7 @@
         filterData[i].key = i;
         filterData[i].order = dataTableOrder;
         filterData[i].sort = dataTableSort;
-        if (!all) {
-          content += formatContent(cacheDataRow[tableid], filterData[i]);
-        }
+        content += formatContent(cacheDataRow[tableid], filterData[i]);
         j++;
       }
     } else {
@@ -480,10 +249,6 @@
       }
       cacheData[tableid].maxPage = Math.floor((parseInt(data.totalCount) - 1) / parseInt(data.rowPerPage) + 1);
       var filterData = data.data;
-      if (params) {
-        filterData = filterStaticData(data.data, params, or, dataForm);
-      }
-      cacheStaticData[tableid] = clone(filterData);
       for (var i in filterData) {
         for (var property in data) {
           if (property != "data") {
@@ -496,9 +261,7 @@
         filterData[i].maxPage = Math.floor((parseInt(filterData[i].totalCount) - 1) / parseInt(filterData[i].rowPerPage) + 1);
         filterData[i].order = dataTableOrder;
         filterData[i].sort = dataTableSort;
-        if (!all) {
-          content += formatContent(cacheDataRow[tableid], filterData[i]);
-        }
+        content += formatContent(cacheDataRow[tableid], filterData[i]);
         j++;
       }
     }
@@ -508,30 +271,24 @@
       dataTableOrder:dataTableOrder,
       dataTableSort:dataTableSort
     };
-  }, dataShow = function(tableid, nowDataTable, dataForm, data, params, or, all) {
-    var res = initDataAndContent(tableid, nowDataTable, dataForm, data, params, or, all);
-    if (!params) {
-      pageTheme(tableid, cachePageTheme[tableid]);
-      dataForm.find(" .pages .totalCount").html(data["totalCount"]);
-      dataForm.find(" .mycombox").val(data["rowPerPage"]);
-      dataForm.find(" [name='pageNo']").val(data["pageNo"]);
-      dataForm.find(" .pages .maxPage").html(Math.floor((parseInt(data["totalCount"]) - 1) / parseInt(data["rowPerPage"]) + 1));
-      dataForm.find("[name='rowPerPage']").off("change");
-      dataForm.find("[name='rowPerPage']").on("change", function(e) {
-        var row = $(this).val();
-        var pagenoEle = dataForm.find("[name='pageNo']");
-        var maxPage = Math.floor((cacheData[tableid]["totalCount"] - 1) / row + 1);
-        if (pagenoEle.val() > maxPage) {
-          pagenoEle.val(maxPage);
-        }
-        if (cacheStaticTable[tableid]) {
-          staticPagination(tableid);
-        } else {
-          DataTable.load(tableid);
-        }
-      });
-      pageCheck(tableid);
-    }
+  }, dataShow = function(tableid, nowDataTable, dataForm, data) {
+    var res = initDataAndContent(tableid, nowDataTable, dataForm, data);
+    pageTheme(tableid, cachePageTheme[tableid]);
+    dataForm.find(" .pages .totalCount").html(data["totalCount"]);
+    dataForm.find(" .mycombox").val(data["rowPerPage"]);
+    dataForm.find(" [name='pageNo']").val(data["pageNo"]);
+    dataForm.find(" .pages .maxPage").html(Math.floor((parseInt(data["totalCount"]) - 1) / parseInt(data["rowPerPage"]) + 1));
+    dataForm.find("[name='rowPerPage']").off("change");
+    dataForm.find("[name='rowPerPage']").on("change", function(e) {
+      var row = $(this).val();
+      var pagenoEle = dataForm.find("[name='pageNo']");
+      var maxPage = Math.floor((cacheData[tableid]["totalCount"] - 1) / row + 1);
+      if (pagenoEle.val() > maxPage) {
+        pagenoEle.val(maxPage);
+      }
+      DataTable.load(tableid);
+    });
+    pageCheck(tableid);
     var orderInfo = '<tr name="sort_order_hidden" style="display:none"><td colspan=\'' + $("[id='" + tableid + "'] tr:eq(0)").find("th").length + "'><input type='hidden' name='order' value='" + res.dataTableOrder + "'/>" + "<input type='hidden' name='sort' value='" + res.dataTableSort + "'/></td></tr>";
     res.content += orderInfo;
     nowDataTable.find(" tr:gt(0)").remove();
@@ -826,45 +583,6 @@
     }, function() {
       $(this).removeClass("pageGoHover");
     });
-  }, doStaticSearch = function(tableid, or, data, all) {
-    DataTable.resetOrder(tableid);
-    var nowDataTable = $("[id='" + tableid + "']");
-    if (nowDataTable.length == 0) {
-      return;
-    }
-    var dataForm = $("form").has("[id='" + tableid + "']");
-    var pagenoEle = dataForm.find("[name='pageNo']");
-    pagenoEle.val(1);
-    if (cacheStartFun[tableid]) {
-      try {
-        cacheStartFun[tableid](nowDataTable[0], !cacheInit[tableid]);
-      } catch (e) {}
-    }
-    loadShow(tableid, nowDataTable);
-    postParam = dataForm.serializeArray();
-    var params = getPostParam(postParam);
-    if (all) {
-      initDataAndContent(tableid, nowDataTable, dataForm, data, params, or, all);
-      var valueObject = nowDataTable.attr("value");
-      var jsonData = cacheStaticTable[tableid];
-      if (valueObject) {
-        jsonData[valueObject].data = cacheStaticData[tableid];
-      } else {
-        jsonData.data = cacheStaticData[tableid];
-      }
-      cacheStaticTable[tableid] = clone(jsonData);
-      var dataForm = $("form").has("[id='" + tableid + "']");
-      jsonData.pageNo = dataForm.find("[name='pageNo']").val();
-      jsonData.rowPerPage = dataForm.find("[name='rowPerPage']").val();
-      innerLoad(tableid, {}, jsonData, true);
-    } else {
-      dataShow(tableid, nowDataTable, dataForm, data, params, or, all);
-    }
-    if (cacheEndFun[tableid]) {
-      try {
-        cacheEndFun[tableid](nowDataTable[0], !cacheInit[tableid]);
-      } catch (e) {}
-    }
   }, pageRangeChk = function(tableid) {
     var dataForm = $("form").has("[id='" + tableid + "']");
     var pagenoEle = dataForm.find("[name='pageNo']");
@@ -897,30 +615,15 @@
     order_up:"&uarr;",
     order_down:"&darr;",
     sort:{},
-    loading_msg : "Data is loading ......",
-	default_lang : {
-		first : "first",
-		previous : "previous",
-		next : "next",
-		last : "last",
-		totalCount : "total {0} rows",
-		totalPage : "total {0} pages",
-		rowPerPage : "page for {0} rows"
-	},
-    staticLoad:function(tableid, jsonData, easydataParams) {
-      if (typeof jsonData == "string") {
-        jsonData = eval("(" + jsonData + ")");
-      }
-      cacheStaticTable[tableid] = clone(jsonData);
-      cacheInitStaticData[tableid] = clone(jsonData);
-      innerLoad(tableid, easydataParams, clone(jsonData), true);
-    },
-    fileLoad:function(tableid, jsonFile, easydataParams) {
-      $.post(jsonFile, function(jsonData) {
-        cacheStaticTable[tableid] = clone(jsonData);
-        cacheInitStaticData[tableid] = clone(jsonData);
-        innerLoad(tableid, easydataParams, clone(jsonData), true);
-      });
+    loading_msg:"Data is loading ......",
+    default_lang:{
+      first:"first",
+      previous:"previous",
+      next:"next",
+      last:"last",
+      totalCount:"total {0} rows",
+      totalPage:"total {0} pages",
+      rowPerPage:"page for {0} rows"
     },
     load:function(tableid, easydataParams) {
       innerLoad(tableid, easydataParams);
@@ -935,134 +638,38 @@
     },
     reload:function(tableid) {
       DataTable.resetOrder(tableid);
-      if (cacheStaticTable[tableid]) {
-        staticPagination(tableid);
-      } else {
-        DataTable.load(tableid);
-      }
+      DataTable.load(tableid);
     },
     out:function(msg) {
       return msg;
-    },
-    staticDataSort:function(tableid, dataTableSort, dataTableOrder) {
-      var nowDataTable = $("[id='" + tableid + "']");
-      if (nowDataTable.length == 0) {
-        return;
-      }
-      var dataForm = $("form").has("[id='" + tableid + "']");
-      var content = "";
-      var j = 0;
-      var valueObject = nowDataTable.attr("value");
-      var data = cacheData[tableid];
-      if (valueObject) {
-        var filterData = dataSort(cacheStaticData[tableid], dataTableSort, dataTableOrder);
-        for (var i in filterData) {
-          filterData[i].datatableCount = parseInt(j) + 1;
-          filterData[i].datatableIndex = parseInt(j);
-          for (var property in data) {
-            if (property != valueObject) {
-              filterData[i][property] = data[property];
-            }
-          }
-          filterData[i].pageNo = parseInt(data[valueObject].pageNo);
-          filterData[i].rowPerPage = parseInt(data[valueObject].rowPerPage);
-          filterData[i].totalCount = parseInt(data[valueObject].totalCount);
-          filterData[i].maxPage = Math.floor((parseInt(filterData[i].totalCount) - 1) / parseInt(filterData[i].rowPerPage) + 1);
-          filterData[i].key = i;
-          filterData[i].order = dataTableOrder;
-          filterData[i].sort = dataTableSort;
-          content += formatContent(cacheDataRow[tableid], filterData[i]);
-          j++;
-        }
-        dataForm.find(" .pages .totalCount").html(j);
-      } else {
-        var filterData = dataSort(cacheStaticData[tableid], dataTableSort, dataTableOrder);
-        for (var i in filterData) {
-          for (var property in data) {
-            if (property != "data") {
-              filterData[i][property] = data[property];
-            }
-          }
-          filterData[i].datatableCount = parseInt(j) + 1;
-          filterData[i].datatableIndex = parseInt(j);
-          filterData[i].key = i;
-          filterData[i].maxPage = Math.floor((parseInt(filterData[i].totalCount) - 1) / parseInt(filterData[i].rowPerPage) + 1);
-          filterData[i].order = dataTableOrder;
-          filterData[i].sort = dataTableSort;
-          content += formatContent(cacheDataRow[tableid], filterData[i]);
-          j++;
-        }
-        dataForm.find(" .pages .totalCount").html(j);
-      }
-      var orderInfo = '<tr name="sort_order_hidden" style="display:none"><td colspan=\'' + $("[id='" + tableid + "'] tr:eq(0)").find("th").length + "'><input type='hidden' name='order' value='" + dataTableOrder + "'/>" + "<input type='hidden' name='sort' value='" + dataTableSort + "'/></td></tr>";
-      content += orderInfo;
-      nowDataTable.find(" tr:gt(0)").remove();
-      $("[id='" + tableid + "_loading_div']").remove();
-      nowDataTable.append(content);
-      nowDataTable.find(" tr:even").addClass("evenColor");
-      nowDataTable.find(" tr").hover(function() {
-        $(this).addClass("tdHover");
-      }, function() {
-        $(this).removeClass("tdHover");
-      });
-      var oldTr;
-      nowDataTable.find(" tr").on("click", function() {
-        if (oldTr) {
-          oldTr.removeClass("tdClick");
-        }
-        $(this).addClass("tdClick");
-        oldTr = $(this);
-      });
-    },
-    staticSearchAll:function(tableid, or) {
-      doStaticSearch(tableid, or, cacheInitStaticData[tableid], true);
-    },
-    staticSearch:function(tableid, or) {
-      doStaticSearch(tableid, or, cacheData[tableid]);
     },
     first:function(tableid) {
       var dataForm = $("form").has("[id='" + tableid + "']");
       var pagenoEle = dataForm.find("[name='pageNo']");
       pagenoEle.val(1);
       fldeChk(tableid, 1);
-      if (cacheStaticTable[tableid]) {
-        staticPagination(tableid);
-      } else {
-        this.load(tableid);
-      }
+      this.load(tableid);
     },
     prev:function(tableid) {
       var dataForm = $("form").has("[id='" + tableid + "']");
       var pagenoEle = dataForm.find("[name='pageNo']");
       pagenoEle.val(parseInt(cacheData[tableid]["pageNo"]) - 1);
       fldeChk(tableid, pagenoEle.val());
-      if (cacheStaticTable[tableid]) {
-        staticPagination(tableid);
-      } else {
-        this.load(tableid);
-      }
+      this.load(tableid);
     },
     next:function(tableid) {
       var dataForm = $("form").has("[id='" + tableid + "']");
       var pagenoEle = dataForm.find("[name='pageNo']");
       pagenoEle.val(parseInt(cacheData[tableid]["pageNo"]) + 1);
       fldeChk(tableid, pagenoEle.val());
-      if (cacheStaticTable[tableid]) {
-        staticPagination(tableid);
-      } else {
-        this.load(tableid);
-      }
+      this.load(tableid);
     },
     last:function(tableid) {
       var dataForm = $("form").has("[id='" + tableid + "']");
       var pagenoEle = dataForm.find("[name='pageNo']");
       pagenoEle.val(cacheData[tableid]["maxPage"]);
       fldeChk(tableid, cacheData[tableid]["maxPage"]);
-      if (cacheStaticTable[tableid]) {
-        staticPagination(tableid);
-      } else {
-        this.load(tableid);
-      }
+      this.load(tableid);
     },
     gopage:function(tableid) {
       pageRangeChk(tableid);
@@ -1070,11 +677,7 @@
       var pagenoEle = dataForm.find("[name='pageNo']");
       if (cacheData[tableid]["pageNo"] != pagenoEle.val() && Validate.integer.test(pagenoEle.val())) {
         fldeChk(tableid, pagenoEle.val());
-        if (cacheStaticTable[tableid]) {
-          staticPagination(tableid);
-        } else {
-          this.load(tableid);
-        }
+        this.load(tableid);
       }
     },
     numgoto:function(tableid, e) {
@@ -1082,11 +685,7 @@
       var pagenoEle = dataForm.find("[name='pageNo']");
       pagenoEle.val($(e.target).text());
       fldeChk(tableid, pagenoEle.val());
-      if (cacheStaticTable[tableid]) {
-        staticPagination(tableid);
-      } else {
-        this.load(tableid);
-      }
+      this.load(tableid);
     },
     go:function(tableid, pagenum, row) {
       var dataForm = $("form").has("[id='" + tableid + "']");
@@ -1116,11 +715,7 @@
         }
         dataForm.find("[name='rowPerPage']").val(row);
         if (cacheData[tableid]["pageNo"] != pagenum) {
-          if (cacheStaticTable[tableid]) {
-            staticPagination(tableid);
-          } else {
-            this.load(tableid);
-          }
+          this.load(tableid);
         }
       }
     },
@@ -1164,43 +759,10 @@
           }
         });
       });
-      function search(o, param) {
-        var tableid = $(o.form).find("table[id]").attr("id");
-        o = $(o);
-        o.off("click");
-        o.on("click", function() {
-          if (tableid) {
-            if (param.all) {
-              param.or ? DataTable.staticSearchAll(tableid, true) :DataTable.staticSearchAll(tableid);
-            } else {
-              param.or ? DataTable.staticSearch(tableid, true) :DataTable.staticSearch(tableid);
-            }
-          }
-        });
-      }
-      $(".data_static_search").each(function() {
-        search(this, {});
-      });
-      $(".data_static_search_or").each(function() {
-        search(this, {
-          or:true
-        });
-      });
-      $(".data_static_searchAll").each(function() {
-        search(this, {
-          all:true
-        });
-      });
-      $(".data_static_searchAll_or").each(function() {
-        search(this, {
-          or:true,
-          all:true
-        });
-      });
-      $("table:has([sort]),table:has([staticSort])").each(function() {
+      $("table:has([sort])").each(function() {
         var table = $(this);
         var tableid = table.attr("id");
-        table.find("[sort],[staticSort]").each(function() {
+        table.find("[sort]").each(function() {
           var o = $(this);
           var oDef = DataTable.order_default;
           var oU = DataTable.order_up;
@@ -1226,7 +788,7 @@
           o.off("click");
           var dataForm = $("form").has("[id='" + tableid + "']");
           o.on("click", function(e) {
-            var sort = o.attr("sort") || o.attr("staticSort");
+            var sort = o.attr("sort");
             if (dataForm.find("input[name='sort']").length > 0) {
               dataForm.find("input[name='sort']").val(sort);
               dataForm.find("input[name='order']").val(dataForm.find("input[name='order']").val().toLowerCase() == "asc" ? "desc" :"asc");
@@ -1242,15 +804,11 @@
                 arrowObj.html(oDef);
               }
               cacheOrderArrow[tableid] = arrowObj;
-              if (o.attr("sort")) {
-                DataTable.load(tableid);
-              } else {
-                DataTable.staticDataSort(tableid, sort, dataForm.find("input[name='order']").val());
-              }
+              DataTable.load(tableid);
             }
           });
         });
-        table.find("[sort],[staticSort]").hover(function() {
+        table.find("[sort]").hover(function() {
           var arrowObj = $(this).find("[name='orderspan']");
           arrowObj.removeClass("sortArrow");
           arrowObj.removeClass("sortArrowDown");
@@ -1260,12 +818,12 @@
           arrowObj.removeClass("sortArrowHover");
           arrowObj.addClass("sortArrow");
         });
-        table.find("[sort],[staticSort]").on("mousedown", function() {
+        table.find("[sort]").on("mousedown", function() {
           var arrowObj = $(this).find("[name='orderspan']");
           arrowObj.removeClass("sortArrowHover");
           arrowObj.addClass("sortArrowDown");
         });
-        table.find("[sort],[staticSort]").on("mouseup", function() {
+        table.find("[sort]").on("mouseup", function() {
           var arrowObj = $(this).find("[name='orderspan']");
           arrowObj.removeClass("sortArrowDown");
           arrowObj.addClass("sortArrowHover");
