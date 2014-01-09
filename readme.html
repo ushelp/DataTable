@@ -1,0 +1,1359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>readme</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1 id="datatable-ajax-pagination-plugin-manual">DataTable AJAX pagination plugin manual</h1>
+<p>Notice:It’s same toEasyDataTable,This plugin is EasyDataTable the English version, the Chinese version please refer to:<a href="https://github.com/ushelp/EasyDataTable">https://github.com/ushelp/EasyDataTable</a><br>说明:该插件与EasyDataTable插件为同一插件，是EasyDataTable的英文文版本，提示消息和使用手册均为英文版。 </p>
+<p>Use Ajax pagination can improve data load and display speed and reduce network traffic, improve the customer experience degrees; same time be able to refresh only partially solve when there are multiple data displayed on the page table area, the traditional paging will cause the entire page to refresh. </p>
+<p>EasyDataTable AJAX pagination plug-in is based on the best pure jQuery Ajax pagination plug-in, enhanced support for HTML and JS programming are two ways to implement paging, the biggest feature is: Simple, easy to use and flexible. Supports a variety of data sources to load (dynamic data source server, static data source, JSON file data sources); own tabs; support custom pagination; Custom Loading prompt; spreadsheet UI can be customized; support column click sort, support static data sorting; supports dynamic query conditions, static data filtering query conditions, support scope, methods and mode support, built-in 8 kinds of static data that match the query pattern; built-EasyDataTable expression language, event support, can enhance paging through JavaScript programming.</p>
+<p><strong>Compatibility</strong>: EasyDataTable fully compatible with IE6 and above, Firefox, Chrome, Safari, Opera and other kernel (Trident, Gecko, Webkit, Presto) browser, and is compatible with multiple platforms and systems (PC, TabletPC, Mobile) .</p>
+<p>And other relatively EasyDataTable Ext main features:</p>
+<ol>
+<li>Lightweight:. EasyDataTable require fewer resources to load and very <strong>lightweight</strong></li>
+<li>easy to use:. <strong>HTML enhanced support</strong>, almost without JS code, comprehensive package, easy to use, JS zero programming can achieve powerful Ajax paging function</li>
+<li>flexible: unrestricted, comes the expression language, event support, from UI to function <strong>can achieve the flexibility to customize and extend</strong></li>
+<li>comprehensive: dynamic and static load <strong>full variety of data sources</strong>, and supports a variety of different scope, approach, mode of static data filtering query</li>
+</ol>
+<blockquote>
+<p>EasyDataTable currently supports two versions 1.X and 2.X version<br>2.X adds support for static data source, JSON data source paging file is loaded, and supports the above query static data filtering and sorting.</p>
+</blockquote>
+<hr>
+<h2 id="1-introducing-core-js-and-css-files-easydatatable">1, Introducing core js and css files EasyDataTable</h2>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;css/datatable.css&quot; type=&quot;text/css&quot; /&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/easy.datatable.js&quot;&gt;&lt;/script&gt;</code></pre>
+<h2 id="2-page-table-structure">2, Page table structure</h2>
+<p>EasyDataTable is structured into form, EasyDataTable data table (table header row, the data show rows), paging div three parts, creating a data table structure as follows:</p>
+<pre><code>&lt;!-- Create a form action is handled dynamically paging request address --&gt;
+&lt;form action=&quot;Paging server address&quot;&gt;
+
+    &lt;!--  EasyDataTable data show the form, you must have id --&gt;
+    &lt;table id=&quot;DataTableID&quot;&gt;
+
+        &lt;!--  Header row  --&gt;
+        &lt;tr&gt;&lt;th&gt;&lt;/th&gt;    …… &lt;/tr&gt;
+
+        &lt;!--  Data show the row  --&gt;
+        &lt;tr style=&quot;display: none;&quot;&gt;&lt;td&gt;&lt;/td&gt;    …… &lt;/tr&gt;
+
+    &lt;/table&gt;
+
+    &lt;!--  Paging Line  --&gt;
+    &lt;div class=&quot;panelBar&quot;  size=&quot;5,10,30,50&quot;&gt;    &lt;/div&gt;
+
+&lt;/form&gt;</code></pre>
+<h3 id="paging-form-instance-">Paging form instance:</h3>
+<pre><code>&lt;!-- Create a form action is paged address requests processed --&gt;
+&lt;form action=&quot;doPage.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;!-- Use DIV to wrap EasyDataTable data display table, when the data exceeds the DIV height, the scroll bar can be a reality --&gt;
+       &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot;&gt;
+              &lt;!--Table shows the data, you must specify the id, EasyDatatable paging initialization data by id--&gt;
+            &lt;table class=&quot;datatable&quot;  id=&quot;datatable&quot;  width=&quot;100%&quot; align=&quot;center&quot;&gt;
+                &lt;!-- Header row--&gt;
+                  &lt;tr&gt;
+                      &lt;th width=&quot;40&quot;&gt;
+                        &lt;!-- Call DataTable.checkAll (this, &#39;checkbox name&#39;) function or use HTML enhancements add check = &quot;checkbox name&quot; attribute can be achieved checkbox Select All / Clear All function --&gt;
+                        &lt;input type=&quot;checkbox&quot; onclick=&quot;DataTable.checkAll(this,&#39;mychk&#39;)&quot; /&gt;
+                       &lt;/th&gt;
+                       &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+                       &lt;th width=&quot;100&quot;&gt;userId&lt;/th&gt;
+                       &lt;th width=&quot;100&quot;&gt;userName&lt;/th&gt;
+                       &lt;th width=&quot;100&quot;&gt;userInfo&lt;/th&gt;
+                       &lt;th &gt;operation&lt;/th&gt;
+                   &lt;/tr&gt; 
+                &lt;!-- Data show the row, Use {property} property expression to get data --&gt;
+                   &lt;tr  style=&quot;display: none;&quot;&gt;
+                       &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;
+                        &lt;!--Custom box, value for the object id--&gt;
+                           &lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot;/&gt;
+                       &lt;/td&gt;
+                    &lt;!--Use the built datatableCount property to display the number of data--&gt;
+                       &lt;td align=&quot;center&quot;  style=&quot;text-align:center;height: 45px;&quot;&gt;
+                        {datatableCount }
+                    &lt;/td&gt;
+                       &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                       &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                       &lt;td&gt;{info}&lt;/td&gt;
+                       &lt;td align=&quot;center&quot; style=&quot;width: 120px&quot;&gt;
+                           &lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;show&lt;/a&gt;
+                           &lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;edit&lt;/a&gt;
+                           &lt;a href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;delete&lt;/a&gt;
+                       &lt;/td&gt;
+                   &lt;/tr&gt;
+           &lt;/table&gt;
+    &lt;/div&gt;
+
+    &lt;!--Tabs section, use the size attribute to set the number of drop-down menus per page optional value, use, separated--&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot;&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<h2 id="3-ajax-paging-tables-for-data-initialization">3, Ajax paging tables for data initialization</h2>
+<p>EasyDataTable support HTMl two ways to enhance and JS paging table initialization.</p>
+<h3 id="3-1-method-one-html-enhanced-use-easydatatable-class-styles">3.1, Method One: html enhanced use easydatatable class styles</h3>
+<p>Adding to the table style class <code>easydatatable</code> initialize (form must have id)</p>
+<pre><code>&lt;table class=&quot;datatable easydatatable&quot; id=&quot;datatable3&quot; width=&quot;780px&quot; align=&quot;center&quot;&gt;</code></pre>
+<h3 id="3-2-method-two-javascript-use-datatable-load-function">3.2, Method Two: JavaScript, use DataTable.load () function</h3>
+<p>Use <code>DataTable.load (table id, parameter information)</code> function on the table you want to initialize Ajax pagination  </p>
+<p><strong><code>DataTable.load( tableid [，easydataParameters] );</code></strong></p>
+<p>Parameter Description:<br><code>tableid</code>: Must parameters, data display table id<br><code>easydataParameters</code>: Optional parameter that specifies <strong> EasyDataTable initialization parameters </strong> paging information to support arguments:<br>    {<br>        <code>pagetheme</code>: ‘Paging theme’<br>        <code>loading</code>: ‘When paging loading data, Loading prompt manner’<br>        <code>language</code>: ‘tabs language’<br>        <code>start</code>: ‘data starts to load event handler’<br>        <code>end</code>: ‘end of the data load event handler’<br>        <code>row</code>: ‘initial page load shows the number’<br>    }</p>
+<h4 id="easydataparameters-initialization-parameters-page">easydataParameters Initialization Parameters page</h4>
+<ul>
+<li><h4 id="pagetheme-optional-tabs-theme">pagetheme——Optional tabs theme</h4>
+<p>Supports two optional paging themes, and custom paging (values ​​are not case-sensitive)</p>
+<p>  <code>&quot;FULL&quot;</code> (full theme, the default display all the pages option, the default value)</p>
+<p>  <code>&quot;SIMPLE&quot;</code> (a simple theme, do not show quick jump page)</p>
+<p>  <code>&quot;NO&quot;</code> (Cancel theme, using custom paging, refer to Section 11 “custom paging”)</p>
+<p>  <strong>This parameter supports HTML enhancements:</strong></p>
+<p>  <code>pagetheme</code> parameter can be paged through <code>div</code> a <code>pagetheme property</code> setting. Loading sequence as html, javascript, loading parameters will overwrite the previous value, refer to Section 10 “Paging theme settings.”</p>
+</li>
+</ul>
+<ul>
+<li><h4 id="loading-optional-paging-mode-when-loading-data-loading">loading——Optional,Paging mode when loading data Loading</h4>
+<p>  Because Ajax program during execution does not refresh the page, so when performing operations such as paging, Ajax applications should be given to the customer when the appropriate prompts and feedback loaded for execution, or the user may think the task is not performed or failed, affecting the degree of experience .</p>
+<p>   EasyDataTable support when the page loads carried Loading configuration, optional value: <code>&quot; default &quot;</code>, <code>&quot; show &quot;</code>, <code>&quot; none &quot;</code>, <code>&quot; hide &quot;</code> or <code>&quot; any value &quot;</code>. (Values ​​are not case-sensitive)</p>
+<p>  <code>&quot; default &quot;</code>: default is disabled when the page loads the operating table (disabled hyperlinks, buttons), the data displayed in gray</p>
+<p>  <code>&quot; show &quot;</code>: display text prompts to load, display the contents of the page is loaded loading tips DataTable.loading_msg defined (can be modified) “Data is loading ……”</p>
+<p>  <code>&quot; none &quot;</code>: hidden data show lines show when the page is loaded hidden data line data + cells showed complete blank</p>
+<p>  <code>&quot; hide &quot;</code>: hidden data content, the page is loaded only when the data show hidden rows, reserved display cell borders</p>
+<p>  <code>&quot; Any value &quot;</code>: direct the contents as a prompt to load the page content (equivalent to show the way), support for HTML content</p>
+<p>  Example:</p>
+<pre><code>  loading:&quot;&lt;div&gt;&lt;img src=\&quot;images/loading.gif\&quot;/&gt;&lt;br/&gt;Data is loading ......&lt;/div&gt;&quot;  </code></pre>
+<p>  <strong>This parameter supports HTML enhancements:</strong></p>
+<p>  <code>loading</code> data <code>parameter can also be loading attribute table</code> setting. Loading sequence as html, javascript, loading parameters will overwrite the previous value.</p>
+</li>
+</ul>
+<ul>
+<li><h4 id="language-language-options-set-tabs-displayed">language——Language options, set tabs displayed</h4>
+<p>  Default paging configuration is defined in <code>DataTable.default_lang</code> attribute, the default value:</p>
+<pre><code>  DataTable.default_lang={
+      first : &quot;first&quot;,
+      previous : &quot;previous&quot;,
+      next : &quot;next&quot;,
+      last : &quot;last&quot;,
+      totalCount : &quot;total {0} rows&quot;,
+      totalPage : &quot;total {0} pages&quot;,
+      rowPerPage : &quot;page for {0} rows&quot;
+  }</code></pre>
+<p>  Can directly modify and redefine the value of this attribute as a global default paging text and language.<br>May also need to redefine the language to specify the paging data table in the initialization parameter, <code>{0}</code> placeholder to display the corresponding data must exist.</p>
+<pre><code>    &lt;script type=&quot;text/javascript&quot;&gt;
+    $(function(){
+              //Re-custom paging language
+                var pageLanguage={
+                  &quot;first&quot;:&#39;first&#39;,
+                  &quot;previous&quot;:&#39;previous&#39;,
+                  &quot;next&quot;:&#39;next&#39;,
+                  &quot;last&quot;:&#39;last&#39;,
+                  &quot;totalPage&quot;:&#39;total {0} pages&#39;,
+                  &quot;totalCount&quot;:&#39;total {0} rows&#39;,
+                  &quot;rowPerPage&quot;:&#39;page for {0} rows&#39;,
+              };
+
+              // Initialization data table datatable
+                DataTable.load(&quot;datatable&quot;,{
+                    &quot;pagetheme&quot;:&quot;SIMPLE&quot;,
+                    &quot;loading&quot;:true,
+                    &quot;language&quot;:pageLanguage  //Language id specified data table for the datatale
+                });
+
+              //Initialization data table datatable2
+                DataTable.load(&quot;datatable2&quot;);
+    });
+    &lt;/script&gt;</code></pre>
+</li>
+</ul>
+<ul>
+<li><h4 id="start-optional-the-data-set-is-loaded-each-time-the-handler-at-the-start-of">start——Optional, the data set is loaded each time the handler at the start of</h4>
+<pre><code>  /*
+  o:Now DataTable
+  initFlag:true representative of the first load data (initialization tables), false representatives of the page to load
+  */
+  &quot;start&quot;:function(o,initFlag){ 
+                if(initFlag){ //The first load (uninitialized)
+                    console.info(&#39;init start...&#39;);
+                }else{ 
+                    console.info(&#39;load start...&#39;);
+                }
+            }</code></pre>
+</li>
+</ul>
+<ul>
+<li><h4 id="end-optional-the-handler-is-set-each-time-data-is-loaded-at-the-end-of">end——Optional, the handler is set each time data is loaded at the end of</h4>
+<pre><code>  /*
+  o:Now DataTable
+  initFlag:true representative of the first load data (initialization tables), false representatives of the page to load
+  */
+  &quot;end&quot;:function(o,initFlag){ 
+            if(initFlag){ //The first load (uninitialized)
+                console.info(&#39;init end...&#39;);
+            }else{ 
+                console.info(&#39;load end...&#39;);
+            }        
+        }</code></pre>
+</li>
+<li><h4 id="row-optional-set-the-number-of-initial-page-loads">row——Optional, set the number of initial page loads</h4>
+<p>  In the initialization parameter specifies the number of pages of data loaded by default. If you do not set this parameter, the value of the property <code>DataTable.default_row</code> default value of 5 (can be modified).</p>
+<p>  <strong>This parameter supports HTML enhanced:</strong><br>  row parameters can also be paged through <code>div</code> of <code>row</code> attribute set, load order of html, javascript, loading parameters will overwrite the previous value.</p>
+</li>
+</ul>
+<h2 id="4-easydatatableexpression-language-use">4, EasyDataTableExpression Language Use</h2>
+<h3 id="4-1-easydatatable-property-expression-property-expression-data-attributes-">4.1 EasyDataTable Property Expression Property expression <code>{data attributes }</code></h3>
+<p><strong> Property expressions for data display line, display the specified property values. </strong><br>In the property expression can be directly referenced data attributes to get the data for the specified property. And supports a variety of mathematical, comparison operators perform basic arithmetic JavaScript.</p>
+<pre><code>{id}    {name}</code></pre>
+<h3 id="4-2-easydatatable-statement-expression-expression-statement-">4.2 EasyDataTable Statement Expression `% {expression statement}%</h3>
+<p><strong> Statement expression data for display in line with the programming statements to control programming. </strong><br>Support the use of JavaScript written statement expression expression code; supports direct call data attributes; also supports the use of EasyDataTable property expression (must be used to define the use of quotation marks in the string).<br>The results statement expression must be used to perform the standard output method statement expression EasyDataTable output: <strong> <code>DataTable.out (&quot; Content &quot;);</code> </strong></p>
+<pre><code>&lt;%--
+Support JavaScript language expressions.
+Attribute name: the variable reference and handling
+EasyDataTable property expression: You must define the use of quotation marks in strings
+--%&gt;
+%{
+    var res=name+&quot;   {name}&quot;;
+    DataTable.out(res);   
+}% 
+
+%{ 
+    if(id%2==0){ 
+        var op=&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id=&#39;+id+&#39;&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&#39;; 
+        op+=&#39;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;edit&lt;/a&gt;&#39;;
+
+        DataTable.out(op);  
+    }else{ 
+         DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;edit&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;delete&lt;/a&gt;&#39;);  
+    } 
+}%</code></pre>
+<h2 id="5-easydatatablebuilt-in-data-attribute">5, EasyDataTableBuilt-in data attribute</h2>
+<p><strong>EasyDataTable built-related data and paging built-in properties can be used directly in the data show tabs row or rows.</strong></p>
+<p><strong>Only valid data show the line:</strong><br><code>datatableIndex</code>: available data in the current index page<br><code>datatableCount</code>: the number of available data on the current page<br><code>key</code>: When Map data set can be used to obtain the data for the key</p>
+<p><strong>Data show lines, tabs can be used:</strong><br><code>pageNo</code>: now page NO.<br><code>maxPage</code>: max Pages<br><code>rowPerPage</code>: the number per page<br><code>totalCount</code>: the number of total data<br><code>sort</code>: sort field<br><code>order</code>: Sort, <code>desc</code> or <code>asc</code>  </p>
+<p><strong> For example: </strong><br>All the current data index data: <code>{datatableIndex + (pageNo-1) * rowPerPage}</code><br>The number of all current data in the data: <code>{datatableCount + (pageNo-1) * rowPerPage}</code></p>
+<h2 id="6-sort-support">6, Sort Support</h2>
+<p>In order to add the header row needs to <code>sort =&quot; sort field name &quot;</code> attribute to the field corresponding to the cell.</p>
+<pre><code>&lt;tr&gt;
+    &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+    &lt;th width=&quot;80&quot;&gt;index&lt;/th&gt;
+    &lt;th width=&quot;80&quot;&gt;{index+1}&lt;/th&gt;
+    &lt;th width=&quot;100&quot; sort=&quot;id&quot;&gt;id&lt;/th&gt;
+    &lt;th width=&quot;100&quot; sort=&quot;name&quot;&gt;name&lt;/th&gt;
+    &lt;th width=&quot;100&quot; sort=&quot;info&quot;&gt;info&lt;/th&gt;
+    &lt;th &gt;operate&lt;/th&gt;
+&lt;/tr&gt;</code></pre>
+<p>Sortable column displays the sort arrow. Click to send server sorting information required: sort field sort (values ​​sort of) and sort order (asc or desc) to the server.<br>After the server receives and returns the new data processing can be realized Ascending Descending switching.</p>
+<p>Access to information via the server-side sorting and sort order parameter name.   </p>
+<pre><code>String sort = request.getParameter(&quot;sort&quot;);
+String order = request.getParameter(&quot;order&quot;);</code></pre>
+<p><strong>Refresh Form :</strong><br>Use <code>DataTable.reload (&#39;tableid&#39;);</code> can refresh the data table is specified, no sorting restored to the state.</p>
+<pre><code>&lt;div onclick=&quot;DataTable.reload(&#39;datatable3&#39;)&quot;&gt;Refresh&lt;/div&gt;</code></pre>
+<h3 id="custom-sort-indicator">Custom sort indicator</h3>
+<p>EasyDataTable For sortable columns to be <strong>sorted in appearance reminded by sorting indicator</strong>. The default up and down arrows ↑ ↓ (<code>&amp;uarr;&amp;darr;</code>) indicates that the column can be sorted click on sortable column names; Show ↑ (<code>&amp;uarr;</code>) when ascending, descending ↓ display when (<code>&amp;darr;</code>) to indicate the current rise in descending order.</p>
+<p>EasyDataTable support for sortable column sort indicator for <strong>global</strong> and customized <strong>by DataTableID</strong> of two ways:</p>
+<p><strong>1. Global Custom: default edit all DataTable objects sort indicator</strong></p>
+<ul>
+<li><code>DataTable.order_default</code> The default indicator sortable columns</li>
+<li><code>DataTable.order_up</code> Indicator can be sorted in ascending column</li>
+<li><code>DataTable.order_down</code> Can sort the column in descending indicator</li>
+</ul>
+<pre><code>//Redefine EasyDataTable sort indicator
+DataTable.order_default=&quot;&lt;img src=&#39;images/order_default.gif&#39;/&gt;&quot;;
+DataTable.order_up=&quot;&lt;img src=&#39;images/order_up.gif&#39;/&gt;&quot;;
+DataTable.order_down=&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot;;</code></pre>
+<p><strong>2. By DataTableID Custom: only edit the current sort DataTableID DataTable object corresponding indicator</strong></p>
+<p><code>DataTable.sort[&quot;DataTableID List&quot;]</code>You can specify more than one at the same time set the sort indicator DataTable table object, use commas multiple DataTable table id <code>,</code> separated</p>
+<pre><code>DataTable.sort[&quot;datatable,datatable2,datatable4&quot;]={
+    order_default:&quot;&lt;img src=&#39;images/order_default.gif&#39;/&gt;&quot;,
+    order_up:&quot;&lt;img src=&#39;images/order_up.gif&#39;/&gt;&quot;,
+    order_down:&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot;
+};</code></pre>
+<h2 id="7-server-side-data-requirements">7, Server-side data requirements</h2>
+<p><strong>EasyDataTable can automatically parse JSON results returned by the server, and implement paging.</strong>  </p>
+<ul>
+<li><p><strong>JSON output paging server must name the following results:</strong><br>  <code>data</code>: data collection, support for List and Map Collections (built-in properties available Map key key, Map value without the use of value prefix) for the collection of JSON<br>  <code>pageNo</code>: the current first few pages, digital<br>  <code>rowPerPage</code>: Showing the number of digital<br>  <code>totalCount</code>: the number of total data, digital<br>  Optional parameters:<br>  <code>[sort]</code>: sort field<br>  <code>[order]</code>: Sort, desc or asc</p>
+</li>
+<li><p><strong>If the server is encapsulated in PageBean paging parameters, such as:</strong> </p>
+<pre><code>  public class PageBean {
+      private List data;
+      private int pageNo;
+      private int rowPerPage;
+      private int totalCount;
+     //setters&amp;getters ……
+  }</code></pre>
+<p>  For example, JSON object back to the server-side output in PageBean name is <code>pb</code>, <code>value</code> attribute is added to the data table <code>tag</code> table, specify the paging JSON object name <code>pb</code>:</p>
+<pre><code>  &lt;table class=&quot;datatable&quot; id=&quot;datatable3&quot;  width=&quot;780px&quot; align=&quot;center&quot; value=&quot;pb&quot;&gt;</code></pre>
+</li>
+</ul>
+<h2 id="8-refresh-specified-data-table">8, Refresh specified data table</h2>
+<pre><code>DataTable.reload(“tableId”);  //Cancel sorting effect, Refresh table, reload the data</code></pre>
+<h2 id="9-set-the-number-of-default-paging">9, Set the number of default paging</h2>
+<p>Use <code>row paging parameters</code> in the <strong>initialization parameter</strong> can specify the number of the default paging. If you do not set this parameter, the value of the property <code>DataTable.default_row</code> default value of 5 (can edit).</p>
+<p><code>row attribute</code> support in the page using HTML div tag enhancements:</p>
+<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;10&quot;&gt;
+
+&lt;/div&gt;</code></pre>
+<h2 id="10-paging-theme-settings">10, Paging theme settings</h2>
+<p>DataTable built-in paging achieved and provides two sets of topics:</p>
+<p><code>FULL</code>(Full theme, the default display all the pages option, the default value)</p>
+<p><code>SIMPLE</code>(Simple theme, do not show quick jump page)</p>
+<h3 id="10-1-specify-the-page-using-javascript-theme">10.1, Specify the page using JavaScript theme</h3>
+<pre><code>DataTable.load(&quot;datatable&quot;,{
+      &quot;pagetheme&quot;:&#39;SIMPLE&#39;
+ });</code></pre>
+<h3 id="10-2-paging-paging-specified-topic-in-the-div-tag">10.2, Paging Paging specified topic in the DIV tag</h3>
+<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;FULL&quot;&gt;
+
+&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;SIMPLE&quot;&gt;</code></pre>
+<h3 id="10-3-cancel-paging-and-themes">10.3, Cancel paging and themes</h3>
+<p>Use display: none to hide, or you can directly delete tabs section.</p>
+<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;display: none;&quot; size=&quot;5,10,30,50&quot; &gt;</code></pre>
+<h2 id="11-custom-paging">11, Custom Paging</h2>
+<p>EasyDataTable support custom paging, the paging div tag can write custom paging code. Custom paging code supports: EasyDataTable built-in properties, attributes, expressions and statements expressions.</p>
+<p><code>Pagination div tag</code> Add <code>pagetheme= &quot;no&quot;</code><br>Properties (or parameters set by EasyDataTable initialization), call <strong><code>DataTable.go (&#39;load data tables id&#39;, &#39;pages&#39;, [page displays the number of])</code></strong> function, you can implement custom paging jump.<br>You can also use <code>row</code> attribute specifies the default page displays the number of:</p>
+<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px; line-height: 40px;&quot; size=&quot;5,10,30,50&quot;
+            pagetheme=&quot;no&quot; row=&quot;8&quot;&gt;</code></pre>
+<p>Example:</p>
+<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;no&quot;  row=&quot;8&quot;&gt;
+    now {pageNo}/ {maxPage} page Now {rowPerPage} row/{totalCount} row    
+    &lt;input type=&quot;button&quot; value=&quot;first&quot; onclick=&quot;DataTable.go(&#39;datatable7&#39;,1)&quot;/&gt;
+    &lt;input type=&quot;button&quot; value=&quot;previous&quot; onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{pageNo-1}&#39;)&quot;/&gt;
+    &lt;input type=&quot;button&quot; value=&quot;next&quot; onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{pageNo+1}&#39;)&quot;/&gt;
+    &lt;input type=&quot;button&quot; value=&quot;last&quot; onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{maxPage}&#39;)&quot;/&gt;
+&lt;/div&gt;</code></pre>
+<p>When the JavaScript function call, if the parameter used EasyDataTable property expressions (such as pages <code>{pageNo-1}</code>) is required by single quotation marks, as a string parameter, otherwise there will be a warning under IE8 (does not affect the actual the results).<br>For example, the following code ‘{pageNo-1}’ must use quotes:</p>
+<pre><code>onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{pageNo-1}&#39;)&quot;/&gt;。</code></pre>
+<h2 id="12-with-a-search-page">12, With a search page</h2>
+<p>Form into the search box form, with the following two ways to search submission page.</p>
+<p><strong>Search Search button to submit two methods of data</strong></p>
+<p>Method One: Use HTML to enhance the search button into the current form, added directly to the search button style class <code>data_search</code></p>
+<pre><code>&lt;input type=&quot;button&quot; class=&quot;data_search&quot; value=&quot;search&quot;/&gt;</code></pre>
+<p>Method Two: Use <code>DataTable.load (&#39;data tables id&#39;)</code>, registered for the event by clicking on the search button</p>
+<pre><code>&lt;input type=&quot;button&quot; class=&quot;btn_test&quot; onclick=&quot;DataTable.load(&#39;DataTableID&#39;)&quot; value=&quot;search&quot;/&gt;</code></pre>
+<p>Server to obtain the search criteria submitted by the client.</p>
+<h2 id="13-easydatatable-load-support-multiple-data-sources">13, EasyDataTable load support multiple data sources</h2>
+<p><strong>EasyDataTable supports three kinds of data sources:</strong>    </p>
+<ol>
+<li>server dynamic data sources (1.X, 2.X support)</li>
+<li>static data sources (2.X support)</li>
+<li>file data source (2.X support)</li>
+</ol>
+<p><em>Note: EasyDataTable currently supports two versions 1.X and 2.X. EasyDataTable 1.X only supports dynamic loading of data sources; EasyDataTable 2.X also supports static data sources and data source file is loaded。</em></p>
+<h3 id="13-1-server-dynamic-data-sources-1-x-2-x-">13.1,  Server dynamic data sources (1.X, 2.X)</h3>
+<p><strong>Specify the server-side paging address in the form of action</strong> to dynamically obtain JSON paging data to achieve paging.</p>
+<pre><code>DataTable.load( &#39;tableid&#39; [，easydataParameters] );</code></pre>
+<h3 id="13-2-static-data-sources-2-x-">13.2,  Static data sources (2.X)</h3>
+<p><strong>JSON supports direct loading</strong> of the specified data objects, implement paging. Static data sources (2.X) </p>
+<pre><code>DataTable.staticLoad(&#39;tableid&#39; , jsonDataObject [,easydataParams]);</code></pre>
+<h3 id="13-3-file-data-sources-2-x-">13.3,  File data sources (2.X)</h3>
+<p>Supports direct loading specified <strong>JSON data files</strong>, implement paging.</p>
+<pre><code>DataTable.fileLoad(&#39;tableid&#39; , &#39;jsonFile&#39; [,easydataParams]);</code></pre>
+<h2 id="14-static-sorting-support-2-x-">14, Static sorting support (2.X)</h2>
+<p>EasyDataTable support for static sort data in the header row to add <code>staticSort need to sort on a field corresponding cells =&quot; Sort Field Name &quot;</code> attribute.</p>
+<pre><code>&lt;th width=&quot;100&quot; staticSort=&quot;id&quot;&gt;id&lt;/th&gt;
+&lt;th width=&quot;100&quot; staticSort=&quot;name&quot;&gt;name&lt;/th&gt;</code></pre>
+<h2 id="15-static-filtering-query-2-x-">15,Static filtering query (2.X)</h2>
+<p><strong>EasyDataTable support for static data filtering query, and has the following three characteristics:</strong></p>
+<ol>
+<li><p><strong>Query Range</strong>: Support (static data of the current page) for All (all static data), and static data in two ranges NowPage filter query.</p>
+</li>
+<li><p><strong>Query Type</strong>: Support multi-criteria when screening by <code>AND</code> or <code>OR</code> method of data filtering.</p>
+</li>
+<li><p><strong>Query mode:</strong> Built-in 8 kinds MatchMode (query matching mode) support, each individual can be configured independently screened table MatchMode. </p>
+<p>  <strong>EasyDataTable support 8 kinds MatchMode name and role models that match the query:</strong></p>
+<pre><code> extra:Exact match     
+ extra_i:Exact match and ignore case 
+
+ like:Fuzzy Matching
+ like_i:Fuzzy Matching and ignore case 
+
+ sql:SQL wildcard matching (percent sign &#39;%&#39; wildcard support, matches any character; support underscore `_` wildcard matches any single character; support `[0-9]`, `[AZ]`, `[az]`, `[0-9A-Za-z] `wildcard such as range, matching a single character range)   
+ sql_i:SQL wildcard matching and ignore case 
+
+ reg:Regular expression matching
+ reg_i:Regular expression matching and ignore case </code></pre>
+</li>
+</ol>
+<h3 id="specify-matchmode-query-matching-mode-to-form-elements-">Specify MatchMode (query matching mode) to form elements:</h3>
+<p>EasyDataTable by eight kinds of data that match the query pattern MatchMode, provides the user with a full range of query support; support for each form separate option to specify a different query matching mode, which greatly enhances the flexibility of screening.</p>
+<p><strong>Usage:</strong><br>Using HTML enhancements, add <code>mode</code> attribute in the corresponding text box, and the value is specified as EasyDataTable <code>support MathMode name</code>.</p>
+<pre><code>username: 
+&lt;input type=&quot;text&quot; name=&quot;name&quot; class=&quot;txt_test&quot; mode=&quot;sql_i&quot;/&gt; 
+
+userinfo:
+&lt;input type=&quot;text&quot; name=&quot;info&quot; class=&quot;txt_test&quot; mode=&quot;extra&quot;/&gt;</code></pre>
+<p>The default matching mode Description:If there is no mode <code>attribute to the</code> form elements, use <strong> <code>like_i</code> (ignoring fuzzy matching sensitive) </strong> processing, the default matching mode can <code>DataTable.default_matchMode = &#39;like_i&#39;</code> modified.</p>
+<h3 id="static-data-filtering-query-two-ranges-">Static data filtering query two ranges:</h3>
+<ol>
+<li><p><strong>NowPage</strong>——Current page data range of data filtering query: Query the current page qualified data (while support for dynamic data sources and static data sources NowPage screening)</p>
+</li>
+<li><p><strong>All</strong>——All static data range of data filtering query: Query load static data in compliance with all the conditions of the data (only supports static data sources All screening)</p>
+</li>
+</ol>
+<h3 id="both-methods-achieve-data-filtering-">Both methods achieve data filtering:</h3>
+<p><strong>Method One: Using HTML enhancements</strong></p>
+<p>NowPage current page static data range of data filtering query: to the search button to add <code>static_data_search[_or]</code> class styles:</p>
+<pre><code>`data_static_search` Support multi-mode conditions AND query.
+
+    &lt;input type=&quot;button&quot; class=&quot;data_static_search&quot; value=&quot;static search and&quot; /&gt;
+
+`data_static_search_or` Support multi-mode conditions OR query.
+
+    &lt;input type=&quot;button&quot; class=&quot;data_static_search_or&quot; value=&quot;static search or&quot;/&gt;</code></pre>
+<p>ALL all static data range of data filtering query: to the search button to add <code>static_data_searchAll[_or]</code> class styles:</p>
+<pre><code>`data_static_searchAll` Support multi-mode conditions AND query.
+
+    &lt;input type=&quot;button&quot; class=&quot;data_static_search&quot; value=&quot;static searchAll and&quot; /&gt;
+
+`data_static_searchAll_or` Support multi-mode conditions OR query.
+
+    &lt;input type=&quot;button&quot; class=&quot;data_static_searchAll_or&quot; value=&quot;static searchAll or&quot;/&gt;</code></pre>
+<p><strong>Method Two: Use the built-in functions to achieve static filters:</strong>   </p>
+<p>NowPage current page static data range of data filtering query: <code>DataTable.staticSearch(&#39;tableid&#39; [,true] )</code></p>
+<pre><code>If the second argument is true, press OR way queries; otherwise press AND the way queries.
+
+&lt;input type=&quot;button&quot; value=&quot;static searchAll&quot; onclick=&quot;DataTable.staticSearch(&#39;datatableStatic&#39;)&quot;/&gt;</code></pre>
+<p>ALL all static data range of data filtering query:<code>DataTable.staticSearchAll(&#39;tableid&#39; [,true] )</code></p>
+<pre><code>If the second argument is true, press OR way queries; otherwise press AND the way queries.
+
+&lt;input type=&quot;button&quot; value=&quot;static searchAll&quot; onclick=&quot;DataTable.staticSearchAll(&#39;datatableStatic&#39;)&quot;/&gt;</code></pre>
+<h2 id="16-form-ajax-pagination-instances">16, Form AJAX pagination instances</h2>
+<h3 id="16-1-full-paging-default-theme-checkbox-index-count-the-use-of-built-in-properties">16.1, FULL Paging default theme +checkbox + index, count the use of built-in properties</h3>
+<pre><code>&lt;form action=&quot;easydatatable/en/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
+        &lt;table class=&quot;datatable easydatatable&quot; id=&quot;datatable&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+            &lt;tr&gt;
+                &lt;!-- checkbox --&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot; check=&quot;mychk&quot; /&gt; &lt;!-- CheckAll --&gt;&lt;/th&gt;
+                &lt;!-- datatableIndex,datatableCount --&gt;
+                &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+                &lt;th width=&quot;80&quot;&gt;index&lt;/th&gt;
+                &lt;th width=&quot;80&quot;&gt;{index+1}&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;100&quot; sort=&quot;name&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;100&quot; sort=&quot;info&quot;&gt;info&lt;/th&gt;
+                &lt;th&gt;operation&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- Data Show Row--&gt;
+
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableCount }&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableIndex }&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableIndex+1 }&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;show&lt;/a&gt; &lt;a
+                    href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;edit&lt;/a&gt; &lt;a href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;delete&lt;/a&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot;&gt;&lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<h3 id="16-2-specify-paging-theme-simple-loading-show-with-tips-sort-properties">16.2, Specify paging theme SIMPLE + Loading = “show” with tips + Sort Properties</h3>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+  DataTable.load(&quot;datatable2&quot;,{
+                  &quot;pagetheme&quot;:&#39;SIMPLE&#39;,
+                  &quot;loading&quot;:&quot;show&quot;
+              }); 
+&lt;/script&gt;
+
+&lt;form action=&quot;easydatatable/en/doPage_slow.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
+        &lt;table class=&quot;datatable&quot; value=&quot;pb&quot; id=&quot;datatable2&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+            &lt;tr&gt;
+                &lt;!-- checkbox --&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot; check=&quot;mychk&quot; /&gt; &lt;!-- CheckAll --&gt;&lt;/th&gt;
+                &lt;!-- datatableIndex,datatableCount --&gt;
+                &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;100&quot; sort=&quot;name&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;100&quot; sort=&quot;info&quot;&gt;info&lt;/th&gt;
+                &lt;th width=&quot;100&quot; &gt;sort、order&lt;/th&gt;
+                &lt;th&gt;operation&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- Data Show Row--&gt;
+
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableCount }&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td&gt;
+                sort={sort}&lt;br/&gt;
+                order={order}
+
+                &lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;show&lt;/a&gt; &lt;a
+                    href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;edit&lt;/a&gt; &lt;a href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;delete&lt;/a&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot;&gt;&lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<h3 id="16-3-judge-sentences-datatable-expression-loading-none-row-10-">16.3, Judge sentences DataTable expression + Loading = “none” + row = “10”</h3>
+<pre><code>&lt;form action=&quot;easydatatable/en/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
+        &lt;table class=&quot;datatable easydatatable&quot; loading=&quot;none&quot; id=&quot;datatable3&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+            &lt;tr&gt;
+                &lt;!-- checkbox --&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot; check=&quot;mychk&quot; /&gt; &lt;!-- CheckAll --&gt;&lt;/th&gt;
+                &lt;!-- datatableIndex,datatableCount --&gt;
+                &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+                &lt;th width=&quot;80&quot;&gt;index&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;info&lt;/th&gt;
+                &lt;th&gt;operation&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- Data Show Row--&gt;
+
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableCount+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableIndex+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;
+                    &lt;!-- DataTable expression --&gt; %{ if(id%2==0){ var op=&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id=&#39;+id+&#39;&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&#39;;
+                    op+=&#39;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;edit&lt;/a&gt;&#39;; DataTable.out(op); }else{ DataTable.out(&#39;&lt;a
+                    href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;edit&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a
+                    href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;delete&lt;/a&gt;&#39;); } }%&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;10&quot;&gt;&lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<h3 id="16-4-with-start-and-end-data-loading-paging-event-handler-custom-sort-indicator">16.4, With start and end data loading paging event handler + Custom sort indicator</h3>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+
+//Custom sort indicator for the datatable4
+DataTable.sort[&quot;datatable4&quot;]={
+    order_default:&quot;&lt;img src=&#39;easydatatable/imagesorder_default.gif&#39;/&gt;&quot;,
+    order_up:&quot;&lt;img src=&#39;easydatatable/images/order_up.gif&#39;/&gt;&quot;,
+    order_down:&quot;&lt;img src=&#39;easydatatable/images/order_down.gif&#39;/&gt;&quot;
+};
+$(function(){
+    //4. With start and end data loading paging event handler
+    //Achieve initialization loading effect, after loading is complete hide loading, display the initial data
+    DataTable.load(
+                &quot;datatable4&quot;,
+                {
+                    loading : &quot;&lt;div&gt;&lt;img src=\&quot;easydatatable/images/loading.gif\&quot;/&gt;&lt;br/&gt;Data is loading ......&lt;/div&gt;&quot;,
+                    //Every time when loading data execution begins (table object; true representative of the first load, false representatives paging load)
+                    /*
+                    o：Now DataTable
+                     initFlag：true representative of the first load data (initialization tables), false representatives of the page to load
+                     */
+                    &quot;start&quot; : function(dataTableObj, initFlag) {
+                        if (initFlag) { //First loaded, uninitialized
+                            //    console.info(&#39;init start...&#39;);
+                            $(&quot;#loading&quot;).show(); //Shows the initial loading tips
+                            $(&quot;#dataDiv&quot;).hide(); //Hidden data div
+                            $(&quot;#dataPageDiv&quot;).hide(); //Hidden page div
+                        } else {
+                            //console.info(&#39;load start...&#39;);
+
+                        }
+
+                    },
+                    //Data execution every time when loading end (table object; true representative of the first load, false representatives paging load)
+                    &quot;end&quot; : function(dataTableObj, initFlag) { //true representative of the first waiting to load, false representatives of the page to load
+                        if (initFlag) { //First loaded, uninitialized
+                            //console.info(&#39;init end...&#39;);
+                            $(&quot;#loading&quot;).hide(); //Hide initial load tips
+                            $(&quot;#dataDiv&quot;).show(); //Display data div
+                            $(&quot;#dataPageDiv&quot;).show(); //Showing page div
+                        } else {
+                            //console.info(&#39;load end...&#39;);
+                        }
+                    }
+
+                });
+ });
+
+&lt;form action=&quot;easydatatable/en/doPage_slow.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;!-- loading tips DIV, displayed when you first load data --&gt;
+    &lt;div id=&quot;loading&quot;
+        style=&quot;border:1px solid #efefef; text-align: center;width: 780px;height: 285px;display: none;font-size: 14px;&quot;&gt;
+        &lt;img src=&quot;easydatatable/images/loading.gif&quot; /&gt;&lt;br /&gt;Data is loading ......
+    &lt;/div&gt;
+    &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot; id=&quot;dataDiv&quot;&gt;
+        &lt;table class=&quot;datatable&quot; id=&quot;datatable4&quot; width=&quot;100%&quot; align=&quot;center&quot; value=&quot;pb&quot;&gt;
+            &lt;tr&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot; onclick=&quot;DataTable.checkAll(this,&#39;mychk&#39;)&quot; /&gt; &lt;!-- CheckAll --&gt;
+                &lt;/th&gt;
+                &lt;!-- datatableCount --&gt;
+                &lt;th width=&quot;80&quot;&gt;countPerTotal&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;150&quot; sort=&quot;name&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;150&quot;&gt;info&lt;/th&gt;
+                &lt;th width=&quot;100&quot; &gt;sort、order&lt;/th&gt;
+                &lt;th&gt;operation&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- Data Show Row--&gt;
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td align=&quot;center&quot; style=&quot;text-align:center;height: 45px;&quot;&gt;{datatableCount+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td&gt;
+                sort={sort}&lt;br/&gt;
+                order={order}
+
+                &lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;show&lt;/a&gt; &lt;a
+                    href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;edit&lt;/a&gt; &lt;a href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;delete&lt;/a&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;FULL&quot; id=&quot;dataPageDiv&quot;&gt;&lt;/div&gt;
+
+&lt;/form&gt;</code></pre>
+<h3 id="16-5-cancel-tabs">16.5 Cancel tabs</h3>
+<pre><code>&lt;form action=&quot;easydatatable/en/doPage.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;height: 280px;overflow:auto;width: 780px;&quot;&gt;
+        &lt;table class=&quot;easydatatable datatable&quot; id=&quot;datatable5&quot; width=&quot;100%&quot; align=&quot;center&quot; value=&quot;pb&quot;&gt;
+            &lt;tr&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot; onclick=&quot;DataTable.checkAll(this,&#39;mychk&#39;)&quot; /&gt; &lt;!-- CheckAll --&gt;
+                &lt;/th&gt;
+                &lt;!-- datatableCount --&gt;
+                &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;150&quot; sort=&quot;name&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;150&quot;&gt;info&lt;/th&gt;
+                &lt;th&gt;operation&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- Data show row --&gt;
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;&lt;/td&gt;
+                &lt;td align=&quot;center&quot; style=&quot;text-align:center;height: 45px;&quot;&gt;{datatableCount}&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;show&lt;/a&gt; &lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;edit&lt;/a&gt;
+                    &lt;a href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;delete&lt;/a&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;display: none&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;no&quot; row=&quot;10&quot;&gt;&lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<h3 id="16-6-custom-paging-example-1">16.6, Custom Paging Example 1</h3>
+<pre><code>&lt;form action=&quot;easydatatable/en/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;height: 280px;overflow:auto;width: 780px;&quot;&gt;
+        &lt;table class=&quot;easydatatable datatable&quot; id=&quot;datatable6&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+            &lt;tr&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot; onclick=&quot;DataTable.checkAll(this,&#39;mychk&#39;)&quot; /&gt; &lt;!-- CheckAll --&gt;
+                &lt;/th&gt;
+                &lt;!-- datatableCount --&gt;
+                &lt;th width=&quot;80&quot;&gt;pageNo&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;150&quot; sort=&quot;name&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;150&quot;&gt;info&lt;/th&gt;
+                &lt;th&gt;operation&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- Data show row --&gt;
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td align=&quot;center&quot; style=&quot;text-align:center;height: 45px;&quot;&gt;{pageNo}&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;show&lt;/a&gt; &lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;edit&lt;/a&gt;
+                    &lt;a href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;delete&lt;/a&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;font-size:14px; width: 780px;height: 40px;line-height: 40px;&quot;
+        size=&quot;5,10,30,50&quot; pagetheme=&quot;no&quot;&gt;
+        Now {pageNo}/{maxPage}  page&amp;nbsp;&amp;nbsp; Now {rowPerPage}/{totalCount} row {order} {sort} &amp;nbsp;&amp;nbsp; &lt;a href=&quot;#&quot;
+            onclick=&quot;DataTable.go(&#39;datatable6&#39;,1,5);return false;&quot;&gt;first&lt;/a&gt; &amp;nbsp;&amp;nbsp;&lt;a href=&quot;#&quot;
+            onclick=&quot;DataTable.go(&#39;datatable6&#39;,&#39;{pageNo-1}&#39;,5);return false;&quot;&gt;previous &lt;/a&gt; &amp;nbsp;&amp;nbsp;&lt;a href=&quot;#&quot;
+            onclick=&quot;DataTable.go(&#39;datatable6&#39;,&#39;{pageNo+1}&#39;,5);return false;&quot;&gt;next&lt;/a&gt; &amp;nbsp;&amp;nbsp;&lt;a href=&quot;#&quot;
+            onclick=&quot;DataTable.go(&#39;datatable6&#39;,&#39;{maxPage}&#39;,5);return false;&quot;&gt;last&lt;/a&gt;
+
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<h3 id="16-7-custom-paging-example-2">16.7, Custom Paging Example 2</h3>
+<pre><code>&lt;form action=&quot;easydatatable/en/doPage.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;height: 280px;overflow:auto;width: 780px;&quot;&gt;
+        &lt;table class=&quot;easydatatable datatable&quot; id=&quot;datatable7&quot; width=&quot;100%&quot; align=&quot;center&quot; value=&quot;pb&quot;&gt;
+            &lt;tr&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot; check=&quot;mychk&quot; /&gt; &lt;!-- CheckAll --&gt;&lt;/th&gt;
+                &lt;!-- datatableCount --&gt;
+                &lt;th width=&quot;80&quot;&gt;pageNo&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;150&quot; sort=&quot;name&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;150&quot;&gt;info&lt;/th&gt;
+                &lt;th&gt;operation&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- Data show row --&gt;
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;&lt;/td&gt;
+                &lt;td align=&quot;center&quot; style=&quot;text-align:center;height: 45px;&quot;&gt;{pageNo}&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;show&lt;/a&gt; &lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;edit&lt;/a&gt;
+                    &lt;a href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;delete&lt;/a&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px; line-height: 40px;&quot; size=&quot;5,10,30,50&quot;
+        pagetheme=&quot;no&quot; row=&quot;8&quot;&gt;
+        Now{pageNo}/{maxPage} page Now{rowPerPage}/{totalCount} row {order} {sort} &lt;input type=&quot;button&quot; value=&quot;first&quot;
+            onclick=&quot;DataTable.go(&#39;datatable7&#39;,1)&quot;&gt; &lt;input type=&quot;button&quot; value=&quot;previous &quot;
+            onclick=&quot;DataTable.go(&#39;datatable7&#39;,&#39;{pageNo-1}&#39;)&quot;&gt; &lt;input type=&quot;button&quot; value=&quot;next&quot;
+            onclick=&quot;DataTable.go(&#39;datatable7&#39;,&#39;{pageNo+1}&#39;)&quot;&gt; &lt;input type=&quot;button&quot; value=&quot;last&quot;
+            onclick=&quot;DataTable.go(&#39;datatable7&#39;,&#39;{maxPage}&#39;)&quot;&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<h3 id="16-8-with-a-search-page-loading-hide-">16.8, With a search page + loading=”hide”</h3>
+<pre><code>DataTable.load(&quot;datatable8&quot;, {
+        &quot;loading&quot; : &quot;hide&quot;
+});
+
+
+&lt;form action=&quot;easydatatable/en/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;margin: 20px 0px;&quot;&gt;
+        username：&lt;input type=&quot;text&quot; name=&quot;user.name&quot; class=&quot;txt_test&quot; /&gt;
+         userinfo：&lt;input type=&quot;text&quot; name=&quot;user.info&quot; class=&quot;txt_test&quot; /&gt; 
+         &lt;!-- HTML Enhancement: Use data_search class styles--&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test data_search&quot; value=&quot;search&quot; /&gt;
+         &lt;!-- JS function: DataTable.load (&#39;DataTableID&#39;)  --&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test&quot; onclick=&quot;DataTable.load(&#39;datatable8&#39;)&quot; value=&quot;search2&quot;/&gt;
+    &lt;/div&gt;
+    &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
+
+        &lt;table class=&quot;datatable &quot; id=&quot;datatable8&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+            &lt;tr&gt;
+                &lt;!-- checkbox --&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot; check=&quot;mychk&quot; /&gt; &lt;!-- CheckAll --&gt;&lt;/th&gt;
+                &lt;!-- datatableIndex,datatableCount --&gt;
+                &lt;th width=&quot;60&quot;&gt;count&lt;/th&gt;
+                &lt;th width=&quot;180&quot;&gt;condition&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;info&lt;/th&gt;
+                &lt;th&gt;operation&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- Data Show Row--&gt;
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableCount+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{user.name},{user.info}&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;
+                    &lt;!-- DataTable expression --&gt; %{ if(id%2==0){ DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;
+                    target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&#39;); }else{
+                    DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot; target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a
+                    href=&quot;doUser.jsp?o=edit&amp;id={id }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a
+                    href=&quot;doUser.jsp?o=delete&amp;id={id }&quot; target=&quot;ajax&quot;&gt;delete&lt;/a&gt;&#39;); } }%&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot;&gt;&lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<h3 id="16-9-dynamic-range-of-data-sources-to-load-nowpage-sort-of-static-data-filtering-query-default-like_i-query-matching-matchmode">16.9,  Dynamic range of data sources to load + NowPage sort of static data filtering query + default like_i query matching MatchMode</h3>
+<pre><code>&lt;form action=&quot;easydatatable/en/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;margin: 20px auto;&quot;&gt;
+        username：&lt;input type=&quot;text&quot; name=&quot;name&quot; class=&quot;txt_test&quot; value=&quot;4&quot; /&gt;
+        userinfo：&lt;input type=&quot;text&quot; name=&quot;info&quot; class=&quot;txt_test&quot; value=&quot;INFO_2&quot;/&gt;
+        &lt;br/&gt;&lt;br/&gt;
+        &lt;div class=&quot;seaD&quot;&gt;NowPageCurrent page data range static filters (also supports dynamic data sources and static data source page filtering)&lt;/div&gt;
+        &lt;br/&gt;
+        &lt;!-- Multiple conditions AND query, HTML and JS function to achieve enhanced --&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2 data_static_search&quot; value=&quot;NowPage search AND&quot; /&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2&quot; value=&quot;NowPage search AND2&quot; onclick=&quot;DataTable.staticSearch(&#39;datatable9&#39;)&quot;/&gt;
+
+        &lt;!-- Multiple conditions OR queries, HTML and JS function to achieve enhanced --&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2 data_static_search_or&quot; value=&quot;NowPage search OR&quot; /&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2&quot; value=&quot;NowPage search OR2&quot; onclick=&quot;DataTable.staticSearch(&#39;datatable9&#39;,true)&quot; /&gt;
+
+    &lt;/div&gt;
+    &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
+        &lt;table class=&quot;datatable easydatatable&quot; id=&quot;datatable9&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+            &lt;tr&gt;
+                &lt;!-- checkbox --&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot;  check=&quot;mychk&quot;  /&gt; &lt;!-- CheckAll --&gt;
+                &lt;/th&gt;
+                &lt;!-- datatableIndex,datatableCount --&gt;
+                &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+                &lt;th width=&quot;80&quot;&gt;index&lt;/th&gt;
+                &lt;th width=&quot;100&quot; staticSort=&quot;id&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;100&quot; staticSort=&quot;name&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;info&lt;/th&gt;
+                &lt;th&gt;operation&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- Data Show Row--&gt;
+
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableCount+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableIndex+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;
+                    &lt;!-- DataTable expression --&gt; %{ if(id%2==0){ DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;
+                    target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&#39;); }else{
+                    DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot; target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a
+                    href=&quot;doUser.jsp?o=edit&amp;id={id }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a
+                    href=&quot;doUser.jsp?o=delete&amp;id={id }&quot; target=&quot;ajax&quot;&gt;delete&lt;/a&gt;&#39;); } }%&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;30&quot;&gt;&lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<h3 id="16-10-static-load-json-data-source-nowpage-range-of-static-data-filtering-query-without-sorting-paging-2-x-">16.10, Static load JSON data source + NowPage range of static data filtering query without sorting + paging (2.X)</h3>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    //static JSON data
+    var jsonData ={
+        &quot;rowPerPage&quot;: 10,
+        &quot;pageNo&quot; :1,
+        &quot;data&quot; : [ {
+            &quot;id&quot; : 1,
+            &quot;name&quot; : &quot;USER_1&quot;,
+            &quot;info&quot; : &quot;INFO_1&quot;
+        }, {
+            &quot;id&quot; : 2,
+            &quot;name&quot; : &quot;USER_2&quot;,
+            &quot;info&quot; : &quot;INFO_2&quot;
+        }, {
+            &quot;id&quot; : 3,
+            &quot;name&quot; : &quot;USER_3&quot;,
+            &quot;info&quot; : &quot;INFO_3&quot;
+        }, {
+            &quot;id&quot; : 4,
+            &quot;name&quot; : &quot;USER_4&quot;,
+            &quot;info&quot; : &quot;INFO_4&quot;
+        }, {
+            &quot;id&quot; : 5,
+            &quot;name&quot; : &quot;USER_5&quot;,
+            &quot;info&quot; : &quot;INFO_5&quot;
+        }, {
+            &quot;id&quot; : 6,
+            &quot;name&quot; : &quot;USER_6&quot;,
+            &quot;info&quot; : &quot;INFO_6&quot;
+        }, {
+            &quot;id&quot; : 7,
+            &quot;name&quot; : &quot;USER_7&quot;,
+            &quot;info&quot; : &quot;INFO_7&quot;
+        }, {
+            &quot;id&quot; : 8,
+            &quot;name&quot; : &quot;USER_8&quot;,
+            &quot;info&quot; : &quot;INFO_8&quot;
+        }, {
+            &quot;id&quot; : 9,
+            &quot;name&quot; : &quot;USER_9&quot;,
+            &quot;info&quot; : &quot;INFO_9&quot;
+        }, {
+            &quot;id&quot; : 10,
+            &quot;name&quot; : &quot;USER_10&quot;,
+            &quot;info&quot; : &quot;INFO_10&quot;
+        }, {
+            &quot;id&quot; : 11,
+            &quot;name&quot; : &quot;USER_11&quot;,
+            &quot;info&quot; : &quot;INFO_11&quot;
+        }, {
+            &quot;id&quot; : 12,
+            &quot;name&quot; : &quot;USER_12&quot;,
+            &quot;info&quot; : &quot;INFO_12&quot;
+        }, {
+            &quot;id&quot; : 13,
+            &quot;name&quot; : &quot;USER_13&quot;,
+            &quot;info&quot; : &quot;INFO_13&quot;
+        }, {
+            &quot;id&quot; : 14,
+            &quot;name&quot; : &quot;USER_14&quot;,
+            &quot;info&quot; : &quot;INFO_14&quot;
+        }, {
+            &quot;id&quot; : 15,
+            &quot;name&quot; : &quot;USER_15&quot;,
+            &quot;info&quot; : &quot;INFO_15&quot;
+        }, {
+            &quot;id&quot; : 16,
+            &quot;name&quot; : &quot;USER_16&quot;,
+            &quot;info&quot; : &quot;INFO_16&quot;
+        }, {
+            &quot;id&quot; : 17,
+            &quot;name&quot; : &quot;USER_17&quot;,
+            &quot;info&quot; : &quot;INFO_17&quot;
+        }, {
+            &quot;id&quot; : 18,
+            &quot;name&quot; : &quot;USER_18&quot;,
+            &quot;info&quot; : &quot;INFO_18&quot;
+        }, {
+            &quot;id&quot; : 19,
+            &quot;name&quot; : &quot;USER_19&quot;,
+            &quot;info&quot; : &quot;INFO_19&quot;
+        }, {
+            &quot;id&quot; : 20,
+            &quot;name&quot; : &quot;USER_20&quot;,
+            &quot;info&quot; : &quot;INFO_20&quot;
+        }, {
+            &quot;id&quot; : 21,
+            &quot;name&quot; : &quot;USER_21&quot;,
+            &quot;info&quot; : &quot;INFO_21&quot;
+        }, {
+            &quot;id&quot; : 22,
+            &quot;name&quot; : &quot;USER_22&quot;,
+            &quot;info&quot; : &quot;INFO_22&quot;
+        }, {
+            &quot;id&quot; : 23,
+            &quot;name&quot; : &quot;USER_23&quot;,
+            &quot;info&quot; : &quot;INFO_23&quot;
+        }, {
+            &quot;id&quot; : 24,
+            &quot;name&quot; : &quot;USER_24&quot;,
+            &quot;info&quot; : &quot;INFO_24&quot;
+        }, {
+            &quot;id&quot; : 25,
+            &quot;name&quot; : &quot;USER_25&quot;,
+            &quot;info&quot; : &quot;INFO_25&quot;
+        }, {
+            &quot;id&quot; : 26,
+            &quot;name&quot; : &quot;USER_26&quot;,
+            &quot;info&quot; : &quot;INFO_26&quot;
+        }, {
+            &quot;id&quot; : 27,
+            &quot;name&quot; : &quot;USER_27&quot;,
+            &quot;info&quot; : &quot;INFO_27&quot;
+        }, {
+            &quot;id&quot; : 28,
+            &quot;name&quot; : &quot;USER_28&quot;,
+            &quot;info&quot; : &quot;INFO_28&quot;
+        }, {
+            &quot;id&quot; : 29,
+            &quot;name&quot; : &quot;USER_29&quot;,
+            &quot;info&quot; : &quot;INFO_29&quot;
+        }, {
+            &quot;id&quot; : 30,
+            &quot;name&quot; : &quot;USER_30&quot;,
+            &quot;info&quot; : &quot;INFO_30&quot;
+        } ]
+    };
+
+    $(function(){
+        DataTable.staticLoad(&quot;datatable10&quot;, jsonData,{&quot;row&quot;:30});
+    });
+&lt;/script&gt;
+
+
+&lt;form action=&quot;&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;margin: 20px auto;&quot;&gt;
+        username（ sql_i MatchMode）： &lt;input type=&quot;text&quot; name=&quot;name&quot; class=&quot;txt_test&quot; value=&quot;USER_1%&quot; mode=&quot;sql_i&quot; /&gt;
+        userinfo（ like_i MatchMode）：&lt;input type=&quot;text&quot; name=&quot;info&quot; class=&quot;txt_test&quot; /&gt;
+        &lt;br/&gt;&lt;br/&gt;
+                &lt;div class=&quot;seaD&quot;&gt;NowPageCurrent page data range static filters (also supports dynamic data sources and static data source page filtering)&lt;/div&gt;
+        &lt;br/&gt;
+        &lt;!-- Multiple conditions AND query, HTML and JS function to achieve enhanced --&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2 data_static_search&quot; value=&quot;NowPage search AND&quot; /&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2&quot; value=&quot;NowPage search AND2&quot; onclick=&quot;DataTable.staticSearch(&#39;datatable10&#39;)&quot;/&gt;
+        &lt;!-- Multiple conditions OR queries, HTML and JS function to achieve enhanced --&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2 data_static_search_or&quot; value=&quot;NowPage search OR&quot; /&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2&quot; value=&quot;NowPage search OR2&quot; onclick=&quot;DataTable.staticSearch(&#39;datatable10&#39;,true)&quot; /&gt;
+
+    &lt;/div&gt;
+    &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
+
+
+        &lt;table class=&quot;datatable&quot; id=&quot;datatable10&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+            &lt;tr&gt;
+                &lt;!-- checkbox --&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot; onclick=&quot;DataTable.checkAll(this,&#39;mychk&#39;)&quot; /&gt; &lt;!-- CheckAll --&gt;
+                &lt;/th&gt;
+                &lt;!-- datatableIndex,datatableCount --&gt;
+                &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+                &lt;th width=&quot;80&quot;&gt;index&lt;/th&gt;
+                &lt;th width=&quot;100&quot; staticSort=&quot;id&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;100&quot; staticSort=&quot;name&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;info&lt;/th&gt;
+                &lt;th&gt;operation&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- Data Show Row--&gt;
+
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableCount+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableIndex+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;
+                    &lt;!-- DataTable expression --&gt; %{ if(id%2==0){ DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;
+                    target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&#39;); }else{
+                    DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot; target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a
+                    href=&quot;doUser.jsp?o=edit&amp;id={id }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a
+                    href=&quot;doUser.jsp?o=delete&amp;id={id }&quot; target=&quot;ajax&quot;&gt;delete&lt;/a&gt;&#39;); } }%&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+
+&lt;/form&gt;</code></pre>
+<h3 id="16-11-json-file-data-source-load-all-range-of-static-data-filtering-query-sorting-2-x-">16.11, JSON file data source load + All range of static data filtering query sorting (2.X)</h3>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    $(function(){
+        DataTable.fileLoad(&quot;datatable11&quot;,&quot;jsonData.json&quot;);
+    });
+&lt;/script&gt;
+
+
+&lt;form action=&quot;&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;margin: 20px auto;&quot;&gt;
+        username（ sql_i MatchMode）： &lt;input type=&quot;text&quot; name=&quot;name&quot; class=&quot;txt_test&quot; value=&quot;USER_1%&quot; mode=&quot;sql_i&quot; /&gt;
+        userinfo（ like_i MatchMode）：&lt;input type=&quot;text&quot; name=&quot;info&quot; class=&quot;txt_test&quot; value=&quot;INFO_&quot;/&gt;
+        &lt;br/&gt;&lt;br/&gt;
+                &lt;div class=&quot;seaD&quot;&gt;AllCurrent page data range static filters (support only static data source page filtering)&lt;/div&gt;
+        &lt;br/&gt;
+        &lt;!-- Multiple conditions AND query, HTML and JS function to achieve enhanced --&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2 data_static_searchAll&quot; value=&quot;All search AND&quot; /&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2&quot; value=&quot;All search AND2&quot;  onclick=&quot;DataTable.staticSearchAll(&#39;datatable11&#39;)&quot;/&gt; 
+        &lt;!-- Multiple conditions OR queries, HTML and JS function to achieve enhanced --&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2 data_static_searchAll_or&quot; value=&quot;All search OR&quot; /&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2&quot; value=&quot;All search OR2&quot; onclick=&quot;DataTable.staticSearchAll(&#39;datatable11&#39;,true)&quot;/&gt; 
+
+    &lt;/div&gt;
+    &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
+
+
+        &lt;table class=&quot;datatable&quot; id=&quot;datatable11&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+            &lt;tr&gt;
+                &lt;!-- checkbox --&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot; onclick=&quot;DataTable.checkAll(this,&#39;mychk&#39;)&quot; /&gt; &lt;!-- CheckAll --&gt;
+                &lt;/th&gt;
+                &lt;!-- datatableIndex,datatableCount --&gt;
+                &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+                &lt;th width=&quot;80&quot;&gt;index&lt;/th&gt;
+                &lt;th width=&quot;100&quot; staticSort=&quot;id&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;100&quot; staticSort=&quot;name&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;info&lt;/th&gt;
+                &lt;th&gt;operation&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;!-- Data Show Row--&gt;
+
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableCount+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableIndex+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{id}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{name}&lt;/td&gt;
+                &lt;td&gt;{info}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;
+                    &lt;!-- DataTable expression --&gt; %{ if(id%2==0){ DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;
+                    target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&#39;); }else{
+                    DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot; target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a
+                    href=&quot;doUser.jsp?o=edit&amp;id={id }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a
+                    href=&quot;doUser.jsp?o=delete&amp;id={id }&quot; target=&quot;ajax&quot;&gt;delete&lt;/a&gt;&#39;); } }%&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;15&quot;&gt;&lt;/div&gt;
+&lt;/form&gt;</code></pre>
+<p><a href="http://www.lightfeel.com/easy/easydatatable/en/index.jsp#demo" title="Demo online">Demo online</a></p>
+<p>Contact, feedback, custom Email:<a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#58;&#x69;&#x6e;&#x2e;&#x74;&#104;&#x69;&#110;&#x6b;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#x69;&#x6e;&#x2e;&#x74;&#104;&#x69;&#110;&#x6b;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a></p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
