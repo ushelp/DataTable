@@ -1,6 +1,6 @@
 // jQuery EasyDataTable Plugin
 //
-// Version 2.0.0
+// Version 2.1.0
 //
 // Copy By RAY
 // inthinkcolor@gmail.com
@@ -233,16 +233,19 @@
   }, formatContent = function(content, jsondata) {
     var reg = /\{([^}]+)\}/g;
     var regExp = /\%\{(.*)\}\%/g;
+    var arrExp = /\[([0-9]+)\]/g;
     content = content.replace(regExp, function(m, i) {
       with (jsondata) {
         try {
-          return eval($.trim(i));
+          return eval($.trim(i).replace(arrExp, function(n, j) {
+            return jsondata[j];
+          }));
         } catch (e) {
           return m;
         }
       }
     });
-    content = content.replace(reg, function(m, i) {
+    content = content.replace(reg, function(m, i, i2) {
       with (jsondata) {
         try {
           var res;
@@ -251,6 +254,9 @@
           }
           if (res) {
             return res;
+          }
+          if (/\[([0-9]+)\]/.test(i)) {
+            return jsondata[i.substring(1, i.length - 1)];
           }
           return eval($.trim(i)) == null ? "" :eval($.trim(i));
         } catch (e) {
@@ -292,6 +298,9 @@
   }, filterStaticData = function(data, params, or, dataForm) {
     var mode = DataTable.default_matchMode.toLowerCase(), f = mode.indexOf("_i") != -1 ? "i" :"", paramsMatch = {};
     $.each(params, function(k, v) {
+      if (/\[([0-9]+)\]/.test(k)) {
+        k = k.substring(1, k.length - 1);
+      }
       if ($.trim(v) != "") {
         paramsMatch[k] = new staticMatch(k, matchReg(mode, v, f), mode);
       }
@@ -300,6 +309,9 @@
       var v = $.trim($(this).val());
       if (v != "") {
         var name = $(this).attr("name"), mode = $(this).attr("mode").toLowerCase();
+        if (/\[([0-9]+)\]/.test(name)) {
+          name = name.substring(1, name.length - 1);
+        }
         if (!(mode == "extra" || mode == "extra_i" || mode == "sql" || mode == "sql_i" || mode == "like" || mode == "like_i" || mode == "reg" || mode == "reg_i")) {
           mode = DataTable.default_matchMode.toLowerCase();
         }
@@ -562,6 +574,9 @@
     var a = new Array();
     for (var i in data) {
       a.push(new dataObject(i, data[i]));
+    }
+    if (/\[([0-9]+)\]/.test(dataTableSort)) {
+      dataTableSort = dataTableSort.substring(1, dataTableSort.length - 1);
     }
     a.sort(function(x, y) {
       if (dataTableSort.toLowerCase() == "key") {
@@ -897,16 +912,16 @@
     order_up:"&uarr;",
     order_down:"&darr;",
     sort:{},
-    loading_msg : "Data is loading ......",
-	default_lang : {
-		first : "first",
-		previous : "previous",
-		next : "next",
-		last : "last",
-		totalCount : "total {0} rows",
-		totalPage : "total {0} pages",
-		rowPerPage : "page for {0} rows"
-	},
+    loading_msg:"Data is loading ......",
+    default_lang:{
+      first:"first",
+      previous:"previous",
+      next:"next",
+      last:"last",
+      totalCount:"total {0} rows",
+      totalPage:"total {0} pages",
+      rowPerPage:"page for {0} rows"
+    },
     staticLoad:function(tableid, jsonData, easydataParams) {
       if (typeof jsonData == "string") {
         jsonData = eval("(" + jsonData + ")");

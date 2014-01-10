@@ -304,7 +304,7 @@ img {
 <li>comprehensive: dynamic and static load <strong>full variety of data sources</strong>, and supports a variety of different scope, approach, mode of static data filtering query</li>
 </ol>
 <blockquote>
-<p>EasyDataTable currently supports two versions 1.X and 2.X version<br>2.X adds support for static data source, JSON data source paging file is loaded, and supports the above query static data filtering and sorting.</p>
+<p>EasyDataTable currently supports two versions 1.X and 2.X version<br>2.X adds support for static data source(Data List of supported data format JSON and Array), JSON file data source paging is loaded, and supports the above query static data filtering and sorting.</p>
 </blockquote>
 <hr>
 <h2 id="1-introducing-core-js-and-css-files-easydatatable">1, Introducing core js and css files EasyDataTable</h2>
@@ -627,7 +627,7 @@ DataTable.order_down=&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot
 <p><strong>Specify the server-side paging address in the form of action</strong> to dynamically obtain JSON paging data to achieve paging.</p>
 <pre><code>DataTable.load( &#39;tableid&#39; [，easydataParameters] );</code></pre>
 <h3 id="13-2-static-data-sources-2-x-">13.2,  Static data sources (2.X)</h3>
-<p><strong>JSON supports direct loading</strong> of the specified data objects, implement paging. Static data sources (2.X) </p>
+<p><strong>JSON supports direct loading</strong> of the specified data objects, implement paging. (Data List of supported data format JSON and Array)</p>
 <pre><code>DataTable.staticLoad(&#39;tableid&#39; , jsonDataObject [,easydataParams]);</code></pre>
 <h3 id="13-3-file-data-sources-2-x-">13.3,  File data sources (2.X)</h3>
 <p>Supports direct loading specified <strong>JSON data files</strong>, implement paging.</p>
@@ -1351,8 +1351,202 @@ $(function(){
     &lt;/div&gt;
     &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;15&quot;&gt;&lt;/div&gt;
 &lt;/form&gt;</code></pre>
+<h2 id="17-array-data-set-is-loaded-pages">17、Array data set is loaded pages</h2>
+<p>EasyDataTable paging when data support the use of JSON data collection in addition, <strong>it also supports the use of arrays Array data collection</strong>. Dynamic Server data source or static array of data sources can be used to save data collection. For example:</p>
+<pre><code>data:[
+            [1,&quot;Jay&quot;,&quot;I&#39;m Jay&quot;],
+            [2,&quot;Jolin&quot;,&quot;I&#39;m Jolin&quot;],
+            [3,&quot;Sheldon&quot;,&quot;I&#39;m Sheldon&quot;],
+            [4,&quot;Penny&quot;,&quot;I&#39;m Penny&quot;],
+            [5,&quot;Amy&quot;,&quot;I&#39;m Amy&quot;],
+            [6,&quot;Jay2&quot;,&quot;I&#39;m Jay&quot;],
+            [7,&quot;Jolin2&quot;,&quot;I&#39;m Jolin&quot;],
+            [8,&quot;Sheldon2&quot;,&quot;I&#39;m Sheldon&quot;],
+            [9,&quot;Penny2&quot;,&quot;I&#39;m Penny&quot;],
+            [10,&quot;Amy2&quot;,&quot;I&#39;m Amy&quot;],
+            [11,&quot;Jay3&quot;,&quot;I&#39;m Jay&quot;],
+            [12,&quot;Jolin3&quot;,&quot;I&#39;m Jolin&quot;],
+            [13,&quot;Sheldon3&quot;,&quot;I&#39;m Sheldon&quot;],
+            [14,&quot;Penny3&quot;,&quot;I&#39;m Penny&quot;],
+            [15,&quot;Amy3&quot;,&quot;I&#39;m Amy&quot;]
+    ]</code></pre>
+<p><strong>Used to get data from the array <code>[index]</code> on behalf of the specified data field names, <code>index</code> of digital data in the array index expression in the statement and attributes can be used in expressions EasyDataTable.</strong><br><strong>For example, <code>[0]</code>, represents the first column; <code>{[0]}</code>represents the value of the first column to get</strong></p>
+<h3 id="example-1-array-data-set-server-dynamic-data-sources-nowpage-range-data-filtering-2-x-">Example 1: Array data set (server dynamic data sources) + NowPage range data filtering (2.X)</h3>
+<pre><code>&lt;form action=&quot;en/doPage3.jsp&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;margin: 20px auto;&quot;&gt;
+        username（ sql_i MatchMode）： &lt;input type=&quot;text&quot; name=&quot;[1]&quot; class=&quot;txt_test&quot; value=&quot;USER_1%&quot; mode=&quot;sql_i&quot; /&gt;
+        userinfo（ like_i MatchMode）：&lt;input type=&quot;text&quot; name=&quot;[2]&quot; class=&quot;txt_test&quot; value=&quot;i&quot;/&gt;
+        &lt;br/&gt;&lt;br/&gt;
+            &lt;div class=&quot;seaD&quot;&gt;NowPageCurrent page data range static filters (also supports dynamic data sources and static data source page filtering)&lt;/div&gt;
+        &lt;br/&gt;
+            &lt;!-- Multiple conditions AND query, HTML and JS function to achieve enhanced --&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2 data_static_search&quot; value=&quot;NowPage search AND&quot; /&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2&quot; value=&quot;NowPage search AND2&quot; onclick=&quot;DataTable.staticSearch(&#39;datatable12&#39;)&quot;/&gt;
+        &lt;!-- Multiple conditions OR queries, HTML and JS function to achieve enhanced --&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2 data_static_search_or&quot; value=&quot;NowPage search OR&quot; /&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2&quot; value=&quot;NowPage search OR2&quot; onclick=&quot;DataTable.staticSearch(&#39;datatable12&#39;,true)&quot; /&gt;
+
+    &lt;/div&gt;
+    &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
+
+        &lt;table class=&quot;datatable easydatatable&quot; id=&quot;datatable12&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+            &lt;thead&gt;
+              &lt;tr&gt;
+                    &lt;!-- checkbox --&gt;
+                    &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot; onclick=&quot;DataTable.checkAll(this,&#39;mychk&#39;)&quot; /&gt; &lt;!-- CheckAll --&gt;
+                    &lt;/th&gt;
+                    &lt;!-- datatableIndex,datatableCount --&gt;
+                    &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+                    &lt;th width=&quot;80&quot;&gt;index&lt;/th&gt;
+                    &lt;th width=&quot;100&quot; staticSort=&quot;[0]&quot;&gt;id&lt;/th&gt;
+                    &lt;th width=&quot;100&quot; staticSort=&quot;[1]&quot;&gt;name&lt;/th&gt;
+                    &lt;th width=&quot;100&quot;&gt;info&lt;/th&gt;
+                    &lt;th&gt;operation&lt;/th&gt;
+                &lt;/tr&gt;  
+            &lt;/thead&gt;
+            &lt;!-- Data Show Row--&gt;
+
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableCount+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableIndex+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{[0]}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{[1]}&lt;/td&gt;
+                &lt;td&gt;{[2]}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;
+
+                    %{ 
+                    if([0]%2==0){ 
+                    DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={[0] }&quot; target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={[0] }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&#39;); 
+                    }else{
+                    DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={[0] }&quot; target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={[0] }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=delete&amp;id={[0] }&quot; target=&quot;ajax&quot;&gt;delete&lt;/a&gt;&#39;); 
+                    } }%
+
+                &lt;/td&gt;
+                                    &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;15&quot;&gt;&lt;/div&gt;
+
+&lt;/form&gt;</code></pre>
+<h3 id="example-2-array-data-set-static-data-source-all-range-data-filtering-2-x-">Example 2: Array data set (static data source) + All range data filtering (2.X)</h3>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    //Static data source - an array of data collection        
+    var arrayData={
+        data:[
+                [1,&quot;Jay&quot;,&quot;I&#39;m Jay&quot;],
+                [2,&quot;Jolin&quot;,&quot;I&#39;m Jolin&quot;],
+                [3,&quot;Sheldon&quot;,&quot;I&#39;m Sheldon&quot;],
+                [4,&quot;Penny&quot;,&quot;I&#39;m Penny&quot;],
+                [5,&quot;Amy&quot;,&quot;I&#39;m Amy&quot;],
+                [6,&quot;Jay2&quot;,&quot;I&#39;m Jay&quot;],
+                [7,&quot;Jolin2&quot;,&quot;I&#39;m Jolin&quot;],
+                [8,&quot;Sheldon2&quot;,&quot;I&#39;m Sheldon&quot;],
+                [9,&quot;Penny2&quot;,&quot;I&#39;m Penny&quot;],
+                [10,&quot;Amy2&quot;,&quot;I&#39;m Amy&quot;],
+                [11,&quot;Jay3&quot;,&quot;I&#39;m Jay&quot;],
+                [12,&quot;Jolin3&quot;,&quot;I&#39;m Jolin&quot;],
+                [13,&quot;Sheldon3&quot;,&quot;I&#39;m Sheldon&quot;],
+                [14,&quot;Penny3&quot;,&quot;I&#39;m Penny&quot;],
+                [15,&quot;Amy3&quot;,&quot;I&#39;m Amy&quot;]
+            ]
+    };
+
+    //12. Array data set (static data source)  （2.X）
+    DataTable.staticLoad(&quot;datatable13&quot;, arrayData,{&quot;row&quot;:5});
+&lt;/script&gt;
+
+
+&lt;form action=&quot;&quot; name=&quot;myform&quot;&gt;
+    &lt;div style=&quot;margin: 20px auto;&quot;&gt;
+        username（ sql_i MatchMode）： &lt;input type=&quot;text&quot; name=&quot;[1]&quot; class=&quot;txt_test&quot; value=&quot;J%&quot; mode=&quot;sql_i&quot; /&gt;
+        userinfo（ like_i MatchMode）：&lt;input type=&quot;text&quot; name=&quot;[2]&quot; class=&quot;txt_test&quot; value=&quot;l&quot;/&gt;
+        &lt;br/&gt;&lt;br/&gt;
+                &lt;div class=&quot;seaD&quot;&gt;All Current page data range static filters (support only static data source page filtering)&lt;/div&gt;
+        &lt;br/&gt;
+            &lt;!-- Multiple conditions AND query, HTML and JS function to achieve enhanced --&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2 data_static_searchAll&quot; value=&quot;All search AND&quot; /&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2&quot; value=&quot;All search AND2&quot;  onclick=&quot;DataTable.staticSearchAll(&#39;datatable13&#39;)&quot;/&gt; 
+        &lt;!-- Multiple conditions OR queries, HTML and JS function to achieve enhanced --&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2 data_static_searchAll_or&quot; value=&quot;All search OR&quot; /&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn_test2&quot; value=&quot;All search OR2&quot; onclick=&quot;DataTable.staticSearchAll(&#39;datatable13&#39;,true)&quot;/&gt; 
+
+    &lt;/div&gt;
+    &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
+
+        &lt;table class=&quot;datatable&quot; id=&quot;datatable13&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+            &lt;thead&gt;
+              &lt;tr&gt;
+                    &lt;!-- checkbox --&gt;
+                    &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot; onclick=&quot;DataTable.checkAll(this,&#39;mychk&#39;)&quot; /&gt; &lt;!-- CheckAll --&gt;
+                    &lt;/th&gt;
+                    &lt;!-- datatableIndex,datatableCount --&gt;
+                    &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+                    &lt;th width=&quot;80&quot;&gt;index&lt;/th&gt;
+                    &lt;th width=&quot;100&quot; staticSort=&quot;[0]&quot;&gt;id&lt;/th&gt;
+                    &lt;th width=&quot;100&quot; staticSort=&quot;[1]&quot;&gt;name&lt;/th&gt;
+                    &lt;th width=&quot;100&quot;&gt;info&lt;/th&gt;
+                    &lt;th&gt;operation&lt;/th&gt;
+                &lt;/tr&gt;  
+            &lt;/thead&gt;
+            &lt;!-- Data Show Row--&gt;
+
+            &lt;tr style=&quot;display: none;&quot;&gt;
+                &lt;td style=&quot;text-align:center;height: 45px;&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;mychk&quot; value=&quot;{id }&quot; /&gt;
+                &lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableCount+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{datatableIndex+(pageNo-1)*rowPerPage}&lt;/td&gt;
+                &lt;td style=&quot;text-align:center;color:#00f&quot;&gt;No.{[0]}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;{[1]}&lt;/td&gt;
+                &lt;td&gt;{[2]}&lt;/td&gt;
+                &lt;td align=&quot;center&quot;&gt;
+
+                    %{ 
+                    if([0]%2==0){ 
+                    DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={[0] }&quot; target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={[0] }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&#39;); 
+                    }else{
+                    DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={[0] }&quot; target=&quot;ajax&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={[0] }&quot; target=&quot;ajax&quot;&gt;edit&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=delete&amp;id={[0] }&quot; target=&quot;ajax&quot;&gt;delete&lt;/a&gt;&#39;); 
+                    } }%
+
+                &lt;/td&gt;
+                                    &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;5&quot;&gt;&lt;/div&gt;
+
+&lt;/form&gt;</code></pre>
+<h2 id="18-add-ons-adjust-the-column-width-by-dragging-the-plug">18、Add-ons: adjust the column width by dragging the plug</h2>
+<p>EasyDataTable support the use of <a href="https://github.com/dobtco/jquery-resizable-columns" title="Viw on GitHub">jquery-resizable-columns</a> plug-in data table and drag to adjust the column width。</p>
+<p>18.1、 Need to drag out the first row of the data table to add <code>&lt;thead&gt;</code> tags</p>
+<pre><code>&lt;table class=&quot;datatable&quot; id=&quot;datatable12&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+          &lt;thead&gt;  &lt;!-- resizableColumns need--&gt;
+              &lt;tr&gt;
+                &lt;!-- checkbox --&gt;
+                &lt;th width=&quot;40&quot;&gt;&lt;input type=&quot;checkbox&quot; onclick=&quot;DataTable.checkAll(this,&#39;mychk&#39;)&quot; /&gt; &lt;!-- CheckAll --&gt;
+                &lt;/th&gt;
+                &lt;!-- datatableIndex,datatableCount --&gt;
+                &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
+                &lt;th width=&quot;80&quot;&gt;index&lt;/th&gt;
+                &lt;th width=&quot;100&quot; staticSort=&quot;[0]&quot;&gt;id&lt;/th&gt;
+                &lt;th width=&quot;100&quot; staticSort=&quot;[1]&quot;&gt;name&lt;/th&gt;
+                &lt;th width=&quot;100&quot;&gt;info&lt;/th&gt;
+                &lt;th&gt;operation&lt;/th&gt;
+            &lt;/tr&gt;  
+        &lt;/thead&gt;  &lt;!-- resizableColumns need--&gt;
+        ……
+&lt;/table&gt;</code></pre>
+<p>18.2、Use <code>$(&quot;#datatable12&quot;).resizableColumns();</code> initialize</p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;resizable/jquery.resizableColumns.css&quot; type=&quot;text/css&quot;&gt;&lt;/link&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;resizable/jquery.resizableColumns.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+  $(function(){
+    $(&quot;#datatable12&quot;).resizableColumns();
+  });
+&lt;/script&gt;</code></pre>
 <p><a href="http://www.lightfeel.com/easy/easydatatable/en/index.jsp#demo" title="Demo online">Demo online</a></p>
-<p>Contact, feedback, custom Email:<a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#58;&#x69;&#x6e;&#x2e;&#x74;&#104;&#x69;&#110;&#x6b;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#x69;&#x6e;&#x2e;&#x74;&#104;&#x69;&#110;&#x6b;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a></p>
+<p>Contact, feedback, custom Email:<a href="&#x6d;&#97;&#105;&#108;&#x74;&#111;&#58;&#x69;&#x6e;&#46;&#x74;&#x68;&#x69;&#x6e;&#107;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#x69;&#x6e;&#46;&#x74;&#x68;&#x69;&#x6e;&#107;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
 
 </body>
 </html>

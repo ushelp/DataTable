@@ -1,6 +1,5 @@
 *{font-family: Arial, sans-serif;}
 .datatable {
-	border-collapse: separate;
 	border-spacing: 0;
 	background: #fff;
 	padding: 0;
@@ -10,35 +9,29 @@
 	font-family: Arial, sans-serif;
 	border-collapse:collapse; border:solid 1px #ededed;
 	overflow: scroll;
-	background: #fff;
-	color: #000;
 }
 
 .datatable th {
 	font-weight: bold;
-	background: #000;
-	color: #fff;
+	color: #ff6600;
 	border-color: #d0d0d0;
+	background: #F0EFF0;
 	padding: 1px 2px;
-	line-height: 30px;
-	height: 30px;
+	line-height: 21px;
 	border-right: solid 1px #D0D0D0;
 	border-bottom: solid 1px #D0D0D0;
 	text-align: center;
-	font-size: 16px;
 }
 .datatable th:hover {
 	font-weight: bold;
-	background: #D4D4D4;
-	color: #515361;
+	color: #ff6600;
 	border-color: #d0d0d0;
+	background: #DAE2FF;
 	padding: 1px 2px;
-	line-height: 30px;
-	height: 30px;
+	line-height: 21px;
 	border-right: solid 1px #D0D0D0;
 	border-bottom: solid 1px #D0D0D0;
 	text-align: center;
-	font-size: 16px;
 }
 
 .datatable tr {
@@ -48,28 +41,24 @@
 	padding: 1px 2px;
 	line-height: 21px;
 	border-right: solid 1px #ededed;
-	
 }
 
 .datatable a {color:#3C7FB1; font-size:13px; line-height:20px;}
 .datatable a:hover {text-decoration:underline; line-height:20px;}
 
-.evenColor{	background: #fff;
-	color: #000;}
-.tdHover{background-color:#FDCF17;color: #fff; }
-.tdHover A{background-color:#FDCF17;color: #fff; }
-.tdClick{background-color:#E3A21A; }
-.tdClick A{background-color:#E3A21A;color: #fff; }
+.evenColor{background-color: #F8F8F8;}
+.tdHover{background-color:#E4F5FF; }
+.tdClick{background-color:#7CC5E5; }
 
-.dataTableScrollDiv{border: 1px solid #ededed;}
+.dataTableScrollDiv{border: 1px solid #D0D0D0;}
 
-.panelBar {color:#4D96D5; background-color:#fff; border-color:#efefef; font-size:13px; display:block; overflow:hidden; height:25px; border-style:solid;border-width:1px 1px;border-top:0px; background-repeat:repeat-x; }
+.panelBar {border-color:#D0D0D0; background-color:#efefef;font-size:13px; display:block; overflow:hidden; height:25px; border-style:solid;border-width:1px 1px;border-top:0px; background-repeat:repeat-x; }
 .panelBar .pages { float:left; overflow:hidden; height:21px; padding:2px 5px;margin: 0px;}
 .panelBar .pages span { float:left; line-height:21px;}
 .panelBar .pages label {  line-height:21px; padding-left:3px;padding-right: 3px; }
 .panelBar .pages select { float:left; margin:0 3px; font-size: 13px;font-family:Arial, sans-serif;}
 
-.pageGoHover{background-color:#FAFBFC;color:#FD9511 }
+.pageGoHover{background-color:#FAFBFC; }
 .totalPage{margin-right: 10px;}
 .totalCount{font-size: 15px;font-family:Arial, sans-serif;}
 .pagego{ padding:0 5px 0 5px; cursor: pointer;}
@@ -79,7 +68,7 @@
 .firstlastgo{color:#878787;}
 .nowpagenum{font-weight: bold;color: red;}
 .DataTable_Loading{font-weight: normal;color:#878787; margin: 10px auto;padding: 10px auto;text-align: center;}
-.sortArrow{font-size:11px;color:#fff;padding-left: 3px;font-weight: bold;}
-.sortArrowHover{font-size:11px;color:#444;padding-left: 3px;font-weight: bold;}
-.sortArrowDown{font-size:11px;color:#222;padding-left: 3px;font-weight: bold;}
+.sortArrow{font-size:11px;color:#ff6600;padding-left: 3px;font-weight: bold;}
+.sortArrowHover{font-size:11px;color:#4EBEE4;padding-left: 3px;font-weight: bold;}
+.sortArrowDown{font-size:11px;color:#191919;padding-left: 3px;font-weight: bold;}
 .mycombox{color:#183152; border:6px #183152; font-size: 18px}

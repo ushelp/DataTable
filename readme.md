@@ -21,7 +21,7 @@ And other relatively EasyDataTable Ext main features:
 
 
 > EasyDataTable currently supports two versions 1.X and 2.X version
-> 2.X adds support for static data source, JSON data source paging file is loaded, and supports the above query static data filtering and sorting.
+> 2.X adds support for static data source(Data List of supported data format JSON and Array), JSON file data source paging is loaded, and supports the above query static data filtering and sorting.
 
 
 ----------
@@ -548,7 +548,7 @@ _Note: EasyDataTable currently supports two versions 1.X and 2.X. EasyDataTable 
 
 
 ### 13.2,  Static data sources (2.X)
-**JSON supports direct loading** of the specified data objects, implement paging. Static data sources (2.X) 
+**JSON supports direct loading** of the specified data objects, implement paging. (Data List of supported data format JSON and Array)
  
     DataTable.staticLoad('tableid' , jsonDataObject [,easydataParams]);
 
@@ -1360,6 +1360,227 @@ ALL all static data range of data filtering query:`DataTable.staticSearchAll('ta
 		</div>
 		<div class="panelBar" style="width: 780px;" size="5,10,30,50" row="15"></div>
 	</form>
+
+
+
+
+## 17、Array data set is loaded pages
+
+EasyDataTable paging when data support the use of JSON data collection in addition, **it also supports the use of arrays Array data collection**. Dynamic Server data source or static array of data sources can be used to save data collection. For example:
+
+	data:[
+				[1,"Jay","I'm Jay"],
+				[2,"Jolin","I'm Jolin"],
+				[3,"Sheldon","I'm Sheldon"],
+				[4,"Penny","I'm Penny"],
+				[5,"Amy","I'm Amy"],
+				[6,"Jay2","I'm Jay"],
+				[7,"Jolin2","I'm Jolin"],
+				[8,"Sheldon2","I'm Sheldon"],
+				[9,"Penny2","I'm Penny"],
+				[10,"Amy2","I'm Amy"],
+				[11,"Jay3","I'm Jay"],
+				[12,"Jolin3","I'm Jolin"],
+				[13,"Sheldon3","I'm Sheldon"],
+				[14,"Penny3","I'm Penny"],
+				[15,"Amy3","I'm Amy"]
+		]
+
+
+
+**Used to get data from the array `[index]` on behalf of the specified data field names, `index` of digital data in the array index expression in the statement and attributes can be used in expressions EasyDataTable.**
+**For example, `[0]`, represents the first column; `{[0]} `represents the value of the first column to get**
+
+### Example 1: Array data set (server dynamic data sources) + NowPage range data filtering (2.X)
+
+	<form action="en/doPage3.jsp" name="myform">
+		<div style="margin: 20px auto;">
+			username（ sql_i MatchMode）： <input type="text" name="[1]" class="txt_test" value="USER_1%" mode="sql_i" />
+			userinfo（ like_i MatchMode）：<input type="text" name="[2]" class="txt_test" value="i"/>
+			<br/><br/>
+				<div class="seaD">NowPageCurrent page data range static filters (also supports dynamic data sources and static data source page filtering)</div>
+			<br/>
+				<!-- Multiple conditions AND query, HTML and JS function to achieve enhanced -->
+		    <input type="button" class="btn_test2 data_static_search" value="NowPage search AND" />
+			<input type="button" class="btn_test2" value="NowPage search AND2" onclick="DataTable.staticSearch('datatable12')"/>
+		    <!-- Multiple conditions OR queries, HTML and JS function to achieve enhanced -->
+		    <input type="button" class="btn_test2 data_static_search_or" value="NowPage search OR" />
+			<input type="button" class="btn_test2" value="NowPage search OR2" onclick="DataTable.staticSearch('datatable12',true)" />
+			
+		</div>
+		<div style="height: 260px;overflow:auto;width: 780px;" class="dataTableScrollDiv">
+			
+			<table class="datatable easydatatable" id="datatable12" width="100%" align="center">
+				<thead>
+				  <tr>
+						<!-- checkbox -->
+						<th width="40"><input type="checkbox" onclick="DataTable.checkAll(this,'mychk')" /> <!-- CheckAll -->
+						</th>
+						<!-- datatableIndex,datatableCount -->
+						<th width="80">count</th>
+						<th width="80">index</th>
+						<th width="100" staticSort="[0]">id</th>
+						<th width="100" staticSort="[1]">name</th>
+						<th width="100">info</th>
+						<th>operation</th>
+					</tr>  
+				</thead>
+				<!-- Data Show Row-->
+
+				<tr style="display: none;">
+					<td style="text-align:center;height: 45px;"><input type="checkbox" name="mychk" value="{id }" />
+					</td>
+					<td align="center">{datatableCount+(pageNo-1)*rowPerPage}</td>
+					<td align="center">{datatableIndex+(pageNo-1)*rowPerPage}</td>
+					<td style="text-align:center;color:#00f">No.{[0]}</td>
+					<td align="center">{[1]}</td>
+					<td>{[2]}</td>
+					<td align="center">
+						
+						%{ 
+						if([0]%2==0){ 
+						DataTable.out('<a href="doUser.jsp?o=show&id={[0] }" target="ajax">show</a>&nbsp;&nbsp;<a href="doUser.jsp?o=edit&id={[0] }" target="ajax">edit</a>'); 
+						}else{
+						DataTable.out('<a href="doUser.jsp?o=show&id={[0] }" target="ajax">show</a>&nbsp;&nbsp;<a href="doUser.jsp?o=edit&id={[0] }" target="ajax">edit</a>&nbsp;&nbsp;<a href="doUser.jsp?o=delete&id={[0] }" target="ajax">delete</a>'); 
+						} }%
+					
+					</td>
+										</tr>
+			</table>
+		</div>
+		<div class="panelBar" style="width: 780px;" size="5,10,30,50" row="15"></div>
+
+	</form>
+
+
+
+
+
+### Example 2: Array data set (static data source) + All range data filtering (2.X)
+
+	<script type="text/javascript">
+		//Static data source - an array of data collection		
+		var arrayData={
+			data:[
+					[1,"Jay","I'm Jay"],
+					[2,"Jolin","I'm Jolin"],
+					[3,"Sheldon","I'm Sheldon"],
+					[4,"Penny","I'm Penny"],
+					[5,"Amy","I'm Amy"],
+					[6,"Jay2","I'm Jay"],
+					[7,"Jolin2","I'm Jolin"],
+					[8,"Sheldon2","I'm Sheldon"],
+					[9,"Penny2","I'm Penny"],
+					[10,"Amy2","I'm Amy"],
+					[11,"Jay3","I'm Jay"],
+					[12,"Jolin3","I'm Jolin"],
+					[13,"Sheldon3","I'm Sheldon"],
+					[14,"Penny3","I'm Penny"],
+					[15,"Amy3","I'm Amy"]
+				]
+		};
+	
+		//12. Array data set (static data source)  （2.X）
+		DataTable.staticLoad("datatable13", arrayData,{"row":5});
+	</script>
+
+
+	<form action="" name="myform">
+		<div style="margin: 20px auto;">
+			username（ sql_i MatchMode）： <input type="text" name="[1]" class="txt_test" value="J%" mode="sql_i" />
+			userinfo（ like_i MatchMode）：<input type="text" name="[2]" class="txt_test" value="l"/>
+			<br/><br/>
+					<div class="seaD">All Current page data range static filters (support only static data source page filtering)</div>
+			<br/>
+				<!-- Multiple conditions AND query, HTML and JS function to achieve enhanced -->
+			<input type="button" class="btn_test2 data_static_searchAll" value="All search AND" />
+			<input type="button" class="btn_test2" value="All search AND2"  onclick="DataTable.staticSearchAll('datatable13')"/> 
+			<!-- Multiple conditions OR queries, HTML and JS function to achieve enhanced -->
+			<input type="button" class="btn_test2 data_static_searchAll_or" value="All search OR" />
+			<input type="button" class="btn_test2" value="All search OR2" onclick="DataTable.staticSearchAll('datatable13',true)"/> 
+			
+		</div>
+		<div style="height: 260px;overflow:auto;width: 780px;" class="dataTableScrollDiv">
+
+			<table class="datatable" id="datatable13" width="100%" align="center">
+				<thead>
+				  <tr>
+						<!-- checkbox -->
+						<th width="40"><input type="checkbox" onclick="DataTable.checkAll(this,'mychk')" /> <!-- CheckAll -->
+						</th>
+						<!-- datatableIndex,datatableCount -->
+						<th width="80">count</th>
+						<th width="80">index</th>
+						<th width="100" staticSort="[0]">id</th>
+						<th width="100" staticSort="[1]">name</th>
+						<th width="100">info</th>
+						<th>operation</th>
+					</tr>  
+				</thead>
+				<!-- Data Show Row-->
+
+				<tr style="display: none;">
+					<td style="text-align:center;height: 45px;"><input type="checkbox" name="mychk" value="{id }" />
+					</td>
+					<td align="center">{datatableCount+(pageNo-1)*rowPerPage}</td>
+					<td align="center">{datatableIndex+(pageNo-1)*rowPerPage}</td>
+					<td style="text-align:center;color:#00f">No.{[0]}</td>
+					<td align="center">{[1]}</td>
+					<td>{[2]}</td>
+					<td align="center">
+						
+						%{ 
+						if([0]%2==0){ 
+						DataTable.out('<a href="doUser.jsp?o=show&id={[0] }" target="ajax">show</a>&nbsp;&nbsp;<a href="doUser.jsp?o=edit&id={[0] }" target="ajax">edit</a>'); 
+						}else{
+						DataTable.out('<a href="doUser.jsp?o=show&id={[0] }" target="ajax">show</a>&nbsp;&nbsp;<a href="doUser.jsp?o=edit&id={[0] }" target="ajax">edit</a>&nbsp;&nbsp;<a href="doUser.jsp?o=delete&id={[0] }" target="ajax">delete</a>'); 
+						} }%
+					
+					</td>
+										</tr>
+			</table>
+		</div>
+		<div class="panelBar" style="width: 780px;" size="5,10,30,50" row="5"></div>
+
+	</form>
+
+
+
+## 18、Add-ons: adjust the column width by dragging the plug
+
+EasyDataTable support the use of [jquery-resizable-columns](https://github.com/dobtco/jquery-resizable-columns 'Viw on GitHub') plug-in data table and drag to adjust the column width。
+
+18.1、 Need to drag out the first row of the data table to add `<thead>` tags
+
+	<table class="datatable" id="datatable12" width="100%" align="center">
+			  <thead>  <!-- resizableColumns need-->
+				  <tr>
+					<!-- checkbox -->
+					<th width="40"><input type="checkbox" onclick="DataTable.checkAll(this,'mychk')" /> <!-- CheckAll -->
+					</th>
+					<!-- datatableIndex,datatableCount -->
+					<th width="80">count</th>
+					<th width="80">index</th>
+					<th width="100" staticSort="[0]">id</th>
+					<th width="100" staticSort="[1]">name</th>
+					<th width="100">info</th>
+					<th>operation</th>
+				</tr>  
+			</thead>  <!-- resizableColumns need-->
+		    ……
+	</table>
+
+18.2、Use `$("#datatable12").resizableColumns();` initialize
+
+	<link rel="stylesheet" href="resizable/jquery.resizableColumns.css" type="text/css"></link>
+	<script type="text/javascript" src="resizable/jquery.resizableColumns.js"></script>
+
+	<script type="text/javascript">
+	  $(function(){
+	    $("#datatable12").resizableColumns();
+	  });
+	</script>
+
 
 
 
