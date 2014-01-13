@@ -555,8 +555,56 @@ DataTable.order_down=&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot
 <h2 id="7-server-side-data-requirements">7, Server-side data requirements</h2>
 <p><strong>EasyDataTable can automatically parse JSON results returned by the server, and implement paging.</strong>  </p>
 <ul>
-<li><p><strong>JSON output paging server must name the following results:</strong><br>  <code>data</code>: data collection, support for List and Map Collections (built-in properties available Map key key, Map value without the use of value prefix) for the collection of JSON<br>  <code>pageNo</code>: the current first few pages, digital<br>  <code>rowPerPage</code>: Showing the number of digital<br>  <code>totalCount</code>: the number of total data, digital<br>  Optional parameters:<br>  <code>[sort]</code>: sort field<br>  <code>[order]</code>: Sort, desc or asc</p>
+<li><strong>JSON output paging server must name the following results:</strong><br>  <code>data</code>:Collection of data in support of List and Map Collections (built-in attribute key can be obtained Map keys without using the value of the value of Map prefix) corresponding JSON collection, data collection to support the real JSON objects and arrays in two ways.<br>  <code>pageNo</code>: the current first few pages, digital<br>  <code>rowPerPage</code>: Showing the number of digital<br>  <code>totalCount</code>: the number of total data, digital<br>  Optional parameters:<br>  <code>[sort]</code>: sort field<br>  <code>[order]</code>: Sort, desc or asc</li>
+</ul>
+<ul>
+<li><p><strong>data to support the collection of data in two ways:</strong></p>
+<p>  1,An entity object data collection:</p>
+<pre><code>  &quot;data&quot; : [ 
+      {
+          &quot;id&quot; : 1,
+          &quot;name&quot; : &quot;USER_1&quot;,
+          &quot;info&quot; : &quot;INFO_1&quot;
+      }, {
+          &quot;id&quot; : 2,
+          &quot;name&quot; : &quot;USER_2&quot;,
+          &quot;info&quot; : &quot;INFO_2&quot;
+      }, {
+          &quot;id&quot; : 3,
+          &quot;name&quot; : &quot;USER_3&quot;,
+          &quot;info&quot; : &quot;INFO_3&quot;
+      }, {
+          &quot;id&quot; : 4,
+          &quot;name&quot; : &quot;USER_4&quot;,
+          &quot;info&quot; : &quot;INFO_4&quot;
+      }, {
+          &quot;id&quot; : 5,
+          &quot;name&quot; : &quot;USER_5&quot;,
+          &quot;info&quot; : &quot;INFO_5&quot;
+      }
+  ]</code></pre>
+<p>  2, the Array object data collection:</p>
+<pre><code>  &quot;data&quot;:[
+              [1,&quot;Jay&quot;,&quot;I&#39;m Jay&quot;],
+              [2,&quot;Jolin&quot;,&quot;I&#39;m Jolin&quot;],
+              [3,&quot;Sheldon&quot;,&quot;I&#39;m Sheldon&quot;],
+              [4,&quot;Penny&quot;,&quot;I&#39;m Penny&quot;],
+              [5,&quot;Amy&quot;,&quot;I&#39;m Amy&quot;],
+              [6,&quot;Jay2&quot;,&quot;I&#39;m Jay&quot;],
+              [7,&quot;Jolin2&quot;,&quot;I&#39;m Jolin&quot;],
+              [8,&quot;Sheldon2&quot;,&quot;I&#39;m Sheldon&quot;],
+              [9,&quot;Penny2&quot;,&quot;I&#39;m Penny&quot;],
+              [10,&quot;Amy2&quot;,&quot;I&#39;m Amy&quot;],
+              [11,&quot;Jay3&quot;,&quot;I&#39;m Jay&quot;],
+              [12,&quot;Jolin3&quot;,&quot;I&#39;m Jolin&quot;],
+              [13,&quot;Sheldon3&quot;,&quot;I&#39;m Sheldon&quot;],
+              [14,&quot;Penny3&quot;,&quot;I&#39;m Penny&quot;],
+              [15,&quot;Amy3&quot;,&quot;I&#39;m Amy&quot;]
+      ]</code></pre>
+<p>  <strong>Note: An array of objects using the data attribute data set name <code>[index]</code> on behalf of the specified time to retrieve data from an array, <code>index</code> of digital data in the array index in the property expressions and statements can be used in expressions EasyDataTable.</strong><br>  <strong>For example,<code>[0]</code>, represents the first column of data attributes; <code>{[0]}</code>representative for the value of the first column of data attributes</strong></p>
 </li>
+</ul>
+<ul>
 <li><p><strong>If the server is encapsulated in PageBean paging parameters, such as:</strong> </p>
 <pre><code>  public class PageBean {
       private List data;
@@ -1351,8 +1399,8 @@ $(function(){
     &lt;/div&gt;
     &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;15&quot;&gt;&lt;/div&gt;
 &lt;/form&gt;</code></pre>
-<h2 id="17-array-data-set-is-loaded-pages">17、Array data set is loaded pages</h2>
-<p>EasyDataTable paging when data support the use of JSON data collection in addition, <strong>it also supports the use of arrays Array data collection</strong>. Dynamic Server data source or static array of data sources can be used to save data collection. For example:</p>
+<h2 id="17-an-array-of-objects-loaded-paged-data-collection">17、An array of objects loaded paged data collection</h2>
+<p>EasyDataTable paging when data support the use of JSON data collection in addition, <strong>it also supports the use of Array object data collection</strong>. Dynamic Server data source or static array of data sources can be used to save data collection. For example:</p>
 <pre><code>data:[
             [1,&quot;Jay&quot;,&quot;I&#39;m Jay&quot;],
             [2,&quot;Jolin&quot;,&quot;I&#39;m Jolin&quot;],
@@ -1370,8 +1418,8 @@ $(function(){
             [14,&quot;Penny3&quot;,&quot;I&#39;m Penny&quot;],
             [15,&quot;Amy3&quot;,&quot;I&#39;m Amy&quot;]
     ]</code></pre>
-<p><strong>Used to get data from the array <code>[index]</code> on behalf of the specified data field names, <code>index</code> of digital data in the array index expression in the statement and attributes can be used in expressions EasyDataTable.</strong><br><strong>For example, <code>[0]</code>, represents the first column; <code>{[0]}</code>represents the value of the first column to get</strong></p>
-<h3 id="example-1-array-data-set-server-dynamic-data-sources-nowpage-range-data-filtering-2-x-">Example 1: Array data set (server dynamic data sources) + NowPage range data filtering (2.X)</h3>
+<p><strong>An array of objects using the data attribute data set name <code>[index]</code> on behalf of the specified time to retrieve data from an array, <code>index</code> of digital data in the array index in the property expressions and statements can be used in expressions EasyDataTable.</strong><br><strong>For example,<code>[0]</code>, represents the first column of data attributes; <code>{[0]}</code>representative for the value of the first column of data attributes</strong></p>
+<h3 id="example-1-array-object-data-collection-server-dynamic-data-sources-nowpage-range-data-filtering-2-x-">Example 1: Array object data collection (server dynamic data sources) + NowPage range data filtering (2.X)</h3>
 <pre><code>&lt;form action=&quot;en/doPage3.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;div style=&quot;margin: 20px auto;&quot;&gt;
         username（ sql_i MatchMode）： &lt;input type=&quot;text&quot; name=&quot;[1]&quot; class=&quot;txt_test&quot; value=&quot;USER_1%&quot; mode=&quot;sql_i&quot; /&gt;
@@ -1430,7 +1478,7 @@ $(function(){
     &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;15&quot;&gt;&lt;/div&gt;
 
 &lt;/form&gt;</code></pre>
-<h3 id="example-2-array-data-set-static-data-source-all-range-data-filtering-2-x-">Example 2: Array data set (static data source) + All range data filtering (2.X)</h3>
+<h3 id="example-2-array-object-data-collection-static-data-source-all-range-data-filtering-2-x-">Example 2: Array object data collection (static data source) + All range data filtering (2.X)</h3>
 <pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
     //Static data source - an array of data collection        
     var arrayData={
@@ -1453,7 +1501,7 @@ $(function(){
             ]
     };
 
-    //12. Array data set (static data source)  （2.X）
+    //12. Array object data collection (static data source)  （2.X）
     DataTable.staticLoad(&quot;datatable13&quot;, arrayData,{&quot;row&quot;:5});
 &lt;/script&gt;
 
@@ -1546,7 +1594,7 @@ $(function(){
   });
 &lt;/script&gt;</code></pre>
 <p><a href="http://www.lightfeel.com/easy/easydatatable/en/index.jsp#demo" title="Demo online">Demo online</a></p>
-<p>Contact, feedback, custom Email:<a href="&#x6d;&#97;&#105;&#108;&#x74;&#111;&#58;&#x69;&#x6e;&#46;&#x74;&#x68;&#x69;&#x6e;&#107;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#x69;&#x6e;&#46;&#x74;&#x68;&#x69;&#x6e;&#107;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
+<p>Contact, feedback, custom Email:<a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#105;&#x6e;&#46;&#116;&#x68;&#x69;&#x6e;&#107;&#x40;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#105;&#x6e;&#46;&#116;&#x68;&#x69;&#x6e;&#107;&#x40;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;</a></p>
 
 </body>
 </html>

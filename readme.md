@@ -395,13 +395,67 @@ EasyDataTable support for sortable column sort indicator for **global** and cust
 **EasyDataTable can automatically parse JSON results returned by the server, and implement paging.**  
 
 - **JSON output paging server must name the following results:**    
-	`data`: data collection, support for List and Map Collections (built-in properties available Map key key, Map value without the use of value prefix) for the collection of JSON
+	`data`:Collection of data in support of List and Map Collections (built-in attribute key can be obtained Map keys without using the value of the value of Map prefix) corresponding JSON collection, data collection to support the real JSON objects and arrays in two ways.
 	`pageNo`: the current first few pages, digital
 	`rowPerPage`: Showing the number of digital
 	`totalCount`: the number of total data, digital
 	Optional parameters:
 	`[sort]`: sort field
 	`[order]`: Sort, desc or asc
+
+
+- **data to support the collection of data in two ways:**
+
+	1,An entity object data collection:
+
+		"data" : [ 
+			{
+				"id" : 1,
+				"name" : "USER_1",
+				"info" : "INFO_1"
+			}, {
+				"id" : 2,
+				"name" : "USER_2",
+				"info" : "INFO_2"
+			}, {
+				"id" : 3,
+				"name" : "USER_3",
+				"info" : "INFO_3"
+			}, {
+				"id" : 4,
+				"name" : "USER_4",
+				"info" : "INFO_4"
+			}, {
+				"id" : 5,
+				"name" : "USER_5",
+				"info" : "INFO_5"
+			}
+		]
+
+	2, the Array object data collection:
+
+		"data":[
+					[1,"Jay","I'm Jay"],
+					[2,"Jolin","I'm Jolin"],
+					[3,"Sheldon","I'm Sheldon"],
+					[4,"Penny","I'm Penny"],
+					[5,"Amy","I'm Amy"],
+					[6,"Jay2","I'm Jay"],
+					[7,"Jolin2","I'm Jolin"],
+					[8,"Sheldon2","I'm Sheldon"],
+					[9,"Penny2","I'm Penny"],
+					[10,"Amy2","I'm Amy"],
+					[11,"Jay3","I'm Jay"],
+					[12,"Jolin3","I'm Jolin"],
+					[13,"Sheldon3","I'm Sheldon"],
+					[14,"Penny3","I'm Penny"],
+					[15,"Amy3","I'm Amy"]
+			]
+	
+	**Note: An array of objects using the data attribute data set name `[index]` on behalf of the specified time to retrieve data from an array, `index` of digital data in the array index in the property expressions and statements can be used in expressions EasyDataTable.**
+	**For example,` [0]`, represents the first column of data attributes; `{[0]} `representative for the value of the first column of data attributes**
+
+
 
 - **If the server is encapsulated in PageBean paging parameters, such as:** 
 
@@ -1364,9 +1418,9 @@ ALL all static data range of data filtering query:`DataTable.staticSearchAll('ta
 
 
 
-## 17、Array data set is loaded pages
+## 17、An array of objects loaded paged data collection
 
-EasyDataTable paging when data support the use of JSON data collection in addition, **it also supports the use of arrays Array data collection**. Dynamic Server data source or static array of data sources can be used to save data collection. For example:
+EasyDataTable paging when data support the use of JSON data collection in addition, **it also supports the use of Array object data collection**. Dynamic Server data source or static array of data sources can be used to save data collection. For example:
 
 	data:[
 				[1,"Jay","I'm Jay"],
@@ -1388,10 +1442,10 @@ EasyDataTable paging when data support the use of JSON data collection in additi
 
 
 
-**Used to get data from the array `[index]` on behalf of the specified data field names, `index` of digital data in the array index expression in the statement and attributes can be used in expressions EasyDataTable.**
-**For example, `[0]`, represents the first column; `{[0]} `represents the value of the first column to get**
+**An array of objects using the data attribute data set name `[index]` on behalf of the specified time to retrieve data from an array, `index` of digital data in the array index in the property expressions and statements can be used in expressions EasyDataTable.**
+**For example,` [0]`, represents the first column of data attributes; `{[0]} `representative for the value of the first column of data attributes**
 
-### Example 1: Array data set (server dynamic data sources) + NowPage range data filtering (2.X)
+### Example 1: Array object data collection (server dynamic data sources) + NowPage range data filtering (2.X)
 
 	<form action="en/doPage3.jsp" name="myform">
 		<div style="margin: 20px auto;">
@@ -1456,7 +1510,7 @@ EasyDataTable paging when data support the use of JSON data collection in additi
 
 
 
-### Example 2: Array data set (static data source) + All range data filtering (2.X)
+### Example 2: Array object data collection (static data source) + All range data filtering (2.X)
 
 	<script type="text/javascript">
 		//Static data source - an array of data collection		
@@ -1480,7 +1534,7 @@ EasyDataTable paging when data support the use of JSON data collection in additi
 				]
 		};
 	
-		//12. Array data set (static data source)  （2.X）
+		//12. Array object data collection (static data source)  （2.X）
 		DataTable.staticLoad("datatable13", arrayData,{"row":5});
 	</script>
 
