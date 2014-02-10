@@ -24,6 +24,7 @@ And other relatively EasyDataTable Ext main features:
 > 2.X adds support for static data source(Data List of supported data format JSON and Array), JSON file data source paging is loaded, and supports the above query static data filtering and sorting.
 
 
+### [The official site](http://www.lightfeel.com/easy/easydatatable/en/index.jsp 'EasyDataTable official site home page')
 ----------
 
 
@@ -1642,3 +1643,13 @@ EasyDataTable support the use of [jquery-resizable-columns](https://github.com/d
 
 Contact, feedback, custom Email:<in.think@gmail.com>
 
+<p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+<input type="hidden" name="cmd" value="_xclick">
+<input type="hidden" name="business" value="inthinkcolor@gmail.com">
+<input type="hidden" name="item_name" value="EasyProject development Donation">
+<input type="hidden" name="no_note" value="1">
+<input type="hidden" name="tax" value="0">
+<input type="image" src="http://www.lightfeel.com/easy/images/paypaldonation5.jpg"  title="PayPal donation"  border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+</form>
+</P>
