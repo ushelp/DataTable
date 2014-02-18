@@ -309,12 +309,12 @@ img {
 <h3 id="-the-official-site-http-www-lightfeel-com-easy-easydatatable-en-index-jsp-easydatatable-official-site-home-page-"><a href="http://www.lightfeel.com/easy/easydatatable/en/index.jsp" title="EasyDataTable official site home page">The official site</a></h3>
 <hr>
 <h2 id="1-introducing-core-js-and-css-files-easydatatable">1, Introducing core js and css files EasyDataTable</h2>
-<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;css/datatable.css&quot; type=&quot;text/css&quot; /&gt;
+<pre><code class="lang-HTML">&lt;link rel=&quot;stylesheet&quot; href=&quot;css/datatable.css&quot; type=&quot;text/css&quot; /&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;js/easy.datatable.js&quot;&gt;&lt;/script&gt;</code></pre>
 <h2 id="2-page-table-structure">2, Page table structure</h2>
 <p>EasyDataTable is structured into form, EasyDataTable data table (table header row, the data show rows), paging div three parts, creating a data table structure as follows:</p>
-<pre><code>&lt;!-- Create a form action is handled dynamically paging request address --&gt;
+<pre><code class="lang-HTML">&lt;!-- Create a form action is handled dynamically paging request address --&gt;
 &lt;form action=&quot;Paging server address&quot;&gt;
 
     &lt;!--  EasyDataTable data show the form, you must have id --&gt;
@@ -333,7 +333,7 @@ img {
 
 &lt;/form&gt;</code></pre>
 <h3 id="paging-form-instance-">Paging form instance:</h3>
-<pre><code>&lt;!-- Create a form action is paged address requests processed --&gt;
+<pre><code class="lang-HTML">&lt;!-- Create a form action is paged address requests processed --&gt;
 &lt;form action=&quot;doPage.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;!-- Use DIV to wrap EasyDataTable data display table, when the data exceeds the DIV height, the scroll bar can be a reality --&gt;
        &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot;&gt;
@@ -381,11 +381,19 @@ img {
 <p>EasyDataTable support HTMl two ways to enhance and JS paging table initialization.</p>
 <h3 id="3-1-method-one-html-enhanced-use-easydatatable-class-styles">3.1, Method One: html enhanced use easydatatable class styles</h3>
 <p>Adding to the table style class <code>easydatatable</code> initialize (form must have id)</p>
-<pre><code>&lt;table class=&quot;datatable easydatatable&quot; id=&quot;datatable3&quot; width=&quot;780px&quot; align=&quot;center&quot;&gt;</code></pre>
+<pre><code class="lang-HTML">&lt;table class=&quot;datatable easydatatable&quot; id=&quot;datatable3&quot; width=&quot;780px&quot; align=&quot;center&quot;&gt;</code></pre>
 <h3 id="3-2-method-two-javascript-use-datatable-load-function">3.2, Method Two: JavaScript, use DataTable.load () function</h3>
 <p>Use <code>DataTable.load (table id, parameter information)</code> function on the table you want to initialize Ajax pagination  </p>
 <p><strong><code>DataTable.load( tableid [，easydataParameters] );</code></strong></p>
-<p>Parameter Description:<br><code>tableid</code>: Must parameters, data display table id<br><code>easydataParameters</code>: Optional parameter that specifies <strong> EasyDataTable initialization parameters </strong> paging information to support arguments:<br>    {<br>        <code>pagetheme</code>: ‘Paging theme’<br>        <code>loading</code>: ‘When paging loading data, Loading prompt manner’<br>        <code>language</code>: ‘tabs language’<br>        <code>start</code>: ‘data starts to load event handler’<br>        <code>end</code>: ‘end of the data load event handler’<br>        <code>row</code>: ‘initial page load shows the number’<br>    }</p>
+<p>Parameter Description:<br><code>tableid</code>: Must parameters, data display table id<br><code>easydataParameters</code>: Optional parameter that specifies <strong> EasyDataTable initialization parameters </strong> paging information to support arguments:</p>
+<pre><code class="lang-JS">{
+    `pagetheme`: &#39;Paging theme&#39;
+    `loading`: &#39;When paging loading data, Loading prompt manner&#39;
+    `language`: &#39;tabs language&#39;
+    `start`: &#39;data starts to load event handler&#39;
+    `end`: &#39;end of the data load event handler&#39;
+    `row`: &#39;initial page load shows the number&#39;
+}</code></pre>
 <h4 id="easydataparameters-initialization-parameters-page">easydataParameters Initialization Parameters page</h4>
 <ul>
 <li><h4 id="pagetheme-optional-tabs-theme">pagetheme——Optional tabs theme</h4>
@@ -415,70 +423,68 @@ img {
 <ul>
 <li><h4 id="language-language-options-set-tabs-displayed">language——Language options, set tabs displayed</h4>
 <p>  Default paging configuration is defined in <code>DataTable.default_lang</code> attribute, the default value:</p>
-<pre><code>  DataTable.default_lang={
-      first : &quot;first&quot;,
-      previous : &quot;previous&quot;,
-      next : &quot;next&quot;,
-      last : &quot;last&quot;,
-      totalCount : &quot;total {0} rows&quot;,
-      totalPage : &quot;total {0} pages&quot;,
-      rowPerPage : &quot;page for {0} rows&quot;
-  }</code></pre>
+<pre><code class="lang-JS">DataTable.default_lang={
+  first : &quot;first&quot;,
+  previous : &quot;previous&quot;,
+  next : &quot;next&quot;,
+  last : &quot;last&quot;,
+  totalCount : &quot;total {0} rows&quot;,
+  totalPage : &quot;total {0} pages&quot;,
+  rowPerPage : &quot;page for {0} rows&quot;
+}</code></pre>
 <p>  Can directly modify and redefine the value of this attribute as a global default paging text and language.<br>May also need to redefine the language to specify the paging data table in the initialization parameter, <code>{0}</code> placeholder to display the corresponding data must exist.</p>
-<pre><code>    &lt;script type=&quot;text/javascript&quot;&gt;
-    $(function(){
-              //Re-custom paging language
-                var pageLanguage={
-                  &quot;first&quot;:&#39;first&#39;,
-                  &quot;previous&quot;:&#39;previous&#39;,
-                  &quot;next&quot;:&#39;next&#39;,
-                  &quot;last&quot;:&#39;last&#39;,
-                  &quot;totalPage&quot;:&#39;total {0} pages&#39;,
-                  &quot;totalCount&quot;:&#39;total {0} rows&#39;,
-                  &quot;rowPerPage&quot;:&#39;page for {0} rows&#39;,
-              };
+<pre><code class="lang-JS">&lt;script type=&quot;text/javascript&quot;&gt;
+$(function(){
+          //Re-custom paging language
+            var pageLanguage={
+              &quot;first&quot;:&#39;first&#39;,
+              &quot;previous&quot;:&#39;previous&#39;,
+              &quot;next&quot;:&#39;next&#39;,
+              &quot;last&quot;:&#39;last&#39;,
+              &quot;totalPage&quot;:&#39;total {0} pages&#39;,
+              &quot;totalCount&quot;:&#39;total {0} rows&#39;,
+              &quot;rowPerPage&quot;:&#39;page for {0} rows&#39;,
+          };
 
-              // Initialization data table datatable
-                DataTable.load(&quot;datatable&quot;,{
-                    &quot;pagetheme&quot;:&quot;SIMPLE&quot;,
-                    &quot;loading&quot;:true,
-                    &quot;language&quot;:pageLanguage  //Language id specified data table for the datatale
-                });
+          // Initialization data table datatable
+            DataTable.load(&quot;datatable&quot;,{
+                &quot;pagetheme&quot;:&quot;SIMPLE&quot;,
+                &quot;loading&quot;:true,
+                &quot;language&quot;:pageLanguage  //Language id specified data table for the datatale
+            });
 
-              //Initialization data table datatable2
-                DataTable.load(&quot;datatable2&quot;);
-    });
-    &lt;/script&gt;</code></pre>
+          //Initialization data table datatable2
+            DataTable.load(&quot;datatable2&quot;);
+});
+&lt;/script&gt;</code></pre>
 </li>
 </ul>
 <ul>
 <li><h4 id="start-optional-the-data-set-is-loaded-each-time-the-handler-at-the-start-of">start——Optional, the data set is loaded each time the handler at the start of</h4>
-<pre><code>  /*
-  o:Now DataTable
-  initFlag:true representative of the first load data (initialization tables), false representatives of the page to load
-  */
-  &quot;start&quot;:function(o,initFlag){ 
-                if(initFlag){ //The first load (uninitialized)
-                    console.info(&#39;init start...&#39;);
-                }else{ 
-                    console.info(&#39;load start...&#39;);
-                }
-            }</code></pre>
-</li>
-</ul>
-<ul>
-<li><h4 id="end-optional-the-handler-is-set-each-time-data-is-loaded-at-the-end-of">end——Optional, the handler is set each time data is loaded at the end of</h4>
-<pre><code>  /*
-  o:Now DataTable
-  initFlag:true representative of the first load data (initialization tables), false representatives of the page to load
-  */
-  &quot;end&quot;:function(o,initFlag){ 
+<pre><code class="lang-JS">/*
+o:Now DataTable
+initFlag:true representative of the first load data (initialization tables), false representatives of the page to load
+*/
+&quot;start&quot;:function(o,initFlag){ 
             if(initFlag){ //The first load (uninitialized)
-                console.info(&#39;init end...&#39;);
+                console.info(&#39;init start...&#39;);
             }else{ 
-                console.info(&#39;load end...&#39;);
-            }        
+                console.info(&#39;load start...&#39;);
+            }
         }</code></pre>
+</li>
+<li><h4 id="end-optional-the-handler-is-set-each-time-data-is-loaded-at-the-end-of">end——Optional, the handler is set each time data is loaded at the end of</h4>
+<pre><code class="lang-JS">/*
+o:Now DataTable
+initFlag:true representative of the first load data (initialization tables), false representatives of the page to load
+*/
+&quot;end&quot;:function(o,initFlag){ 
+        if(initFlag){ //The first load (uninitialized)
+            console.info(&#39;init end...&#39;);
+        }else{ 
+            console.info(&#39;load end...&#39;);
+        }        
+    }</code></pre>
 </li>
 <li><h4 id="row-optional-set-the-number-of-initial-page-loads">row——Optional, set the number of initial page loads</h4>
 <p>  In the initialization parameter specifies the number of pages of data loaded by default. If you do not set this parameter, the value of the property <code>DataTable.default_row</code> default value of 5 (can be modified).</p>
@@ -488,10 +494,10 @@ img {
 <h2 id="4-easydatatableexpression-language-use">4, EasyDataTableExpression Language Use</h2>
 <h3 id="4-1-easydatatable-property-expression-property-expression-data-attributes-">4.1 EasyDataTable Property Expression Property expression <code>{data attributes }</code></h3>
 <p><strong> Property expressions for data display line, display the specified property values. </strong><br>In the property expression can be directly referenced data attributes to get the data for the specified property. And supports a variety of mathematical, comparison operators perform basic arithmetic JavaScript.</p>
-<pre><code>{id}    {name}</code></pre>
+<pre><code class="lang-JS">    {id}    {name}</code></pre>
 <h3 id="4-2-easydatatable-statement-expression-expression-statement-">4.2 EasyDataTable Statement Expression `% {expression statement}%</h3>
 <p><strong> Statement expression data for display in line with the programming statements to control programming. </strong><br>Support the use of JavaScript written statement expression expression code; supports direct call data attributes; also supports the use of EasyDataTable property expression (must be used to define the use of quotation marks in the string).<br>The results statement expression must be used to perform the standard output method statement expression EasyDataTable output: <strong> <code>DataTable.out (&quot; Content &quot;);</code> </strong></p>
-<pre><code>&lt;%--
+<pre><code class="lang-JSP">&lt;%--
 Support JavaScript language expressions.
 Attribute name: the variable reference and handling
 EasyDataTable property expression: You must define the use of quotation marks in strings
@@ -518,7 +524,7 @@ EasyDataTable property expression: You must define the use of quotation marks in
 <p><strong> For example: </strong><br>All the current data index data: <code>{datatableIndex + (pageNo-1) * rowPerPage}</code><br>The number of all current data in the data: <code>{datatableCount + (pageNo-1) * rowPerPage}</code></p>
 <h2 id="6-sort-support">6, Sort Support</h2>
 <p>In order to add the header row needs to <code>sort =&quot; sort field name &quot;</code> attribute to the field corresponding to the cell.</p>
-<pre><code>&lt;tr&gt;
+<pre><code class="lang-HTML">&lt;tr&gt;
     &lt;th width=&quot;80&quot;&gt;count&lt;/th&gt;
     &lt;th width=&quot;80&quot;&gt;index&lt;/th&gt;
     &lt;th width=&quot;80&quot;&gt;{index+1}&lt;/th&gt;
@@ -529,10 +535,10 @@ EasyDataTable property expression: You must define the use of quotation marks in
 &lt;/tr&gt;</code></pre>
 <p>Sortable column displays the sort arrow. Click to send server sorting information required: sort field sort (values ​​sort of) and sort order (asc or desc) to the server.<br>After the server receives and returns the new data processing can be realized Ascending Descending switching.</p>
 <p>Access to information via the server-side sorting and sort order parameter name.   </p>
-<pre><code>String sort = request.getParameter(&quot;sort&quot;);
+<pre><code class="lang-Java">String sort = request.getParameter(&quot;sort&quot;);
 String order = request.getParameter(&quot;order&quot;);</code></pre>
 <p><strong>Refresh Form :</strong><br>Use <code>DataTable.reload (&#39;tableid&#39;);</code> can refresh the data table is specified, no sorting restored to the state.</p>
-<pre><code>&lt;div onclick=&quot;DataTable.reload(&#39;datatable3&#39;)&quot;&gt;Refresh&lt;/div&gt;</code></pre>
+<pre><code class="lang-html">&lt;div onclick=&quot;DataTable.reload(&#39;datatable3&#39;)&quot;&gt;Refresh&lt;/div&gt;</code></pre>
 <h3 id="custom-sort-indicator">Custom sort indicator</h3>
 <p>EasyDataTable For sortable columns to be <strong>sorted in appearance reminded by sorting indicator</strong>. The default up and down arrows ↑ ↓ (<code>&amp;uarr;&amp;darr;</code>) indicates that the column can be sorted click on sortable column names; Show ↑ (<code>&amp;uarr;</code>) when ascending, descending ↓ display when (<code>&amp;darr;</code>) to indicate the current rise in descending order.</p>
 <p>EasyDataTable support for sortable column sort indicator for <strong>global</strong> and customized <strong>by DataTableID</strong> of two ways:</p>
@@ -542,13 +548,13 @@ String order = request.getParameter(&quot;order&quot;);</code></pre>
 <li><code>DataTable.order_up</code> Indicator can be sorted in ascending column</li>
 <li><code>DataTable.order_down</code> Can sort the column in descending indicator</li>
 </ul>
-<pre><code>//Redefine EasyDataTable sort indicator
+<pre><code class="lang-JS">//Redefine EasyDataTable sort indicator
 DataTable.order_default=&quot;&lt;img src=&#39;images/order_default.gif&#39;/&gt;&quot;;
 DataTable.order_up=&quot;&lt;img src=&#39;images/order_up.gif&#39;/&gt;&quot;;
 DataTable.order_down=&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot;;</code></pre>
 <p><strong>2. By DataTableID Custom: only edit the current sort DataTableID DataTable object corresponding indicator</strong></p>
 <p><code>DataTable.sort[&quot;DataTableID List&quot;]</code>You can specify more than one at the same time set the sort indicator DataTable table object, use commas multiple DataTable table id <code>,</code> separated</p>
-<pre><code>DataTable.sort[&quot;datatable,datatable2,datatable4&quot;]={
+<pre><code class="lang-JS">DataTable.sort[&quot;datatable,datatable2,datatable4&quot;]={
     order_default:&quot;&lt;img src=&#39;images/order_default.gif&#39;/&gt;&quot;,
     order_up:&quot;&lt;img src=&#39;images/order_up.gif&#39;/&gt;&quot;,
     order_down:&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot;
@@ -561,69 +567,69 @@ DataTable.order_down=&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot
 <ul>
 <li><p><strong>data to support the collection of data in two ways:</strong></p>
 <p>  1,An entity object data collection:</p>
-<pre><code>  &quot;data&quot; : [ 
-      {
-          &quot;id&quot; : 1,
-          &quot;name&quot; : &quot;USER_1&quot;,
-          &quot;info&quot; : &quot;INFO_1&quot;
-      }, {
-          &quot;id&quot; : 2,
-          &quot;name&quot; : &quot;USER_2&quot;,
-          &quot;info&quot; : &quot;INFO_2&quot;
-      }, {
-          &quot;id&quot; : 3,
-          &quot;name&quot; : &quot;USER_3&quot;,
-          &quot;info&quot; : &quot;INFO_3&quot;
-      }, {
-          &quot;id&quot; : 4,
-          &quot;name&quot; : &quot;USER_4&quot;,
-          &quot;info&quot; : &quot;INFO_4&quot;
-      }, {
-          &quot;id&quot; : 5,
-          &quot;name&quot; : &quot;USER_5&quot;,
-          &quot;info&quot; : &quot;INFO_5&quot;
-      }
-  ]</code></pre>
+<pre><code class="lang-JS">&quot;data&quot; : [ 
+  {
+      &quot;id&quot; : 1,
+      &quot;name&quot; : &quot;USER_1&quot;,
+      &quot;info&quot; : &quot;INFO_1&quot;
+  }, {
+      &quot;id&quot; : 2,
+      &quot;name&quot; : &quot;USER_2&quot;,
+      &quot;info&quot; : &quot;INFO_2&quot;
+  }, {
+      &quot;id&quot; : 3,
+      &quot;name&quot; : &quot;USER_3&quot;,
+      &quot;info&quot; : &quot;INFO_3&quot;
+  }, {
+      &quot;id&quot; : 4,
+      &quot;name&quot; : &quot;USER_4&quot;,
+      &quot;info&quot; : &quot;INFO_4&quot;
+  }, {
+      &quot;id&quot; : 5,
+      &quot;name&quot; : &quot;USER_5&quot;,
+      &quot;info&quot; : &quot;INFO_5&quot;
+  }
+]</code></pre>
 <p>  2, the Array object data collection:</p>
-<pre><code>  &quot;data&quot;:[
-              [1,&quot;Jay&quot;,&quot;I&#39;m Jay&quot;],
-              [2,&quot;Jolin&quot;,&quot;I&#39;m Jolin&quot;],
-              [3,&quot;Sheldon&quot;,&quot;I&#39;m Sheldon&quot;],
-              [4,&quot;Penny&quot;,&quot;I&#39;m Penny&quot;],
-              [5,&quot;Amy&quot;,&quot;I&#39;m Amy&quot;],
-              [6,&quot;Jay2&quot;,&quot;I&#39;m Jay&quot;],
-              [7,&quot;Jolin2&quot;,&quot;I&#39;m Jolin&quot;],
-              [8,&quot;Sheldon2&quot;,&quot;I&#39;m Sheldon&quot;],
-              [9,&quot;Penny2&quot;,&quot;I&#39;m Penny&quot;],
-              [10,&quot;Amy2&quot;,&quot;I&#39;m Amy&quot;],
-              [11,&quot;Jay3&quot;,&quot;I&#39;m Jay&quot;],
-              [12,&quot;Jolin3&quot;,&quot;I&#39;m Jolin&quot;],
-              [13,&quot;Sheldon3&quot;,&quot;I&#39;m Sheldon&quot;],
-              [14,&quot;Penny3&quot;,&quot;I&#39;m Penny&quot;],
-              [15,&quot;Amy3&quot;,&quot;I&#39;m Amy&quot;]
-      ]</code></pre>
+<pre><code class="lang-JS">&quot;data&quot;:[
+          [1,&quot;Jay&quot;,&quot;I&#39;m Jay&quot;],
+          [2,&quot;Jolin&quot;,&quot;I&#39;m Jolin&quot;],
+          [3,&quot;Sheldon&quot;,&quot;I&#39;m Sheldon&quot;],
+          [4,&quot;Penny&quot;,&quot;I&#39;m Penny&quot;],
+          [5,&quot;Amy&quot;,&quot;I&#39;m Amy&quot;],
+          [6,&quot;Jay2&quot;,&quot;I&#39;m Jay&quot;],
+          [7,&quot;Jolin2&quot;,&quot;I&#39;m Jolin&quot;],
+          [8,&quot;Sheldon2&quot;,&quot;I&#39;m Sheldon&quot;],
+          [9,&quot;Penny2&quot;,&quot;I&#39;m Penny&quot;],
+          [10,&quot;Amy2&quot;,&quot;I&#39;m Amy&quot;],
+          [11,&quot;Jay3&quot;,&quot;I&#39;m Jay&quot;],
+          [12,&quot;Jolin3&quot;,&quot;I&#39;m Jolin&quot;],
+          [13,&quot;Sheldon3&quot;,&quot;I&#39;m Sheldon&quot;],
+          [14,&quot;Penny3&quot;,&quot;I&#39;m Penny&quot;],
+          [15,&quot;Amy3&quot;,&quot;I&#39;m Amy&quot;]
+  ]</code></pre>
 <p>  <strong>Note: An array of objects using the data attribute data set name <code>[index]</code> on behalf of the specified time to retrieve data from an array, <code>index</code> of digital data in the array index in the property expressions and statements can be used in expressions EasyDataTable.</strong><br>  <strong>For example,<code>[0]</code>, represents the first column of data attributes; <code>{[0]}</code>representative for the value of the first column of data attributes</strong></p>
 </li>
 </ul>
 <ul>
 <li><p><strong>If the server is encapsulated in PageBean paging parameters, such as:</strong> </p>
-<pre><code>  public class PageBean {
-      private List data;
-      private int pageNo;
-      private int rowPerPage;
-      private int totalCount;
-     //setters&amp;getters ……
-  }</code></pre>
+<pre><code class="lang-JAVA">public class PageBean {
+  private List data;
+  private int pageNo;
+  private int rowPerPage;
+  private int totalCount;
+ //setters&amp;getters ……
+}</code></pre>
 <p>  For example, JSON object back to the server-side output in PageBean name is <code>pb</code>, <code>value</code> attribute is added to the data table <code>tag</code> table, specify the paging JSON object name <code>pb</code>:</p>
-<pre><code>  &lt;table class=&quot;datatable&quot; id=&quot;datatable3&quot;  width=&quot;780px&quot; align=&quot;center&quot; value=&quot;pb&quot;&gt;</code></pre>
+<pre><code class="lang-HTML">&lt;table class=&quot;datatable&quot; id=&quot;datatable3&quot;  width=&quot;780px&quot; align=&quot;center&quot; value=&quot;pb&quot;&gt;</code></pre>
 </li>
 </ul>
 <h2 id="8-refresh-specified-data-table">8, Refresh specified data table</h2>
-<pre><code>DataTable.reload(“tableId”);  //Cancel sorting effect, Refresh table, reload the data</code></pre>
+<pre><code class="lang-JS">DataTable.reload(“tableId”);  //Cancel sorting effect, Refresh table, reload the data</code></pre>
 <h2 id="9-set-the-number-of-default-paging">9, Set the number of default paging</h2>
 <p>Use <code>row paging parameters</code> in the <strong>initialization parameter</strong> can specify the number of the default paging. If you do not set this parameter, the value of the property <code>DataTable.default_row</code> default value of 5 (can edit).</p>
 <p><code>row attribute</code> support in the page using HTML div tag enhancements:</p>
-<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;10&quot;&gt;
+<pre><code class="lang-HTML">&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;10&quot;&gt;
 
 &lt;/div&gt;</code></pre>
 <h2 id="10-paging-theme-settings">10, Paging theme settings</h2>
@@ -631,23 +637,22 @@ DataTable.order_down=&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot
 <p><code>FULL</code>(Full theme, the default display all the pages option, the default value)</p>
 <p><code>SIMPLE</code>(Simple theme, do not show quick jump page)</p>
 <h3 id="10-1-specify-the-page-using-javascript-theme">10.1, Specify the page using JavaScript theme</h3>
-<pre><code>DataTable.load(&quot;datatable&quot;,{
+<pre><code class="lang-JS">DataTable.load(&quot;datatable&quot;,{
       &quot;pagetheme&quot;:&#39;SIMPLE&#39;
  });</code></pre>
 <h3 id="10-2-paging-paging-specified-topic-in-the-div-tag">10.2, Paging Paging specified topic in the DIV tag</h3>
-<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;FULL&quot;&gt;
+<pre><code class="lang-HTML">&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;FULL&quot;&gt;
 
 &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;SIMPLE&quot;&gt;</code></pre>
 <h3 id="10-3-cancel-paging-and-themes">10.3, Cancel paging and themes</h3>
 <p>Use display: none to hide, or you can directly delete tabs section.</p>
-<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;display: none;&quot; size=&quot;5,10,30,50&quot; &gt;</code></pre>
+<pre><code class="lang-HTML">&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;display: none;&quot; size=&quot;5,10,30,50&quot; &gt;</code></pre>
 <h2 id="11-custom-paging">11, Custom Paging</h2>
 <p>EasyDataTable support custom paging, the paging div tag can write custom paging code. Custom paging code supports: EasyDataTable built-in properties, attributes, expressions and statements expressions.</p>
 <p><code>Pagination div tag</code> Add <code>pagetheme= &quot;no&quot;</code><br>Properties (or parameters set by EasyDataTable initialization), call <strong><code>DataTable.go (&#39;load data tables id&#39;, &#39;pages&#39;, [page displays the number of])</code></strong> function, you can implement custom paging jump.<br>You can also use <code>row</code> attribute specifies the default page displays the number of:</p>
-<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px; line-height: 40px;&quot; size=&quot;5,10,30,50&quot;
-            pagetheme=&quot;no&quot; row=&quot;8&quot;&gt;</code></pre>
+<pre><code class="lang-HTML">&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px; line-height: 40px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;no&quot; row=&quot;8&quot;&gt;</code></pre>
 <p>Example:</p>
-<pre><code>&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;no&quot;  row=&quot;8&quot;&gt;
+<pre><code class="lang-HTML">&lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;height: 40px;&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;no&quot;  row=&quot;8&quot;&gt;
     now {pageNo}/ {maxPage} page Now {rowPerPage} row/{totalCount} row    
     &lt;input type=&quot;button&quot; value=&quot;first&quot; onclick=&quot;DataTable.go(&#39;datatable7&#39;,1)&quot;/&gt;
     &lt;input type=&quot;button&quot; value=&quot;previous&quot; onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{pageNo-1}&#39;)&quot;/&gt;
@@ -655,14 +660,14 @@ DataTable.order_down=&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot
     &lt;input type=&quot;button&quot; value=&quot;last&quot; onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{maxPage}&#39;)&quot;/&gt;
 &lt;/div&gt;</code></pre>
 <p>When the JavaScript function call, if the parameter used EasyDataTable property expressions (such as pages <code>{pageNo-1}</code>) is required by single quotation marks, as a string parameter, otherwise there will be a warning under IE8 (does not affect the actual the results).<br>For example, the following code ‘{pageNo-1}’ must use quotes:</p>
-<pre><code>onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{pageNo-1}&#39;)&quot;/&gt;。</code></pre>
+<pre><code class="lang-HTML">onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{pageNo-1}&#39;)&quot;。</code></pre>
 <h2 id="12-with-a-search-page">12, With a search page</h2>
 <p>Form into the search box form, with the following two ways to search submission page.</p>
 <p><strong>Search Search button to submit two methods of data</strong></p>
 <p>Method One: Use HTML to enhance the search button into the current form, added directly to the search button style class <code>data_search</code></p>
-<pre><code>&lt;input type=&quot;button&quot; class=&quot;data_search&quot; value=&quot;search&quot;/&gt;</code></pre>
+<pre><code class="lang-HTML">&lt;input type=&quot;button&quot; class=&quot;data_search&quot; value=&quot;search&quot;/&gt;</code></pre>
 <p>Method Two: Use <code>DataTable.load (&#39;data tables id&#39;)</code>, registered for the event by clicking on the search button</p>
-<pre><code>&lt;input type=&quot;button&quot; class=&quot;btn_test&quot; onclick=&quot;DataTable.load(&#39;DataTableID&#39;)&quot; value=&quot;search&quot;/&gt;</code></pre>
+<pre><code class="lang-HTML">&lt;input type=&quot;button&quot; class=&quot;btn_test&quot; onclick=&quot;DataTable.load(&#39;DataTableID&#39;)&quot; value=&quot;search&quot;/&gt;</code></pre>
 <p>Server to obtain the search criteria submitted by the client.</p>
 <h2 id="13-easydatatable-load-support-multiple-data-sources">13, EasyDataTable load support multiple data sources</h2>
 <p><strong>EasyDataTable supports three kinds of data sources:</strong>    </p>
@@ -674,16 +679,16 @@ DataTable.order_down=&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot
 <p><em>Note: EasyDataTable currently supports two versions 1.X and 2.X. EasyDataTable 1.X only supports dynamic loading of data sources; EasyDataTable 2.X also supports static data sources and data source file is loaded。</em></p>
 <h3 id="13-1-server-dynamic-data-sources-1-x-2-x-">13.1,  Server dynamic data sources (1.X, 2.X)</h3>
 <p><strong>Specify the server-side paging address in the form of action</strong> to dynamically obtain JSON paging data to achieve paging.</p>
-<pre><code>DataTable.load( &#39;tableid&#39; [，easydataParameters] );</code></pre>
+<pre><code class="lang-JS">DataTable.load( &#39;tableid&#39; [，easydataParameters] );</code></pre>
 <h3 id="13-2-static-data-sources-2-x-">13.2,  Static data sources (2.X)</h3>
 <p><strong>JSON supports direct loading</strong> of the specified data objects, implement paging. (Data List of supported data format JSON and Array)</p>
-<pre><code>DataTable.staticLoad(&#39;tableid&#39; , jsonDataObject [,easydataParams]);</code></pre>
+<pre><code class="lang-JS">DataTable.staticLoad(&#39;tableid&#39; , jsonDataObject [,easydataParams]);</code></pre>
 <h3 id="13-3-file-data-sources-2-x-">13.3,  File data sources (2.X)</h3>
 <p>Supports direct loading specified <strong>JSON data files</strong>, implement paging.</p>
-<pre><code>DataTable.fileLoad(&#39;tableid&#39; , &#39;jsonFile&#39; [,easydataParams]);</code></pre>
+<pre><code class="lang-JS">DataTable.fileLoad(&#39;tableid&#39; , &#39;jsonFile&#39; [,easydataParams]);</code></pre>
 <h2 id="14-static-sorting-support-2-x-">14, Static sorting support (2.X)</h2>
 <p>EasyDataTable support for static sort data in the header row to add <code>staticSort need to sort on a field corresponding cells =&quot; Sort Field Name &quot;</code> attribute.</p>
-<pre><code>&lt;th width=&quot;100&quot; staticSort=&quot;id&quot;&gt;id&lt;/th&gt;
+<pre><code class="lang-HTML">&lt;th width=&quot;100&quot; staticSort=&quot;id&quot;&gt;id&lt;/th&gt;
 &lt;th width=&quot;100&quot; staticSort=&quot;name&quot;&gt;name&lt;/th&gt;</code></pre>
 <h2 id="15-static-filtering-query-2-x-">15,Static filtering query (2.X)</h2>
 <p><strong>EasyDataTable support for static data filtering query, and has the following three characteristics:</strong></p>
@@ -710,7 +715,7 @@ DataTable.order_down=&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot
 <h3 id="specify-matchmode-query-matching-mode-to-form-elements-">Specify MatchMode (query matching mode) to form elements:</h3>
 <p>EasyDataTable by eight kinds of data that match the query pattern MatchMode, provides the user with a full range of query support; support for each form separate option to specify a different query matching mode, which greatly enhances the flexibility of screening.</p>
 <p><strong>Usage:</strong><br>Using HTML enhancements, add <code>mode</code> attribute in the corresponding text box, and the value is specified as EasyDataTable <code>support MathMode name</code>.</p>
-<pre><code>username: 
+<pre><code class="lang-HTML">username: 
 &lt;input type=&quot;text&quot; name=&quot;name&quot; class=&quot;txt_test&quot; mode=&quot;sql_i&quot;/&gt; 
 
 userinfo:
@@ -726,33 +731,25 @@ userinfo:
 <h3 id="both-methods-achieve-data-filtering-">Both methods achieve data filtering:</h3>
 <p><strong>Method One: Using HTML enhancements</strong></p>
 <p>NowPage current page static data range of data filtering query: to the search button to add <code>static_data_search[_or]</code> class styles:</p>
-<pre><code>`data_static_search` Support multi-mode conditions AND query.
-
-    &lt;input type=&quot;button&quot; class=&quot;data_static_search&quot; value=&quot;static search and&quot; /&gt;
-
-`data_static_search_or` Support multi-mode conditions OR query.
-
-    &lt;input type=&quot;button&quot; class=&quot;data_static_search_or&quot; value=&quot;static search or&quot;/&gt;</code></pre>
+<p><code>data_static_search</code> Support multi-mode conditions AND query.</p>
+<pre><code class="lang-HTML">&lt;input type=&quot;button&quot; class=&quot;data_static_search&quot; value=&quot;static search and&quot; /&gt;</code></pre>
+<p><code>data_static_search_or</code> Support multi-mode conditions OR query.</p>
+<pre><code class="lang-HTML">&lt;input type=&quot;button&quot; class=&quot;data_static_search_or&quot; value=&quot;static search or&quot;/&gt;</code></pre>
 <p>ALL all static data range of data filtering query: to the search button to add <code>static_data_searchAll[_or]</code> class styles:</p>
-<pre><code>`data_static_searchAll` Support multi-mode conditions AND query.
-
-    &lt;input type=&quot;button&quot; class=&quot;data_static_search&quot; value=&quot;static searchAll and&quot; /&gt;
-
-`data_static_searchAll_or` Support multi-mode conditions OR query.
-
-    &lt;input type=&quot;button&quot; class=&quot;data_static_searchAll_or&quot; value=&quot;static searchAll or&quot;/&gt;</code></pre>
+<p><code>data_static_searchAll</code> Support multi-mode conditions AND query.</p>
+<pre><code class="lang-HTML">&lt;input type=&quot;button&quot; class=&quot;data_static_search&quot; value=&quot;static searchAll and&quot; /&gt;</code></pre>
+<p><code>data_static_searchAll_or</code> Support multi-mode conditions OR query.</p>
+<pre><code class="lang-HTML">&lt;input type=&quot;button&quot; class=&quot;data_static_searchAll_or&quot; value=&quot;static searchAll or&quot;/&gt;</code></pre>
 <p><strong>Method Two: Use the built-in functions to achieve static filters:</strong>   </p>
 <p>NowPage current page static data range of data filtering query: <code>DataTable.staticSearch(&#39;tableid&#39; [,true] )</code></p>
-<pre><code>If the second argument is true, press OR way queries; otherwise press AND the way queries.
-
-&lt;input type=&quot;button&quot; value=&quot;static searchAll&quot; onclick=&quot;DataTable.staticSearch(&#39;datatableStatic&#39;)&quot;/&gt;</code></pre>
+<pre><code>If the second argument is true, press OR way queries; otherwise press AND the way queries.</code></pre>
+<pre><code class="lang-HTML">&lt;input type=&quot;button&quot; value=&quot;static searchAll&quot; onclick=&quot;DataTable.staticSearch(&#39;datatableStatic&#39;)&quot;/&gt;</code></pre>
 <p>ALL all static data range of data filtering query:<code>DataTable.staticSearchAll(&#39;tableid&#39; [,true] )</code></p>
-<pre><code>If the second argument is true, press OR way queries; otherwise press AND the way queries.
-
-&lt;input type=&quot;button&quot; value=&quot;static searchAll&quot; onclick=&quot;DataTable.staticSearchAll(&#39;datatableStatic&#39;)&quot;/&gt;</code></pre>
+<pre><code>If the second argument is true, press OR way queries; otherwise press AND the way queries.</code></pre>
+<pre><code class="lang-HTML">&lt;input type=&quot;button&quot; value=&quot;static searchAll&quot; onclick=&quot;DataTable.staticSearchAll(&#39;datatableStatic&#39;)&quot;/&gt;</code></pre>
 <h2 id="16-form-ajax-pagination-instances">16, Form AJAX pagination instances</h2>
 <h3 id="16-1-full-paging-default-theme-checkbox-index-count-the-use-of-built-in-properties">16.1, FULL Paging default theme +checkbox + index, count the use of built-in properties</h3>
-<pre><code>&lt;form action=&quot;easydatatable/en/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
+<pre><code class="lang-HTML">&lt;form action=&quot;easydatatable/en/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
         &lt;table class=&quot;datatable easydatatable&quot; id=&quot;datatable&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
             &lt;tr&gt;
@@ -787,7 +784,7 @@ userinfo:
     &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot;&gt;&lt;/div&gt;
 &lt;/form&gt;</code></pre>
 <h3 id="16-2-specify-paging-theme-simple-loading-show-with-tips-sort-properties">16.2, Specify paging theme SIMPLE + Loading = “show” with tips + Sort Properties</h3>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+<pre><code class="lang-HTML">&lt;script type=&quot;text/javascript&quot;&gt;
   DataTable.load(&quot;datatable2&quot;,{
                   &quot;pagetheme&quot;:&#39;SIMPLE&#39;,
                   &quot;loading&quot;:&quot;show&quot;
@@ -829,7 +826,7 @@ userinfo:
     &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot;&gt;&lt;/div&gt;
 &lt;/form&gt;</code></pre>
 <h3 id="16-3-judge-sentences-datatable-expression-loading-none-row-10-">16.3, Judge sentences DataTable expression + Loading = “none” + row = “10”</h3>
-<pre><code>&lt;form action=&quot;easydatatable/en/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
+<pre><code class="lang-HTML">&lt;form action=&quot;easydatatable/en/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
         &lt;table class=&quot;datatable easydatatable&quot; loading=&quot;none&quot; id=&quot;datatable3&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
             &lt;tr&gt;
@@ -862,9 +859,13 @@ userinfo:
         &lt;/table&gt;
     &lt;/div&gt;
     &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;10&quot;&gt;&lt;/div&gt;
-&lt;/form&gt;</code></pre>
-<h3 id="16-4-with-start-and-end-data-loading-paging-event-handler-custom-sort-indicator">16.4, With start and end data loading paging event handler + Custom sort indicator</h3>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;/form&gt;
+```HTML
+
+
+### 16.4, With start and end data loading paging event handler + Custom sort indicator
+```HTML
+&lt;script type=&quot;text/javascript&quot;&gt;
 
 //Custom sort indicator for the datatable4
 DataTable.sort[&quot;datatable4&quot;]={
@@ -953,7 +954,7 @@ $(function(){
 
 &lt;/form&gt;</code></pre>
 <h3 id="16-5-cancel-tabs">16.5 Cancel tabs</h3>
-<pre><code>&lt;form action=&quot;easydatatable/en/doPage.jsp&quot; name=&quot;myform&quot;&gt;
+<pre><code class="lang-HTML">&lt;form action=&quot;easydatatable/en/doPage.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;div style=&quot;height: 280px;overflow:auto;width: 780px;&quot;&gt;
         &lt;table class=&quot;easydatatable datatable&quot; id=&quot;datatable5&quot; width=&quot;100%&quot; align=&quot;center&quot; value=&quot;pb&quot;&gt;
             &lt;tr&gt;
@@ -981,7 +982,7 @@ $(function(){
     &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;display: none&quot; size=&quot;5,10,30,50&quot; pagetheme=&quot;no&quot; row=&quot;10&quot;&gt;&lt;/div&gt;
 &lt;/form&gt;</code></pre>
 <h3 id="16-6-custom-paging-example-1">16.6, Custom Paging Example 1</h3>
-<pre><code>&lt;form action=&quot;easydatatable/en/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
+<pre><code class="lang-HTML">&lt;form action=&quot;easydatatable/en/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;div style=&quot;height: 280px;overflow:auto;width: 780px;&quot;&gt;
         &lt;table class=&quot;easydatatable datatable&quot; id=&quot;datatable6&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
             &lt;tr&gt;
@@ -1019,7 +1020,7 @@ $(function(){
     &lt;/div&gt;
 &lt;/form&gt;</code></pre>
 <h3 id="16-7-custom-paging-example-2">16.7, Custom Paging Example 2</h3>
-<pre><code>&lt;form action=&quot;easydatatable/en/doPage.jsp&quot; name=&quot;myform&quot;&gt;
+<pre><code class="lang-HTML">&lt;form action=&quot;easydatatable/en/doPage.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;div style=&quot;height: 280px;overflow:auto;width: 780px;&quot;&gt;
         &lt;table class=&quot;easydatatable datatable&quot; id=&quot;datatable7&quot; width=&quot;100%&quot; align=&quot;center&quot; value=&quot;pb&quot;&gt;
             &lt;tr&gt;
@@ -1053,7 +1054,7 @@ $(function(){
     &lt;/div&gt;
 &lt;/form&gt;</code></pre>
 <h3 id="16-8-with-a-search-page-loading-hide-">16.8, With a search page + loading=”hide”</h3>
-<pre><code>DataTable.load(&quot;datatable8&quot;, {
+<pre><code class="lang-HTML">DataTable.load(&quot;datatable8&quot;, {
         &quot;loading&quot; : &quot;hide&quot;
 });
 
@@ -1102,7 +1103,7 @@ $(function(){
     &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot;&gt;&lt;/div&gt;
 &lt;/form&gt;</code></pre>
 <h3 id="16-9-dynamic-range-of-data-sources-to-load-nowpage-sort-of-static-data-filtering-query-default-like_i-query-matching-matchmode">16.9,  Dynamic range of data sources to load + NowPage sort of static data filtering query + default like_i query matching MatchMode</h3>
-<pre><code>&lt;form action=&quot;easydatatable/en/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
+<pre><code class="lang-HTML">&lt;form action=&quot;easydatatable/en/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;div style=&quot;margin: 20px auto;&quot;&gt;
         username：&lt;input type=&quot;text&quot; name=&quot;name&quot; class=&quot;txt_test&quot; value=&quot;4&quot; /&gt;
         userinfo：&lt;input type=&quot;text&quot; name=&quot;info&quot; class=&quot;txt_test&quot; value=&quot;INFO_2&quot;/&gt;
@@ -1154,7 +1155,7 @@ $(function(){
     &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot; row=&quot;30&quot;&gt;&lt;/div&gt;
 &lt;/form&gt;</code></pre>
 <h3 id="16-10-static-load-json-data-source-nowpage-range-of-static-data-filtering-query-without-sorting-paging-2-x-">16.10, Static load JSON data source + NowPage range of static data filtering query without sorting + paging (2.X)</h3>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+<pre><code class="lang-HTML">&lt;script type=&quot;text/javascript&quot;&gt;
     //static JSON data
     var jsonData ={
         &quot;rowPerPage&quot;: 10,
@@ -1341,7 +1342,7 @@ $(function(){
 
 &lt;/form&gt;</code></pre>
 <h3 id="16-11-json-file-data-source-load-all-range-of-static-data-filtering-query-sorting-2-x-">16.11, JSON file data source load + All range of static data filtering query sorting (2.X)</h3>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+<pre><code class="lang-HTML">&lt;script type=&quot;text/javascript&quot;&gt;
     $(function(){
         DataTable.fileLoad(&quot;datatable11&quot;,&quot;jsonData.json&quot;);
     });
@@ -1402,7 +1403,7 @@ $(function(){
 &lt;/form&gt;</code></pre>
 <h2 id="17-an-array-of-objects-loaded-paged-data-collection">17、An array of objects loaded paged data collection</h2>
 <p>EasyDataTable paging when data support the use of JSON data collection in addition, <strong>it also supports the use of Array object data collection</strong>. Dynamic Server data source or static array of data sources can be used to save data collection. For example:</p>
-<pre><code>data:[
+<pre><code class="lang-JS">data:[
             [1,&quot;Jay&quot;,&quot;I&#39;m Jay&quot;],
             [2,&quot;Jolin&quot;,&quot;I&#39;m Jolin&quot;],
             [3,&quot;Sheldon&quot;,&quot;I&#39;m Sheldon&quot;],
@@ -1421,7 +1422,7 @@ $(function(){
     ]</code></pre>
 <p><strong>An array of objects using the data attribute data set name <code>[index]</code> on behalf of the specified time to retrieve data from an array, <code>index</code> of digital data in the array index in the property expressions and statements can be used in expressions EasyDataTable.</strong><br><strong>For example,<code>[0]</code>, represents the first column of data attributes; <code>{[0]}</code>representative for the value of the first column of data attributes</strong></p>
 <h3 id="example-1-array-object-data-collection-server-dynamic-data-sources-nowpage-range-data-filtering-2-x-">Example 1: Array object data collection (server dynamic data sources) + NowPage range data filtering (2.X)</h3>
-<pre><code>&lt;form action=&quot;en/doPage3.jsp&quot; name=&quot;myform&quot;&gt;
+<pre><code class="lang-HTML">&lt;form action=&quot;en/doPage3.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;div style=&quot;margin: 20px auto;&quot;&gt;
         username（ sql_i MatchMode）： &lt;input type=&quot;text&quot; name=&quot;[1]&quot; class=&quot;txt_test&quot; value=&quot;USER_1%&quot; mode=&quot;sql_i&quot; /&gt;
         userinfo（ like_i MatchMode）：&lt;input type=&quot;text&quot; name=&quot;[2]&quot; class=&quot;txt_test&quot; value=&quot;i&quot;/&gt;
@@ -1480,7 +1481,7 @@ $(function(){
 
 &lt;/form&gt;</code></pre>
 <h3 id="example-2-array-object-data-collection-static-data-source-all-range-data-filtering-2-x-">Example 2: Array object data collection (static data source) + All range data filtering (2.X)</h3>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+<pre><code class="lang-HTML">&lt;script type=&quot;text/javascript&quot;&gt;
     //Static data source - an array of data collection        
     var arrayData={
         data:[
@@ -1568,7 +1569,7 @@ $(function(){
 <h2 id="18-add-ons-adjust-the-column-width-by-dragging-the-plug">18、Add-ons: adjust the column width by dragging the plug</h2>
 <p>EasyDataTable support the use of <a href="https://github.com/dobtco/jquery-resizable-columns" title="Viw on GitHub">jquery-resizable-columns</a> plug-in data table and drag to adjust the column width。</p>
 <p>18.1、 Need to drag out the first row of the data table to add <code>&lt;thead&gt;</code> tags</p>
-<pre><code>&lt;table class=&quot;datatable&quot; id=&quot;datatable12&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
+<pre><code class="lang-HTML">&lt;table class=&quot;datatable&quot; id=&quot;datatable12&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
           &lt;thead&gt;  &lt;!-- resizableColumns need--&gt;
               &lt;tr&gt;
                 &lt;!-- checkbox --&gt;
@@ -1586,7 +1587,7 @@ $(function(){
         ……
 &lt;/table&gt;</code></pre>
 <p>18.2、Use <code>$(&quot;#datatable12&quot;).resizableColumns();</code> initialize</p>
-<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;resizable/jquery.resizableColumns.css&quot; type=&quot;text/css&quot;&gt;&lt;/link&gt;
+<pre><code class="lang-HTML">&lt;link rel=&quot;stylesheet&quot; href=&quot;resizable/jquery.resizableColumns.css&quot; type=&quot;text/css&quot;&gt;&lt;/link&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;resizable/jquery.resizableColumns.js&quot;&gt;&lt;/script&gt;
 
 &lt;script type=&quot;text/javascript&quot;&gt;
@@ -1595,7 +1596,7 @@ $(function(){
   });
 &lt;/script&gt;</code></pre>
 <p><a href="http://www.lightfeel.com/easy/easydatatable/en/index.jsp#demo" title="Demo online">Demo online</a></p>
-<p>Contact, feedback, custom Email:<a href="&#109;&#x61;&#105;&#x6c;&#x74;&#111;&#58;&#x69;&#110;&#x2e;&#116;&#x68;&#x69;&#x6e;&#x6b;&#x40;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#x69;&#110;&#x2e;&#116;&#x68;&#x69;&#x6e;&#x6b;&#x40;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#x6d;</a></p>
+<p>Contact, feedback, custom Email:<a href="&#109;&#x61;&#105;&#108;&#116;&#x6f;&#58;&#105;&#110;&#x2e;&#x74;&#x68;&#x69;&#110;&#107;&#64;&#x67;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;">&#105;&#110;&#x2e;&#x74;&#x68;&#x69;&#110;&#107;&#64;&#x67;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;</a></p>
 <p><p></p>
 <p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank"></p>
 <p><input type="hidden" name="cmd" value="_xclick"></p>
