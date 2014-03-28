@@ -1692,7 +1692,7 @@ EasyDataTable support the use of [jquery-resizable-columns](https://github.com/d
 
 [Demo online](http://www.lightfeel.com/easy/easydatatable/en/index.jsp#demo 'Demo online')
 
-Contact, feedback, custom Email:<in.think@gmail.com>
+Contact, feedback, custom Email:<inthinkcolor@gmail.com>
 
 <p>
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
