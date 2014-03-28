@@ -1688,7 +1688,7 @@ EasyDataTable support the use of [jquery-resizable-columns](https://github.com/d
 </script>
 ```
 
-
+ 
 
 [Demo online](http://www.lightfeel.com/easy/easydatatable/en/index.jsp#demo 'Demo online')
 
