@@ -1,6 +1,6 @@
 // jQuery EasyDataTable Plugin
 //
-// Version 2.1.0
+// Version 2.2.0
 //
 // Copy By RAY
 // inthinkcolor@gmail.com
@@ -230,16 +230,41 @@
     jsonData.pageNo = dataForm.find("[name='pageNo']").val();
     jsonData.rowPerPage = dataForm.find("[name='rowPerPage']").val();
     innerLoad(tableid, {}, jsonData, true);
-  }, formatContent = function(content, jsondata) {
+  }, entityMap = {
+			unescape : {
+				'&amp;' : '&',
+				'&lt;' : '<',
+				'&gt;' : '>',
+				'&quot;' : '"',
+				'&#x27;' : "'"
+			}
+		},
+		entityRegexes = {
+			unescape : new RegExp('(' + ['&amp;','&lt;','&gt;','&quot;','&#x27;'].join('|') + ')',
+					'g')
+		}
+		,
+		unescape = function(string) {
+				if (string == null)
+					return '';
+				return ('' + string).replace(entityRegexes['unescape'], function(
+						match) {
+					return entityMap['unescape'][match];
+				});
+		},
+	formatContent = function(content, jsondata) {
+	content=unescape(content);
     var reg = /\{([^}]+)\}/g;
     var regExp = /\%\{(.*)\}\%/g;
     var arrExp = /\[([0-9]+)\]/g;
     content = content.replace(regExp, function(m, i) {
       with (jsondata) {
         try {
-          return eval($.trim(i).replace(arrExp, function(n, j) {
+          var res= eval($.trim(i).replace(arrExp, function(n, j) {
             return jsondata[j];
           }));
+          
+          return res==undefined?"":res;
         } catch (e) {
           return m;
         }

@@ -32,7 +32,7 @@ And other relatively EasyDataTable Ext main features:
 ```HTML	
 <link rel="stylesheet" href="css/datatable.css" type="text/css" />
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="js/easy.datatable.js"></script>
+<script type="text/javascript" src="js/easy.datatable.min.js"></script>
 ```
 
 
@@ -275,7 +275,9 @@ initFlag:true representative of the first load data (initialization tables), fal
 ## 4, EasyDataTableExpression Language Use
 
 ### 4.1 EasyDataTable Property Expression Property expression `{data attributes }`
+
 ** Property expressions for data display line, display the specified property values. **
+
 In the property expression can be directly referenced data attributes to get the data for the specified property. And supports a variety of mathematical, comparison operators perform basic arithmetic JavaScript.
 
 ```JS
@@ -284,10 +286,15 @@ In the property expression can be directly referenced data attributes to get the
 
 
 ### 4.2 EasyDataTable Statement Expression `% {expression statement}% 
+
 ** Statement expression data for display in line with the programming statements to control programming. **
+
 Support the use of JavaScript written statement expression expression code; supports direct call data attributes; also supports the use of EasyDataTable property expression (must be used to define the use of quotation marks in the string).
 The results statement expression must be used to perform the standard output method statement expression EasyDataTable output: ** `DataTable.out (" Content ");` **
-```JSP
+
+JS script <,> and other special symbols can also be used to replace the corresponding character entities.
+
+```HTML
 <%--
 Support JavaScript language expressions.
 Attribute name: the variable reference and handling
@@ -309,7 +316,26 @@ EasyDataTable property expression: You must define the use of quotation marks in
 	} 
 }%
 ```
-
+** Note: **
+Since EasyDataTable statement expression is to get the final result of the execution of the entire code, so the following code will not be executed 10 times the output:
+```JS
+%{ 
+	for(var i=0;i<=10;i++){
+	   DataTable.out(i);
+	}
+}%
+```
+If you want to output 10 times, you must use variables to store the results of the cycle, the final output:
+```JS
+%{ 
+	var res="";
+	for(var i=0;i<=10;i++){
+		res+=i;
+	}
+	
+	DataTable.out(res);
+}%
+```
 
 
 
@@ -1688,7 +1714,7 @@ EasyDataTable support the use of [jquery-resizable-columns](https://github.com/d
 </script>
 ```
 
- 
+
 
 [Demo online](http://www.lightfeel.com/easy/easydatatable/en/index.jsp#demo 'Demo online')
 

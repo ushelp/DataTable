@@ -1,22 +1,10 @@
 // jQuery EasyDataTable Plugin
 //
-// Version 1.8.0
+// Version 1.9.0
 //
 // Copy By RAY
 // inthinkcolor@gmail.com
 // 2013
-//
-// https://github.com/ushelp/DataTable
-//
-// jQuery EasyDataTable Plugin
-//
-// Version 1.8.0
-//
-// Copy By RAY
-// inthinkcolor@gmail.com
-// 2013
-//
-// https://github.com/ushelp/EasyDataTable
 //
 (function(window) {
     var cacheData = {}, cacheDataRow = {}, cacheThLength = {}, cachePageTheme = {}, cacheLanguage = {}, cacheOrderArrow = {}, cacheInitLoading = {}, cacheStartFun = {}, cacheEndFun = {}, cacheUserPage = {}, cacheInit = {}, cacheDefaultRow = {}, cacheLoadDefault = {}, cacheSizeArray = {}, innerLoad = function(tableid, easydataParams, jsonData) {
@@ -121,7 +109,30 @@
                 $("#datatable_initPageData").remove();
             }
         });
-    }, formatContent = function(content, jsondata) {
+    }, entityMap = {
+    		unescape : {
+    			'&amp;' : '&',
+    			'&lt;' : '<',
+    			'&gt;' : '>',
+    			'&quot;' : '"',
+    			'&#x27;' : "'"
+    		}
+    	},
+    	entityRegexes = {
+    		unescape : new RegExp('(' + ['&amp;','&lt;','&gt;','&quot;','&#x27;'].join('|') + ')',
+    				'g')
+    	}
+    	,
+    	unescape = function(string) {
+    			if (string == null)
+    				return '';
+    			return ('' + string).replace(entityRegexes['unescape'], function(
+    					match) {
+    				return entityMap['unescape'][match];
+    			});
+    	},
+    formatContent = function(content, jsondata) {
+    	content=unescape(content);
         var reg = /\{([^}]+)\}/g;
         var regExp = /\%\{(.*)\}\%/g;
         var arrExp = /\[([0-9]+)\]/g;
@@ -129,9 +140,11 @@
             with (jsondata) {
                 try {
                     try {
-                        return eval($.trim(i).replace(arrExp, function(n, j) {
+                    	var res= eval($.trim(i).replace(arrExp, function(n, j) {
                             return jsondata[j];
-                        }));
+                          }));
+                          
+                          return res==undefined?"":res;
                     } catch (e) {
                         return m;
                     }

@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
 <head>
 <title>readme</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -288,11 +288,157 @@ table tr:nth-child(2n) {
 img {
   max-width: 100%
 }
-</style>
+
+/* GitHub Theme */
+.prettyprint {
+  
+  font-family: Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+ 
+}
+.codeSpan{ font-size: 13px;
+  font-family: "Bitstream Vera Sans Mono", "Consolas", "Courier New", Courier, monospace !important;
+}
+.pln {
+  color: #333333;
+}
+
+@media screen {
+	
+  .str {
+    color: #dd1144;
+  }
+
+  .kwd {
+    color: #333333;
+  }
+
+  .com {
+    color: #999988;
+    font-style: italic;
+  }
+
+  .typ {
+    color: #445588;
+  }
+
+  .lit {
+    color: #008484; font-weight: bold;
+  }
+
+  .pun {
+    color: #333333;
+  }
+
+  .opn {
+    color: #333333;
+  }
+
+  .clo {
+    color: #333333;
+  }
+
+  .tag {
+    color: navy;
+  }
+
+  .atn {
+    color: teal;
+  }
+
+  .atv {
+    color: #dd1144;
+  }
+
+  .dec {
+    color: #333333;
+  }
+
+  .var {
+    color: teal;
+  }
+
+  .fun {
+    color: #990000;
+  }
+}
+@media print, projection {
+  .str {
+    color: #006600;
+  }
+
+  .kwd {
+    color: #006;
+    font-weight: bold;
+  }
+
+  .com {
+    color: #600;
+    font-style: italic;
+  }
+
+  .typ {
+    color: #404;
+    font-weight: bold;
+  }
+
+  .lit {
+    color: #004444;
+  }
+
+  .pun, .opn, .clo {
+    color: #444400;
+  }
+
+  .tag {
+    color: #006;
+    font-weight: bold;
+  }
+
+  .atn {
+    color: #440044;
+  }
+
+  .atv {
+    color: #006600;
+  }
+}
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* IE indents via margin-left */
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 {
+  /* */
+}
+
+/* Alternate shading for lines */
+li.L1,
+li.L3,
+li.L5,
+li.L7,
+li.L9 {
+  /* */
+}
+ </style>
+	
 </head>
 <body>
 <h1 id="datatable-ajax-pagination-plugin-manual">DataTable AJAX pagination plugin manual</h1>
-<p>Notice:It’s same toEasyDataTable,This plugin is EasyDataTable the English version, the Chinese version please refer to:<a href="https://github.com/ushelp/EasyDataTable">https://github.com/ushelp/EasyDataTable</a><br>说明:该插件与EasyDataTable插件为同一插件，是EasyDataTable的英文文版本，提示消息和使用手册均为英文版。 </p>
+<p>Notice:It&#39;s same toEasyDataTable,This plugin is EasyDataTable the English version, the Chinese version please refer to:<a href="https://github.com/ushelp/EasyDataTable">https://github.com/ushelp/EasyDataTable</a><br>说明:该插件与EasyDataTable插件为同一插件，是EasyDataTable的英文文版本，提示消息和使用手册均为英文版。 </p>
 <p>Use Ajax pagination can improve data load and display speed and reduce network traffic, improve the customer experience degrees; same time be able to refresh only partially solve when there are multiple data displayed on the page table area, the traditional paging will cause the entire page to refresh. </p>
 <p>EasyDataTable AJAX pagination plug-in is based on the best pure jQuery Ajax pagination plug-in, enhanced support for HTML and JS programming are two ways to implement paging, the biggest feature is: Simple, easy to use and flexible. Supports a variety of data sources to load (dynamic data source server, static data source, JSON file data sources); own tabs; support custom pagination; Custom Loading prompt; spreadsheet UI can be customized; support column click sort, support static data sorting; supports dynamic query conditions, static data filtering query conditions, support scope, methods and mode support, built-in 8 kinds of static data that match the query pattern; built-EasyDataTable expression language, event support, can enhance paging through JavaScript programming.</p>
 <p><strong>Compatibility</strong>: EasyDataTable fully compatible with IE6 and above, Firefox, Chrome, Safari, Opera and other kernel (Trident, Gecko, Webkit, Presto) browser, and is compatible with multiple platforms and systems (PC, TabletPC, Mobile) .</p>
@@ -311,7 +457,7 @@ img {
 <h2 id="1-introducing-core-js-and-css-files-easydatatable">1, Introducing core js and css files EasyDataTable</h2>
 <pre><code class="lang-HTML">&lt;link rel=&quot;stylesheet&quot; href=&quot;css/datatable.css&quot; type=&quot;text/css&quot; /&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;js/easy.datatable.js&quot;&gt;&lt;/script&gt;</code></pre>
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/easy.datatable.min.js&quot;&gt;&lt;/script&gt;</code></pre>
 <h2 id="2-page-table-structure">2, Page table structure</h2>
 <p>EasyDataTable is structured into form, EasyDataTable data table (table header row, the data show rows), paging div three parts, creating a data table structure as follows:</p>
 <pre><code class="lang-HTML">&lt;!-- Create a form action is handled dynamically paging request address --&gt;
@@ -400,9 +546,9 @@ img {
 <p>Supports two optional paging themes, and custom paging (values ​​are not case-sensitive)</p>
 <p>  <code>&quot;FULL&quot;</code> (full theme, the default display all the pages option, the default value)</p>
 <p>  <code>&quot;SIMPLE&quot;</code> (a simple theme, do not show quick jump page)</p>
-<p>  <code>&quot;NO&quot;</code> (Cancel theme, using custom paging, refer to Section 11 “custom paging”)</p>
+<p>  <code>&quot;NO&quot;</code> (Cancel theme, using custom paging, refer to Section 11 &quot;custom paging&quot;)</p>
 <p>  <strong>This parameter supports HTML enhancements:</strong></p>
-<p>  <code>pagetheme</code> parameter can be paged through <code>div</code> a <code>pagetheme property</code> setting. Loading sequence as html, javascript, loading parameters will overwrite the previous value, refer to Section 10 “Paging theme settings.”</p>
+<p>  <code>pagetheme</code> parameter can be paged through <code>div</code> a <code>pagetheme property</code> setting. Loading sequence as html, javascript, loading parameters will overwrite the previous value, refer to Section 10 &quot;Paging theme settings.&quot;</p>
 </li>
 </ul>
 <ul>
@@ -410,7 +556,7 @@ img {
 <p>  Because Ajax program during execution does not refresh the page, so when performing operations such as paging, Ajax applications should be given to the customer when the appropriate prompts and feedback loaded for execution, or the user may think the task is not performed or failed, affecting the degree of experience .</p>
 <p>   EasyDataTable support when the page loads carried Loading configuration, optional value: <code>&quot; default &quot;</code>, <code>&quot; show &quot;</code>, <code>&quot; none &quot;</code>, <code>&quot; hide &quot;</code> or <code>&quot; any value &quot;</code>. (Values ​​are not case-sensitive)</p>
 <p>  <code>&quot; default &quot;</code>: default is disabled when the page loads the operating table (disabled hyperlinks, buttons), the data displayed in gray</p>
-<p>  <code>&quot; show &quot;</code>: display text prompts to load, display the contents of the page is loaded loading tips DataTable.loading_msg defined (can be modified) “Data is loading ……”</p>
+<p>  <code>&quot; show &quot;</code>: display text prompts to load, display the contents of the page is loaded loading tips DataTable.loading_msg defined (can be modified) &quot;Data is loading ......&quot;</p>
 <p>  <code>&quot; none &quot;</code>: hidden data show lines show when the page is loaded hidden data line data + cells showed complete blank</p>
 <p>  <code>&quot; hide &quot;</code>: hidden data content, the page is loaded only when the data show hidden rows, reserved display cell borders</p>
 <p>  <code>&quot; Any value &quot;</code>: direct the contents as a prompt to load the page content (equivalent to show the way), support for HTML content</p>
@@ -493,11 +639,14 @@ initFlag:true representative of the first load data (initialization tables), fal
 </ul>
 <h2 id="4-easydatatableexpression-language-use">4, EasyDataTableExpression Language Use</h2>
 <h3 id="4-1-easydatatable-property-expression-property-expression-data-attributes-">4.1 EasyDataTable Property Expression Property expression <code>{data attributes }</code></h3>
-<p><strong> Property expressions for data display line, display the specified property values. </strong><br>In the property expression can be directly referenced data attributes to get the data for the specified property. And supports a variety of mathematical, comparison operators perform basic arithmetic JavaScript.</p>
+<p><strong> Property expressions for data display line, display the specified property values. </strong></p>
+<p>In the property expression can be directly referenced data attributes to get the data for the specified property. And supports a variety of mathematical, comparison operators perform basic arithmetic JavaScript.</p>
 <pre><code class="lang-JS">    {id}    {name}</code></pre>
 <h3 id="4-2-easydatatable-statement-expression-expression-statement-">4.2 EasyDataTable Statement Expression `% {expression statement}%</h3>
-<p><strong> Statement expression data for display in line with the programming statements to control programming. </strong><br>Support the use of JavaScript written statement expression expression code; supports direct call data attributes; also supports the use of EasyDataTable property expression (must be used to define the use of quotation marks in the string).<br>The results statement expression must be used to perform the standard output method statement expression EasyDataTable output: <strong> <code>DataTable.out (&quot; Content &quot;);</code> </strong></p>
-<pre><code class="lang-JSP">&lt;%--
+<p><strong> Statement expression data for display in line with the programming statements to control programming. </strong></p>
+<p>Support the use of JavaScript written statement expression expression code; supports direct call data attributes; also supports the use of EasyDataTable property expression (must be used to define the use of quotation marks in the string).<br>The results statement expression must be used to perform the standard output method statement expression EasyDataTable output: <strong> <code>DataTable.out (&quot; Content &quot;);</code> </strong></p>
+<p>JS script &lt;,&gt; and other special symbols can also be used to replace the corresponding character entities.</p>
+<pre><code class="lang-HTML">&lt;%--
 Support JavaScript language expressions.
 Attribute name: the variable reference and handling
 EasyDataTable property expression: You must define the use of quotation marks in strings
@@ -516,6 +665,21 @@ EasyDataTable property expression: You must define the use of quotation marks in
     }else{ 
          DataTable.out(&#39;&lt;a href=&quot;doUser.jsp?o=show&amp;id={id }&quot;&gt;show&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=edit&amp;id={id }&quot;&gt;edit&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;doUser.jsp?o=delete&amp;id={id }&quot;&gt;delete&lt;/a&gt;&#39;);  
     } 
+}%</code></pre>
+<p><strong> Note: </strong><br>Since EasyDataTable statement expression is to get the final result of the execution of the entire code, so the following code will not be executed 10 times the output:</p>
+<pre><code class="lang-JS">%{ 
+    for(var i=0;i&lt;=10;i++){
+       DataTable.out(i);
+    }
+}%</code></pre>
+<p>If you want to output 10 times, you must use variables to store the results of the cycle, the final output:</p>
+<pre><code class="lang-JS">%{ 
+    var res=&quot;&quot;;
+    for(var i=0;i&lt;=10;i++){
+        res+=i;
+    }
+
+    DataTable.out(res);
 }%</code></pre>
 <h2 id="5-easydatatablebuilt-in-data-attribute">5, EasyDataTableBuilt-in data attribute</h2>
 <p><strong>EasyDataTable built-related data and paging built-in properties can be used directly in the data show tabs row or rows.</strong></p>
@@ -659,7 +823,7 @@ DataTable.order_down=&quot;&lt;img src=&#39;images/order_down.gif&#39;/&gt;&quot
     &lt;input type=&quot;button&quot; value=&quot;next&quot; onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{pageNo+1}&#39;)&quot;/&gt;
     &lt;input type=&quot;button&quot; value=&quot;last&quot; onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{maxPage}&#39;)&quot;/&gt;
 &lt;/div&gt;</code></pre>
-<p>When the JavaScript function call, if the parameter used EasyDataTable property expressions (such as pages <code>{pageNo-1}</code>) is required by single quotation marks, as a string parameter, otherwise there will be a warning under IE8 (does not affect the actual the results).<br>For example, the following code ‘{pageNo-1}’ must use quotes:</p>
+<p>When the JavaScript function call, if the parameter used EasyDataTable property expressions (such as pages <code>{pageNo-1}</code>) is required by single quotation marks, as a string parameter, otherwise there will be a warning under IE8 (does not affect the actual the results).<br>For example, the following code &#39;{pageNo-1}&#39; must use quotes:</p>
 <pre><code class="lang-HTML">onclick=&quot;DataTable.go(&#39;datatable7&#39;, &#39;{pageNo-1}&#39;)&quot;。</code></pre>
 <h2 id="12-with-a-search-page">12, With a search page</h2>
 <p>Form into the search box form, with the following two ways to search submission page.</p>
@@ -783,7 +947,7 @@ userinfo:
     &lt;/div&gt;
     &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot;&gt;&lt;/div&gt;
 &lt;/form&gt;</code></pre>
-<h3 id="16-2-specify-paging-theme-simple-loading-show-with-tips-sort-properties">16.2, Specify paging theme SIMPLE + Loading = “show” with tips + Sort Properties</h3>
+<h3 id="16-2-specify-paging-theme-simple-loading-show-with-tips-sort-properties">16.2, Specify paging theme SIMPLE + Loading = &quot;show&quot; with tips + Sort Properties</h3>
 <pre><code class="lang-HTML">&lt;script type=&quot;text/javascript&quot;&gt;
   DataTable.load(&quot;datatable2&quot;,{
                   &quot;pagetheme&quot;:&#39;SIMPLE&#39;,
@@ -825,7 +989,7 @@ userinfo:
     &lt;/div&gt;
     &lt;div class=&quot;panelBar&quot; style=&quot;width: 780px;&quot; size=&quot;5,10,30,50&quot;&gt;&lt;/div&gt;
 &lt;/form&gt;</code></pre>
-<h3 id="16-3-judge-sentences-datatable-expression-loading-none-row-10-">16.3, Judge sentences DataTable expression + Loading = “none” + row = “10”</h3>
+<h3 id="16-3-judge-sentences-datatable-expression-loading-none-row-10-">16.3, Judge sentences DataTable expression + Loading = &quot;none&quot; + row = &quot;10&quot;</h3>
 <pre><code class="lang-HTML">&lt;form action=&quot;easydatatable/en/doPage2.jsp&quot; name=&quot;myform&quot;&gt;
     &lt;div style=&quot;height: 260px;overflow:auto;width: 780px;&quot; class=&quot;dataTableScrollDiv&quot;&gt;
         &lt;table class=&quot;datatable easydatatable&quot; loading=&quot;none&quot; id=&quot;datatable3&quot; width=&quot;100%&quot; align=&quot;center&quot;&gt;
@@ -1053,7 +1217,7 @@ $(function(){
             onclick=&quot;DataTable.go(&#39;datatable7&#39;,&#39;{maxPage}&#39;)&quot;&gt;
     &lt;/div&gt;
 &lt;/form&gt;</code></pre>
-<h3 id="16-8-with-a-search-page-loading-hide-">16.8, With a search page + loading=”hide”</h3>
+<h3 id="16-8-with-a-search-page-loading-hide-">16.8, With a search page + loading=&quot;hide&quot;</h3>
 <pre><code class="lang-HTML">DataTable.load(&quot;datatable8&quot;, {
         &quot;loading&quot; : &quot;hide&quot;
 });
@@ -1596,7 +1760,7 @@ $(function(){
   });
 &lt;/script&gt;</code></pre>
 <p><a href="http://www.lightfeel.com/easy/easydatatable/en/index.jsp#demo" title="Demo online">Demo online</a></p>
-<p>Contact, feedback, custom Email:<a href="mailto:inthinkcolor@gmail.com">inthinkcolor@gmail.com</a></p>
+<p>Contact, feedback, custom Email:<a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#x69;&#x6e;&#116;&#104;&#105;&#x6e;&#107;&#x63;&#111;&#x6c;&#111;&#x72;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#x6f;&#x6d;">&#x69;&#x6e;&#116;&#104;&#105;&#x6e;&#107;&#x63;&#111;&#x6c;&#111;&#x72;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#x6f;&#x6d;</a></p>
 <p><p></p>
 <p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank"></p>
 <p><input type="hidden" name="cmd" value="_xclick"></p>
